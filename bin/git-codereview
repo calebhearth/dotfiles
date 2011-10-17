@@ -1,0 +1,1 @@
+git log origin edge --color --author="Caleb Thompson" --since=1.weeks.ago

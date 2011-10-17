@@ -1,0 +1,15 @@
+#!/bin/bash
+if $1; then
+  test_name = "$1_test.rb"
+  files=`find test -name $test_name`
+  if $files; then
+    for file in $files; do
+      bundle exec ruby -Itest $files
+    done
+  else
+    echo "No tests found with name $test_name."
+  fi
+else
+  echo "No arguments provided."
+fi
+

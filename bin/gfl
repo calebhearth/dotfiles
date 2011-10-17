@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+my %argmap = (
+  '-a' => '--all',
+  '-b' => '--branches',
+  '-r' => '--remotes',
+);
+my @args;
+for (@ARGV) {
+  push @args, ($argmap{$_} || $_);
+}
+system "git-forest --sha --style=2 --topo-order @args |less -SR";
