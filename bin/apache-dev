@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# this is basically a very simple init.d script
+# it might be interesting alter to look into incorporating more of the 
+# functions provided by centos for init scripts here
+
+HTTPD=/usr/sbin/apachectl
+HTTPD_ROOT=~/httpd
+HTTPD_CONF=~/httpd/httpd.conf
+
+HTTPD_PORT=`expr \`id -u\` + 10000`
+HTTPD_DOCROOT=`pwd`
+
+__usage() {
+  echo "Usage: apache-dev (start|restart|graceful|graceful-stop|stop)"
+  exit 1
+}
+
+__httpd-dev() {
+  ${HTTPD} -d ${HTTPD_ROOT} -f ${HTTPD_CONF} -k $1
+}
+
+__init_instance() {
+  if [ ! -f ${HTTPD_DOCROOT}/.git/config ]; then
+    echo
+    echo "The current directory does not look like a proper git project."
+    echo "Dev apache instance not started."
+    echo
+    exit 1
+  fi
+
+  # Only start a server for the core platform right now
+  cat <<__EOF > ${HTTPD_ROOT}/instance.conf
+Listen ${HTTPD_PORT}
+DocumentRoot ${HTTPD_DOCROOT}
+
+Include conf.d/core.project.conf
+__EOF
+}
+
+
+if [ ! -d ${HTTPD_ROOT} ]; then
+  echo "Please run apache-dev-install before running this script"
+  exit 1
+fi
+
+case $1 in
+  start)
+    __init_instance
+
+    __httpd-dev start
+
+    echo "Dev apache instance started on dev.solsystemscompany.com:${HTTPD_PORT}"
+    ;;
+
+  stop)
+    __httpd-dev stop
+
+    echo "Dev apache instance stopped"
+    ;;
+
+  *)
+    __usage
+    ;;
+esac

@@ -1,0 +1,205 @@
+#!/bin/bash
+
+# there must be a better way to do this...
+
+# set up file static contents
+
+# PHP conf
+PHP_CONF=$(cat <<__EOF
+LoadModule php5_module /etc/httpd/modules/libphp5.so
+
+AddHandler php5-script .php
+AddType text/html .php
+
+DirectoryIndex index.php
+__EOF)
+
+# Main conf
+HTTPD_CONF=$(cat <<__EOF
+PidFile httpd.pid
+
+Timeout 120
+KeepAlive Off
+MaxKeepAliveRequests 100
+KeepAliveTimeout 15
+
+
+ServerName dev.solsystemscompany.com
+ServerTokens Prod
+ServerSignature Off
+HostnameLookups Off
+
+DirectoryIndex index.html
+
+# Server config
+<IfModule prefork.c>
+StartServers       8
+MinSpareServers    5
+MaxSpareServers   20
+ServerLimit      256
+MaxClients       256
+MaxRequestsPerChild  4000
+</IfModule>
+
+<IfModule worker.c>
+StartServers         2
+MaxClients         150
+MinSpareThreads     25
+MaxSpareThreads     75 
+ThreadsPerChild     25
+MaxRequestsPerChild  0
+</IfModule>
+
+
+# Modules
+LoadModule auth_basic_module /etc/httpd/modules/mod_auth_basic.so
+LoadModule auth_digest_module /etc/httpd/modules/mod_auth_digest.so
+LoadModule authn_file_module /etc/httpd/modules/mod_authn_file.so
+LoadModule authn_alias_module /etc/httpd/modules/mod_authn_alias.so
+LoadModule authn_anon_module /etc/httpd/modules/mod_authn_anon.so
+LoadModule authn_dbm_module /etc/httpd/modules/mod_authn_dbm.so
+LoadModule authn_default_module /etc/httpd/modules/mod_authn_default.so
+LoadModule authz_host_module /etc/httpd/modules/mod_authz_host.so
+LoadModule authz_user_module /etc/httpd/modules/mod_authz_user.so
+LoadModule authz_owner_module /etc/httpd/modules/mod_authz_owner.so
+LoadModule authz_groupfile_module /etc/httpd/modules/mod_authz_groupfile.so
+LoadModule authz_dbm_module /etc/httpd/modules/mod_authz_dbm.so
+LoadModule authz_default_module /etc/httpd/modules/mod_authz_default.so
+LoadModule ldap_module /etc/httpd/modules/mod_ldap.so
+LoadModule authnz_ldap_module /etc/httpd/modules/mod_authnz_ldap.so
+LoadModule log_config_module /etc/httpd/modules/mod_log_config.so
+LoadModule logio_module /etc/httpd/modules/mod_logio.so
+LoadModule env_module /etc/httpd/modules/mod_env.so
+LoadModule ext_filter_module /etc/httpd/modules/mod_ext_filter.so
+LoadModule mime_magic_module /etc/httpd/modules/mod_mime_magic.so
+LoadModule expires_module /etc/httpd/modules/mod_expires.so
+LoadModule deflate_module /etc/httpd/modules/mod_deflate.so
+LoadModule headers_module /etc/httpd/modules/mod_headers.so
+LoadModule usertrack_module /etc/httpd/modules/mod_usertrack.so
+LoadModule setenvif_module /etc/httpd/modules/mod_setenvif.so
+LoadModule mime_module /etc/httpd/modules/mod_mime.so
+LoadModule autoindex_module /etc/httpd/modules/mod_autoindex.so
+LoadModule info_module /etc/httpd/modules/mod_info.so
+LoadModule vhost_alias_module /etc/httpd/modules/mod_vhost_alias.so
+LoadModule negotiation_module /etc/httpd/modules/mod_negotiation.so
+LoadModule dir_module /etc/httpd/modules/mod_dir.so
+LoadModule actions_module /etc/httpd/modules/mod_actions.so
+LoadModule speling_module /etc/httpd/modules/mod_speling.so
+LoadModule alias_module /etc/httpd/modules/mod_alias.so
+LoadModule rewrite_module /etc/httpd/modules/mod_rewrite.so
+LoadModule cache_module /etc/httpd/modules/mod_cache.so
+LoadModule suexec_module /etc/httpd/modules/mod_suexec.so
+LoadModule disk_cache_module /etc/httpd/modules/mod_disk_cache.so
+LoadModule file_cache_module /etc/httpd/modules/mod_file_cache.so
+LoadModule mem_cache_module /etc/httpd/modules/mod_mem_cache.so
+LoadModule cgi_module /etc/httpd/modules/mod_cgi.so
+LoadModule version_module /etc/httpd/modules/mod_version.so
+
+
+# .htaccess files
+AccessFileName .htaccess
+<Files ~ "^\.ht">
+    Order allow,deny
+    Deny from all
+</Files>
+
+
+# Logs
+LogLevel warn
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %b" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+
+ErrorLog logs/error_log
+CustomLog logs/access_log combined
+
+
+# Language and character set
+AddLanguage en .en
+LanguagePriority en 
+ForceLanguagePriority Prefer Fallback
+AddDefaultCharset UTF-8
+
+
+# Type definitions
+TypesConfig /etc/mime.types
+DefaultType text/plain
+
+<IfModule mod_mime_magic.c>
+    MIMEMagicFile /etc/httpd/conf/magic
+</IfModule>
+
+AddType application/x-compress .Z
+AddType application/x-gzip .gz .tgz
+
+
+# Browser match overrides
+BrowserMatch "Mozilla/2" nokeepalive
+BrowserMatch "MSIE 4\.0b2;" nokeepalive downgrade-1.0 force-response-1.0
+BrowserMatch "RealPlayer 4\.0" force-response-1.0
+BrowserMatch "Java/1\.0" force-response-1.0
+BrowserMatch "JDK/1\.0" force-response-1.0
+
+BrowserMatch "Microsoft Data Access Internet Publishing Provider" redirect-carefully
+BrowserMatch "MS FrontPage" redirect-carefully
+BrowserMatch "^WebDrive" redirect-carefully
+BrowserMatch "^WebDAVFS/1.[0123]" redirect-carefully
+BrowserMatch "^gnome-vfs/1.0" redirect-carefully
+BrowserMatch "^XML Spy" redirect-carefully
+BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
+
+
+# include the configuration for the current instance
+Include instance.conf
+__EOF)
+
+
+# set up project-specific configurations
+
+# Core platform project conf
+PROJECT_CORE_CONF=$(cat <<__EOF
+Include conf.d/php.conf
+
+# Pass the current user\'s environment through
+PassEnv SOL_ENV
+
+<Directory />
+	AllowOverride all
+	Options -MultiViews
+</Directory>
+__EOF)
+
+
+# run the actual script
+
+echo
+echo "This script will create the appropriate directories to support running"
+echo "local apache instances on demand. Please note that this script will "
+echo "overwrite existing files if they exist.  If you would like to back up "
+echo "an existing directoy, please use CTRL-C to exit this script and backup "
+echo "your files as necessary."
+echo
+echo -n "Press any key to continue or CTRL-C to exit..."
+read
+
+for DIR in ~/httpd ~/httpd/conf.d ~/httpd/logs; do
+  if [ ! -d $DIR ]; then
+    echo "Creating directory $DIR"
+    mkdir $DIR
+  fi
+done
+
+echo "Creating file ~/httpd/httpd.conf"
+echo "$HTTPD_CONF" > ~/httpd/httpd.conf
+
+echo "Creating file ~/httpd/conf.d/php.conf"
+echo "$PHP_CONF" > ~/httpd/conf.d/php.conf
+
+echo "Creating file ~/httpd/conf.d/core.project.conf"
+echo "$PROJECT_CORE_CONF" > ~/httpd/conf.d/core.project.conf
+
+echo "All directories initialized successfully."
+echo
+echo "Please run apache-dev -h for usage information."
+echo
