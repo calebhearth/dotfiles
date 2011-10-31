@@ -4,4 +4,7 @@
 .tissues
 *~
 *.swp
+.*.swp
 *.rbc
+*.bak
+*.ERR

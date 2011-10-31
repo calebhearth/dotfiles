@@ -9,6 +9,7 @@ IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
 IRB.conf[:AUTO_INDENT] = true
+IRB.conf[:AUTO_EVAL] = true
 
 class Object
   # list methods which aren't in superclass
@@ -32,7 +33,7 @@ class Object
 end
 
 def me
-  User.find_by_login('holman')
+  User.find_by_login('caleb')
 end
 
 def r

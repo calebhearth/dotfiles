@@ -8,24 +8,38 @@
 # install this to the correct location by running the project's main `rake`
 # task.
 [user]
-        name = Caleb Thompson
-        email = caleb.thompson@solsystemscompany.com
+        name 	= Caleb Thompson
+        email 	= caleb@solsystemscompany.com
 [alias]
-        co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributers = !$ZSH/bin/git-rank-contributers
+        co 	= checkout
         count   = !git shortlog -sn
 [color]
-        diff = auto
-        status = auto
-        branch = auto
+	ui = auto
+[color "branch"]
+	current	= yellow reverse
+	local	= yellow
+	remote	= green
+[color "diff"]
+	meta	= yellow bold
+	frag	= magenta bold
+	old	= red bold
+	new	= green bold
+[color "status"]
+	added		= yellow
+	changed		= green
+	untracked	= cyan
 [core]
-        excludesfile = ~/.gitignore
-        editor = mate -w
+        excludesfile	= ~/.gitignore
+        editor		= "vim"
 [apply]
         whitespace = nowarn
+[push]
+	default	= tracking
+[recieve]
+	denyCurrentBranch = ignore
 [github]
-        user = holman
+        user = calebthompson
 [mergetool]
         keepBackup = false
+[http]
+	sslverify = false
