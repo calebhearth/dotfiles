@@ -19,3 +19,5 @@ alias rake='bundle exec rake'
 function pull {
   heroku db:pull --app $1 --confirm $1 sqlite://db/development.sqlite3 $*
 }
+
+alias wtc="curl -s 'http://whatthecommit.com/' | grep '<p>' | cut -c4-"
