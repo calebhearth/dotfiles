@@ -66,4 +66,10 @@ if [[ -s $HOME/.rvm/scripts/rvm ]]; then
   source $HOME/.rvm/scripts/rvm;
 fi
 
+# Play nice with bundler.  Use bundle exec if a Gemfile is available, otherwise
+# use whatever is installed on the system for various ruby commands.
+if [ -f ~/.bundler-exec.sh ]; then
+  source ~/.bundler-exec.sh
+fi
+
 fi # Match if from beginning of file
