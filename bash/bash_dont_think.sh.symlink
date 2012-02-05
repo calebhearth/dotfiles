@@ -127,8 +127,6 @@ __prompt_command() {
 	__tab_title="$project[$last_command]"
 	__pretty_pwd="${PWD/$HOME/~}"
 	hostname=`hostname -s`
-  echo -e "\e]1;$__tab_title\007\c" # set tab title.  Doesn't work in Terminal.app
-  echo -e "\e]2;$hostname::$__pretty_pwd" # set window title
 }
 
 PROMPT_COMMAND=__prompt_command
