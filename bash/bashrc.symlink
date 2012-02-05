@@ -2,9 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# Include $HOME/bin in PATH
-PATH=$PATH:~/bin
-
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]]; then
 
@@ -20,11 +17,10 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # Add ~/bin to $PATH so that we can have our own, private binaries
-if [ -f $HOME/bin ]; then
-  $PATH=$PATH:$HOME/bin
+if [ -d $HOME/bin ]; then
+  PATH=$HOME/bin:$PATH
   export PATH
 fi
-
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -35,22 +31,31 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
+
+# Set prompt
+if [ -f ~/.bash_prompt ]; then
+  . ~/.bash_prompt
+fi
+
+# Ack for a search term and automatically open all files with results in vim.
+function ackvim()
+{
+  echo 'Acking...';
+  vim $(ack -l $*);
+}
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+  . /etc/bash_completion
 fi
 
 #Set default text editor to vim
@@ -61,89 +66,10 @@ if [[ -s $HOME/.rvm/scripts/rvm ]]; then
   source $HOME/.rvm/scripts/rvm;
 fi
 
-# next three ganked from <http://muness.blogspot.com/2008/06/stop-presses-bash-said-to-embrace.html>
-sub_dir() {
-    local sub_dir
-    sub_dir=$(stat --printf="%n" "${PWD}")
-    sub_dir=${sub_dir#$1}
-    echo ${sub_dir#/}
-}
-
-git_dir() {
-    ref=''
-    base_dir=$(git rev-parse --show-cdup 2>/dev/null) || return 1
-    if [ -n "$base_dir" ]; then
-	base_dir=`cd $base_dir; pwd`
-    else
-	base_dir=$PWD
-    fi
-    sub_dir=$(git rev-parse --show-prefix)
-    sub_dir="/${sub_dir%/}"
-    ref=$(git symbolic-ref -q HEAD) || ref=$(color red; echo -n 'DETACHED! ' ; color ltwhite;  git name-rev --name-only HEAD 2>/dev/null )
-    ref=${ref#refs/heads/}
-    vcs="git"
-}
-
-svn_dir() {
-    [ -d ".svn" ] || return 1
-    base_dir="."
-    while [ -d "$base_dir/../.svn" ]; do base_dir="$base_dir/.."; done
-    base_dir=`cd $base_dir; pwd`
-    sub_dir="/$(sub_dir "${base_dir}")"
-    ref=$(svn info "$base_dir" | awk '/^URL/ { sub(".*/","",$0); r=$0 } /^Revision/ { sub("[^0-9]*","",$0); print r":"$0 }')
-    vcs="svn"
-}
-
-setprompt() {
-  local load etc vcs base_dir sub_dir ref last_command
-
-  TIME="$(color ltblue)\T$(color off)"
-  HOST="$(color green)\h$(color off)"
-  USER="$(color blue)\u$(color off)"
-
-  if [ -e /proc/loadavg ]; then
-      load=( $(</proc/loadavg) )
-  else
-      load=""
-  fi
-
-  LOAD=""
-  if [ $load ]; then
-      if [ ${load%.*} -ge 2 ]; then
-	  LOAD="[$(color red white)$load$(color off)]"
-      else
-	  LOAD="[$(color ltblue)$load$(color off)]"
-      fi
-  fi
-
-  P4="-$(color red)\$?$(color off)-"
-
-  # this next bit also ganked from http://muness.blogspot.com/2008/06/stop-presses-bash-said-to-embrace.html
-  if  git_dir; then
-    vcs=git
-  elif svn_dir; then
-    vcs=svn
-  fi
-
-  GIT_BRANCH=""
-
-  if [ -n "$vcs" ]; then
-      base_dir="$(basename "${base_dir}")"
-      working_on="$base_dir:"
-      __vcs_ref="[$ref]"
-      __vcs_sub_dir="${sub_dir}"
-      GIT_BRANCH="$(color bd)$__vcs_ref$(color off)"
-  fi
-  CURRENT_DIR="<$(color yellow)\w$(color white)>"
-
-
-  PS1="$GIT_BRANCH\n{$TIME} $CURRENT_DIR\n$USER$(color cyan)@$(color off)$HOST \$ "
-}
-
-if [ $TERM = 'dumb' ]; then
-    PS1='$ '
-else
-    PROMPT_COMMAND=setprompt
+# Play nice with bundler.  Use bundle exec if a Gemfile is available, otherwise
+# use whatever is installed on the system for various ruby commands.
+if [ -f ~/.bundler-exec.sh ]; then
+  source ~/.bundler-exec.sh
 fi
 
 fi # Match if from beginning of file

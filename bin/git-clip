@@ -1,18 +1,10 @@
 #!/bin/bash
 
-# Create a new branch and send it to /dev/null
-branch=`git branch 2>/dev/null`
-# grep the output for a *, which shows the current branch
-branch=`echo $branch | grep -e ^*`
-# Remove the * from the result
-branch=`echo $branch | tr -d "* "`
-
+branch=`git branch 2>/dev/null| grep -e ^* | tr -d '* '`
 # Get a log of all commits that are in $branch but not on edge
-commits=`git log edge..$branch`
+commits=`git log origin/master..$branch --pretty=format:'(commit:%h) ── %s'`
 
 clip="Branch $branch
-@@@
-$commits
-@@@"
+$commits"
 
 echo "$clip" | xclip
