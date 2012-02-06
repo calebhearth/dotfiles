@@ -1,13 +1,11 @@
-#!/usr/bin/perl
-use strict;
-use warnings;
-my %argmap = (
+#!/usr/bin/ruby
+args = {
   '-a' => '--all',
   '-b' => '--branches',
   '-r' => '--remotes',
-);
-my @args;
-for (@ARGV) {
-  push @args, ($argmap{$_} || $_);
 }
-system "git-forest --sha --style=2 --topo-order @args |less -SR";
+
+ARGV.reject{ |arg| !args.has_key? arg }
+
+ARGV.map{ |arg| args[arg] }
+system "git-forest --sha --style=2 --topo-order #{ARGV.join(' ')} | less -SR"
