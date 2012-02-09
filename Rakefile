@@ -32,6 +32,7 @@ task :install do
     end
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
+  `ln -s "$PWD/bin" "#{ENV["HOME"]}/bin"`
 end
 
 task :uninstall do
