@@ -12,5 +12,8 @@
   "rulers": [ 80 ],
   "show_minimap": false,
   "trimTrailingWhiteSpaceOnSave": true,
-  "highlight_modified_tabs": true
+  "trim_automatic_white_space": true,
+  "detect_indentation": false,
+  "highlight_modified_tabs": true,
+  "ensure_newline_at_eof_on_save": true
 }
