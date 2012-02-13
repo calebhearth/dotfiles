@@ -14,7 +14,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Easier database pulls from heroku
 function heroku-pull {
-  heroku db:pull --app $1 --confirm $1 sqlite://db/development.sqlite3 $*
+  heroku db:pull --app $1 --confirm $1 \
+    `echo "postgres://$(whoami):$(whoami)@localhost/solmarket_dev_$(whoami)"` $*
 }
 
 alias wtc="curl -s 'http://whatthecommit.com/' | grep '<p>' | cut -c4-"
