@@ -5,7 +5,7 @@ args = {
   '-r' => '--remotes',
 }
 
-ARGV.reject{ |arg| !args.has_key? arg }
+#ARGV.reject{ |arg| !args.has_key? arg }
 
-ARGV.map{ |arg| args[arg] }
-system "git-forest --sha --style=2 --topo-order #{ARGV.join(' ')} | less -SR"
+options = ARGV.map{ |arg| args[arg] }
+system "git-forest --sha --style=2 --topo-order #{options.join(' ')} | less -SR"
