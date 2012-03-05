@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]]; then
 
-export BASH=$HOME/.dotfiles
+export DOTFILES=$HOME/.dotfiles
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -32,7 +32,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # source every .bash file in this rep
-for f in $BASH/**/*.bash; do source $f; done
+for f in $DOTFILES/**/*.bash; do source $f; done
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
