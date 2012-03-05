@@ -1,2 +1,2 @@
 #! /bin/bash
-git log --pretty=format:'(commit:%h) — %s'
+git log --pretty=format:'(commit:%h) — %s%n%b'
