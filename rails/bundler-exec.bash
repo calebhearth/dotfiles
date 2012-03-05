@@ -1,0 +1,1 @@
+[ -f $HOME/.bundler-exec ] && source $HOME/.bundler-exec

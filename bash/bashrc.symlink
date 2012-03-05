@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]]; then
 
+export BASH=$HOME/.dotfiles
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=erasedups:ignorespace
@@ -29,27 +31,8 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-  debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
-fi
-
-# Set prompt
-if [ -f ~/.bash_prompt ]; then
-  . ~/.bash_prompt
-fi
-
-# Ack for a search term and automatically open all files with results in vim.
-function ackvim()
-{
-  echo 'Acking...';
-  vim $(ack -l $*);
-}
+# source every .bash file in this rep
+for f in $BASH/**/*.bash; do source $f; done
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -58,18 +41,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
 fi
 
-#Set default text editor to vim
-export EDITOR=`which vim`
-
-# Use rvm if available
-if [[ -s $HOME/.rvm/scripts/rvm ]]; then
-  source $HOME/.rvm/scripts/rvm;
-fi
-
-# Play nice with bundler.  Use bundle exec if a Gemfile is available, otherwise
-# use whatever is installed on the system for various ruby commands.
-if [ -f ~/.bundler-exec.sh ]; then
-  source ~/.bundler-exec.sh
-fi
+# load every completion file
+for f in $BASH/**/completion.sh; do source $f; done
 
 fi # Match if from beginning of file
+
