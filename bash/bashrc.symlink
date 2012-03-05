@@ -32,9 +32,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # source every .bash file in this rep
-for file in $BASH/**/*.bash do
-  source file
-end
+for f in $BASH/**/*.bash; do source $f; done
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -44,9 +42,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # load every completion file
-for file in $BASH/**/completion.sh do
-  source file
-end
+for f in $BASH/**/completion.sh; do source $f; done
 
 fi # Match if from beginning of file
 
