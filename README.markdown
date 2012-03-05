@@ -29,8 +29,8 @@ though.
 ## topical
 
 Everything's built around topic areas. If you're adding a new area to your
-forked dotfiles — say, "Java" — you can simply add a `java` directory and put
-files in there. Anything with an extension of `.zsh` will get automatically
+forked dotfiles – say, "Java" – you can simply add a `java` directory and put
+files in there. Anything with an extension of `.bash` will get automatically
 included into your shell. Anything with an extension of `.symlink` will get
 symlinked without extension into `$HOME` when you run `rake install`.
 
@@ -46,14 +46,31 @@ There's a few special files in the hierarchy.
 
 - **bin/**: Anything in `bin/` will get added to your `$PATH` and be made
   available everywhere.
-- **topic/\*.zsh**: Any files ending in `.zsh` get loaded into your
+- **topic/\*.bash**: Any files ending in `.bash` get loaded into your
   environment.
 - **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `rake install`.
 - **topic/\*.completion.sh**: Any files ending in `completion.sh` get loaded
-  last so that they get loaded after we set up zsh autocomplete functions.
+  last so that they get loaded after we set up bash autocomplete functions.
+
+## goodies
+
+Either I or Zach Holman have added some really nice stuff in here. A lot of it
+is in `bin/`, so you can look around in there for specifics, but here's a few
+gems:
+
+- **git-promote**: Automagically promotes a local topic branch to a remote
+  tracking branch of the same name.
+- **[spark](https://github.com/holman/spark)**: Generates sparklines for a set
+  of data.
+- **refold**: Takes text from the command line, std in, or via pipe and wraps it
+  to 80 characters. Particularly useful in vim (select block of text, call
+  `refold` from the vim console). Courtesy
+  [Ram Dobson](https://github.com/fringd).
+- **gfl**: Excellent visualization for github repositories. `gfl -a` includes
+  all local and remote branches.
 
 ## add-ons
 
