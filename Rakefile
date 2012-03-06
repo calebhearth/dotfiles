@@ -35,6 +35,7 @@ task :install do
   `ln -s "$PWD/bin" "#{ENV["HOME"]}/bin"`
 end
 
+desc "Remove symlinks created during installation and attempt to restore backups"
 task :uninstall do
 
   Dir.glob('**/*.symlink').each do |linkable|
