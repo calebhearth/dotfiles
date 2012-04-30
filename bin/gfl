@@ -5,7 +5,12 @@ args = {
   '-r' => '--remotes',
 }
 
-#ARGV.reject{ |arg| !args.has_key? arg }
+bad_options = (ARGV - (args.keys + args.values))
+
+if bad_options.any?
+  puts "Bad option(s): #{ bad_options }"
+  exit
+end
 
 options = ARGV.map{ |arg| args[arg] }
 system "git-forest --sha --style=2 --topo-order #{options.join(' ')} | less -SR"
