@@ -45,32 +45,11 @@ if rbenv-installed; then
     BUNDLED_COMMANDS=$(/bin/ls ~/.rbenv/shims)
 else
     BUNDLED_COMMANDS="${BUNDLED_COMMANDS:-
-cap
-capify
 cucumber
-foreman
-guard
-haml
-html2haml
-rackup
 rails
 rake
-rake2thor
 rspec
-ruby
-sass
-sass-convert
-serve
-shotgun
 spec
-spork
-thin
-thor
-tilt
-tt
-turn
-unicorn
-unicorn_rails
 }"
 fi
 
