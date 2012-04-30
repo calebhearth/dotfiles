@@ -6,20 +6,20 @@ _normal=$(tput sgr0)
 
 # http://gist.github.com/48207
 function parse_git_deleted {
-  [[ $(git status 2> /dev/null | grep deleted:) != "" ]] && echo "-"
+  [[ $(`which git` status 2> /dev/null | grep deleted:) != "" ]] && echo "-"
 }
 function parse_git_added {
-  [[ $(git status 2> /dev/null | grep "Untracked files:") != "" ]] && echo '+'
+  [[ $(`which git` status 2> /dev/null | grep "Untracked files:") != "" ]] && echo '+'
 }
 function parse_git_modified {
-  [[ $(git status 2> /dev/null | grep modified:) != "" ]] && echo "*"
+  [[ $(`which git` status 2> /dev/null | grep modified:) != "" ]] && echo "*"
 }
 function git_state_indicators {
   echo "$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)"
 }
 
 function git_divergence_indicator {
-  git_status="$(git status 2> /dev/null)"
+  git_status="$(`which git` status 2> /dev/null)"
   remote_pattern="# Your branch is (.*) '"
   diverge_pattern="# Your branch and (.*) have diverged"
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
@@ -36,7 +36,7 @@ function git_divergence_indicator {
 }
 
 function git_branch_and_indicator {
-  git_status="$(git status 2> /dev/null)"
+  git_status="$(`which git` status 2> /dev/null)"
   branch_pattern="^# On branch ([^${IFS}]*)"
   if [[ ${git_status} =~ ${branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
@@ -54,19 +54,20 @@ __prompt_command() {
   }
 
   git_dir() {
-    base_dir=$(git rev-parse --show-cdup 2>/dev/null) || return 1
+    base_dir=$(`which git` rev-parse --show-cdup 2>/dev/null) || return 1
     if [ -n "$base_dir" ]; then
       base_dir=`cd $base_dir; pwd`
     else
       base_dir=$PWD
     fi
-    sub_dir=$(git rev-parse --show-prefix)
+    sub_dir=$(`which git` rev-parse --show-prefix)
     sub_dir="/${sub_dir%/}"
         ref=$(git_branch_and_indicator)
     vcs='git'
     vcs_indicator=''
     alias pull='git pull'
-    alias commit='git commit -v -a'
+    alias commit='git commit'
+    alias gco='commit'
     alias push='commit ; git push'
     alias revert='git checkout'
   }
@@ -127,12 +128,10 @@ __prompt_command() {
   __tab_title="$project[$last_command]"
   __pretty_pwd="${PWD/$HOME/~}"
   hostname=`hostname -s`
-#  echo -e "\e]1;$__tab_title\007\c" # set tab title.  Doesn't work in Terminal.app
-#  echo -e "\e]2;$hostname:$__pretty_pwd" # set window title
 }
 
 PROMPT_COMMAND=__prompt_command
-PS1='${__vcs_label}\[$_bold\]${__vcs_base_dir}\[$_normal\]${__vcs_details}\[$_bold\]${__vcs_sub_dir}\[$_normal\] › '
+PS1='${__vcs_label}\[$_bold\]${__vcs_base_dir}\[$_normal\]${__vcs_details}\[$_bold\]${__vcs_sub_dir}\[$_normal\]\n› '
 
 # Show the currently running command in the terminal title:
 # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
