@@ -4,8 +4,8 @@ branch=`git branch 2>/dev/null| grep -e ^* | tr -d '* '`
 # Get a log of all commits that are in $branch but not on edge
 commits=`git pretty origin/master..HEAD`
 
-result="h3. Branch $branch"
+result="h3. Branch $branch \n"
 result="$result
 $commits"
-echo "$result" | less
+echo -e "$result" | less
 
