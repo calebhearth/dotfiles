@@ -1,9 +1,24 @@
 .DS_Store
-.project
-.svn
 .tissues
-*~
 *.swp
 *.rbc
 *.bak
-*.sublime*
+
+# SVN
+.svn
+
+# SublimeText project files
+/*.sublime-project
+*.sublime-workspace
+
+# Vim
+.*.sw[a-z]
+*.un~
+Session.vim
+
+# Eclipse (Aptana)
+.project
+
+# Linux
+*~
+!.gitignore
