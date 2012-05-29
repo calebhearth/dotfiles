@@ -30,9 +30,37 @@ task :install do
       FileUtils.rm_rf(target) if overwrite || overwrite_all
       `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"` if backup || backup_all
     end
-    `ln -s "$PWD/#{linkable}" "#{target}"`
+    `ln -s "$PWD/#{linkable}" "#{target}"` unless skip_all
   end
   `ln -s "$PWD/bin" "#{ENV["HOME"]}/bin"`
+
+  dotfolders = Dir['dot*'].select{|f|File.directory?(f)}
+
+  dotfolders.each do |dotfolder|
+    overwrite = false
+    backup = false
+
+    folder = dotfolder.gsub /^dot/, ''
+    target = "#{ ENV["HOME"] }/.#{ folder }"
+
+    if File.exists?(target) || File.symlink?(target)
+      unless skip_all || overwrite_all || backup_all
+        puts "Folder already exists: #{ target }, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
+        case STDIN.gets.chomp
+        when 'o' then overwrite = true
+        when 'b' then backup = true
+        when 'O' then overwrite_all = true
+        when 'B' then backup_all = true
+        when 'S' then skip_all = true
+        when 's' then next
+        end
+      end
+      FileUtils.rm_rf(target) if overwrite || overwrite_all
+      `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"` if backup || backup_all
+    end
+    `ln -s "$PWD/#{dotfolder}" "#{target}"` unless skip_all
+  end
+  `ln -s "$PWD/bin" "#{ENV["HOME"]}"`
 end
 
 desc "Remove symlinks created during installation and attempt to restore backups"
@@ -52,7 +80,6 @@ task :uninstall do
     if File.exists?("#{ENV["HOME"]}/.#{file}.backup")
       `mv "$HOME/.#{file}.backup" "$HOME/.#{file}"` 
     end
-
   end
 end
 
