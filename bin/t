@@ -1,3 +1,4 @@
 #!/bin/bash
-files=`find test -name "$1_test.rb"`
-bundle exec ruby -Itest $files
+files=`find test -wholename "*/$1_test.rb" -or -wholename "*/$1.rb"`
+
+for file in $files; do bundle exec testdrb -Itest $file $2 $3; done
