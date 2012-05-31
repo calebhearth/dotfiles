@@ -74,3 +74,27 @@ set ignorecase             " ignore case when searching
 set nohlsearch             " don't highlight searches
 set visualbell             " shut the fuck up
 
+" handle trailing whitespace
+" from http://vim.wikia.com/wiki/Remove_unwanted_spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+:endfunction
+
+" expand existing tabs
+function TabToSpaces()
+  retab
+:endfunction
+
+set list listchars=trail:.,extends:>
+autocmd FileWritePre * :call TrimWhiteSpace()
+autocmd FileAppendPre * :call TrimWhiteSpace()
+autocmd FilterWritePre * :call TrimWhiteSpace()
+autocmd BufWritePre * :call TrimWhiteSpace()
+autocmd FileWritePre * :call TabToSpaces()
+autocmd FileAppendPre * :call TabToSpaces()
+autocmd FilterWritePre * :call TabToSpaces()
+autocmd BufWritePre * :call TabToSpaces()
+
+map <F2> :call TrimWhiteSpace()<CR>
+map! <F2> :call TrimWhiteSpace()<CR>
