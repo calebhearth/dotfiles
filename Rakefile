@@ -30,9 +30,10 @@ task :install do
       FileUtils.rm_rf(target) if overwrite || overwrite_all
       `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"` if backup || backup_all
     end
-    `ln -s "$PWD/#{linkable}" "#{target}"`
+    `ln -s "$PWD/#{linkable}" "#{target}"` unless skip_all
   end
-  `ln -s "$PWD/bin" "#{ENV["HOME"]}/bin"`
+  `mv "$HOME/bin" "$HOME/.bin.backup"` if backup_all
+  `ln -s "$PWD/bin" "#{ENV["HOME"]}"` unless skip_all
 end
 
 desc "Remove symlinks created during installation and attempt to restore backups"
@@ -47,10 +48,10 @@ task :uninstall do
     if File.symlink?(target)
       FileUtils.rm(target)
     end
-    
+
     # Replace any backups made during installation
     if File.exists?("#{ENV["HOME"]}/.#{file}.backup")
-      `mv "$HOME/.#{file}.backup" "$HOME/.#{file}"` 
+      `mv "$HOME/.#{file}.backup" "$HOME/.#{file}"`
     end
 
   end
