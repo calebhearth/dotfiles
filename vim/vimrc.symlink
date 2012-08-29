@@ -74,7 +74,10 @@ set ignorecase             " ignore case when searching
 set nohlsearch             " don't highlight searches
 set visualbell             " shut the fuck up
 
-" handle trailing whitespace
+" ----------------------------------------------------------------------------
+" Trailing Whitespace
+" ----------------------------------------------------------------------------
+
 " from http://vim.wikia.com/wiki/Remove_unwanted_spaces
 function TrimWhiteSpace()
   %s/\s*$//
@@ -98,3 +101,9 @@ autocmd BufWritePre * :call TabToSpaces()
 
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
+
+" ----------------------------------------------------------------------------
+" Filetype overrides
+" ----------------------------------------------------------------------------
+
+autocmd FileType gitcommit source ~/.vim/gitcommit.vim
