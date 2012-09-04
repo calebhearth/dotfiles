@@ -1,5 +1,8 @@
 set noswapfile
 
+" Have pathogen source all of the plugins in .vim/bundle
+call pathogen#infect()
+
 " ----------------------------------------------------------------------------
 "  Text Formatting
 " ----------------------------------------------------------------------------
@@ -107,3 +110,4 @@ map! <F2> :call TrimWhiteSpace()<CR>
 " ----------------------------------------------------------------------------
 
 autocmd FileType gitcommit source ~/.vim/gitcommit.vim
+
