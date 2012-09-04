@@ -1,3 +1,6 @@
 [submodule "vim/vim.symlink/bundle/vim-rails"]
 	path = vim/vim.symlink/bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
+[submodule "vim/vim.symlink/bundle/ack.vim"]
+	path = vim/vim.symlink/bundle/ack.vim
+	url = git://github.com/mileszs/ack.vim.git
