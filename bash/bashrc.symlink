@@ -24,6 +24,13 @@ if [ -d $HOME/bin ]; then
   export PATH
 fi
 
+# Add ~/local/bin to $PATH so that we can have binaries exclusively for this
+# computer
+if [ -d $HOME/local/bin ]; then
+  PATH=$HOME/local/bin:$PATH
+  export PATH
+fi
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
