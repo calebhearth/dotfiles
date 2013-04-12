@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+dirname=$(dirname "$1")
+
+mkdir -p $dirname
+vim $*

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Usage: vundle install [ARGS]
+# Summary: Install or update bundles
+# Help:
+# Arguments:
+#   -v Don't automatically quit vim upon completion
+#   -c Ask about removing unused bundles
+#   -f Force install of updated bundles
+#   -u [/path/to/bundle/definitions] Set the file which defines bundles
+set -e
+
+verbose="+qall"
+clean=""
+basecommand="+BundleInstall"
+vimfile="$HOME/.vimrc.bundles"
+while getopts vcfu: OPTION
+do
+  case $OPTION in
+    v) verbose="";;
+    c) clean="+BundleClean";;
+    f) basecommand=$basecommand!;;
+    u) vimfile="$OPTARG";;
+  esac
+done
+
+vim -u $vimfile $basecommand $clean $verbose

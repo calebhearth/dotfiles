@@ -6,16 +6,19 @@ _normal=$(tput sgr0)
 
 # http://gist.github.com/48207
 function parse_git_deleted {
-  [[ $(`which git` status 2> /dev/null | grep deleted:) != "" ]] && echo "-"
+  [[ $(`which git` status 2> /dev/null | grep 'deleted:') != "" ]] && echo "−"
 }
 function parse_git_added {
   [[ $(`which git` status 2> /dev/null | grep "Untracked files:") != "" ]] && echo '+'
 }
 function parse_git_modified {
-  [[ $(`which git` status 2> /dev/null | grep modified:) != "" ]] && echo "*"
+  [[ $(`which git` status 2> /dev/null | egrep '\tmodified:|\tnew file:') != "" ]] && echo "*"
+}
+function parse_git_both_modified {
+  [[ $(`which git` status 2> /dev/null | grep 'both modified:') != "" ]] && echo "💥"
 }
 function git_state_indicators {
-  echo "$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)"
+  echo "$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)$(parse_git_both_modified)"
 }
 
 function git_divergence_indicator {
@@ -65,11 +68,6 @@ __prompt_command() {
         ref=$(git_branch_and_indicator)
     vcs='git'
     vcs_indicator=''
-    alias pull='git pull'
-    alias commit='git commit'
-    alias gco='commit'
-    alias push='commit ; git push'
-    alias revert='git checkout'
   }
 
   svn_dir() {
@@ -81,10 +79,6 @@ __prompt_command() {
     ref=`svnversion`
     vcs="svn"
     vcs_indicator="(svn)"
-    alias pull="svn up"
-    alias commit="svn commit"
-    alias push="svn ci"
-    alias revert="svn revert"
   }
 
   bzr_dir() {
@@ -98,10 +92,6 @@ __prompt_command() {
     ref=$(bzr revno 2>/dev/null)
     vcs="bzr"
     vcs_indicator="(bzr)"
-    alias pull="bzr pull"
-    alias commit="bzr commit"
-    alias push="bzr push"
-    alias revert="bzr revert"
   }
 
   git_dir || svn_dir || bzr_dir
@@ -131,15 +121,4 @@ __prompt_command() {
 }
 
 PROMPT_COMMAND=__prompt_command
-PS1='${__vcs_label}\[$_bold\]${__vcs_base_dir}\[$_normal\]${__vcs_details}\[$_bold\]${__vcs_sub_dir}\[$_normal\]\n› '
-
-# Show the currently running command in the terminal title:
-# http://www.davidpashley.com/articles/xterm-titles-with-bash.html
-if [ -z "$TM_SUPPORT_PATH"]; then
-  case $TERM in
-    rxvt|*term|xterm-color)
-      trap 'echo -e "\e]1;$project>$BASH_COMMAND<\007\c"' DEBUG # show currently executing command in tab title
-    ;;
-  esac
-fi
-
+PS1='${__vcs_label}\[$_bold\]${__vcs_base_dir}\[$_normal\]${__vcs_details}\[$_bold\]${__vcs_sub_dir}\[$_normal\]\n↪ '

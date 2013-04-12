@@ -1,20 +1,22 @@
 {
+  "color_scheme": "Packages/solarized color scheme/Solarized (dark).tmtheme",
 	"detect_indentation": false,
-	"drawWhiteSpace": true,
+	"draw_whiteSpace": true,
 	"ensure_newline_at_eof_on_save": true,
-	"font_size": 10,
+	"font_size": 13.0,
 	"highlight_modified_tabs": true,
 	"matchBracketsAngle": true,
 	"matchBracketsBraces": true,
 	"matchBracketsSquare": true,
 	"rulers":
 	[
-		80
+		80,
+    100
 	],
 	"show_minimap": false,
 	"tab_size": 2,
 	"translate_tabs_to_spaces": true,
-	"trimTrailingWhiteSpaceOnSave": true,
+	"trim_trailing_white_space_on_save": true,
 	"trim_automatic_white_space": true,
 	"vintage_start_in_command_mode": true
 }

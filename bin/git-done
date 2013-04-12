@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+set -e
+
+successfully() {
+  $* || (echo "failed" 1>&2 && exit 1)
+}
+
+branch=`git current`
+
+successfully git fetch
+successfully git rebase -i origin/master
+git diff master --check || successfully git diff master --check
+successfully git push -f
+successfully git checkout master
+successfully git merge $branch --ff-only
+successfully git push
+successfully git push origin --delete $branch
+successfully git branch -d $branch

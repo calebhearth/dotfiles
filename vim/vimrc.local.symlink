@@ -1,85 +1,3 @@
-set noswapfile
-
-" Have pathogen source all of the plugins in .vim/bundle
-" "call pathogen#infect()
-
-" ----------------------------------------------------------------------------
-"  Text Formatting
-" ----------------------------------------------------------------------------
-
-set autoindent             " automatic indent new lines
-set smartindent            " be smart about it
-inoremap # X<BS>#
-set nowrap                 " do not wrap lines
-set softtabstop=2          " yep, two
-set shiftwidth=2           " ..
-set tabstop=2
-set expandtab              " expand tabs to spaces
-set nosmarttab             " fuck tabs
-set formatoptions+=n       " support for numbered/bullet lists
-set textwidth=80           " wrap at 80 chars by default
-set virtualedit=block      " allow virtual edit in visual block ..
-
-syntax on
-colorscheme peachpuff
-
-" ----------------------------------------------------------------------------
-"  Remapping
-" ----------------------------------------------------------------------------
-
-" lead with ,
-let mapleader = ","
-
-" exit to normal mode with 'jj'
-inoremap jj <ESC>
-
-
-" reflow paragraph with Q in normal and visual mode
-nnoremap Q gqap
-vnoremap Q gq
-
-" sane movement with wrap turned on
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up> gk
-vnoremap <Down> gj
-vnoremap <Up> gk
-inoremap <Down> <C-o>gj
-inoremap <Up> <C-o>gk
-
-" ----------------------------------------------------------------------------
-"  UI
-" ----------------------------------------------------------------------------
-
-set ruler                  " show the cursor position all the time
-set noshowcmd              " don't display incomplete commands
-set nolazyredraw           " turn off lazy redraw
-set number                 " line numbers
-set wildmenu               " turn on wild menu
-set wildmode=list:longest,full
-set ch=2                   " command line height
-set backspace=2            " allow backspacing over everything in insert mode
-set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
-set shortmess=filtIoOA     " shorten messages
-set report=0               " tell us about changes
-set nostartofline          " don't jump to the start of line when scrolling
-
-
-" ----------------------------------------------------------------------------
-" Visual Cues
-" ----------------------------------------------------------------------------
-
-set showmatch              " brackets/braces that is
-set mat=5                  " duration to show matching brace (1/10 sec)
-set incsearch              " do incremental searching
-set laststatus=2           " always show the status line
-set ignorecase             " ignore case when searching
-set nohlsearch             " don't highlight searches
-set visualbell             " shut the fuck up
-
 " ----------------------------------------------------------------------------
 " Trailing Whitespace
 " ----------------------------------------------------------------------------
@@ -113,4 +31,107 @@ map! <F2> :call TrimWhiteSpace()<CR>
 " ----------------------------------------------------------------------------
 
 autocmd FileType gitcommit source ~/.vim/gitcommit.vim
+autocmd Filetype gitcommit setlocal spell
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Test-running stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""function! RunCurrentTest()
+"""  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+"""  if in_test_file
+"""    call SetTestFile()
+"""
+"""    if match(expand('%'), '\.feature$') != -1
+"""      call SetTestRunner("!bundle exec cucumber")
+"""      exec g:bjo_test_runner g:bjo_test_file
+"""    elseif match(expand('%'), '_spec\.rb$') != -1
+"""      call SetTestRunner("!bundle exec rspec")
+"""      exec g:bjo_test_runner g:bjo_test_file
+"""    else
+"""      call SetTestRunner("!bundle exec ruby -Itest")
+"""      exec g:bjo_test_runner g:bjo_test_file
+"""    endif
+"""  else
+"""    exec g:bjo_test_runner g:bjo_test_file
+"""  endif
+"""endfunction
+"""
+"""function! SetTestRunner(runner)
+"""  let g:bjo_test_runner=a:runner
+"""endfunction
+"""
+"""function! RunCurrentLineInTest()
+"""  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+"""  if in_test_file
+"""    call SetTestFileWithLine()
+"""  end
+"""
+"""  exec "!bundle exec rspec --format documentation" g:bjo_test_file . ":" . g:bjo_test_file_line
+"""endfunction
+"""
+"""function! SetTestFile()
+"""  let g:bjo_test_file=@%
+"""endfunction
+"""
+"""function! SetTestFileWithLine()
+"""  let g:bjo_test_file=@%
+"""  let g:bjo_test_file_line=line(".")
+"""endfunction
+"""
+"""map <Leader>t :call RunCurrentTest()<CR>
+"""map <Leader>o :call RunCurrentLineInTest()<CR>
+function! RunCurrentTest()
+  exec "Dispatch rspec " . @%
+endfunction
+
+function! RunCurrentLineInTest()
+  exec "Dispatch rspec " . @% . ':' . line(".")
+endfunction
+
+map <Leader>t :call RunCurrentTest()<CR>
+map <Leader>o :call RunCurrentLineInTest()<CR>
+
+" experimental tabbar
+
+hi TabLineFill term=bold cterm=bold ctermbg=236
+hi TabLine term=bold cterm=bold ctermbg=240 ctermfg=231
+hi TabLineSel term=bold cterm=bold ctermbg=148 ctermfg=22
+
+function MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    " select the highlighting
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T'
+
+    " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s .= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  if tabpagenr('$') > 1
+    let s .= '%=%#TabLine#%999X'
+  endif
+
+  return s
+endfunction
+
+function MyTabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  return fnamemodify(bufname(buflist[winnr - 1]), ":t")
+endfunction
+
+set tabline=%!MyTabLine()
+set showtabline=1
+
+set exrc

@@ -3,9 +3,12 @@
 *.swp
 *.rbc
 *.bak
+.env
 
 # SVN
 .svn
+
+.gitkeep
 
 # SublimeText project files
 /*.sublime-project
@@ -22,3 +25,5 @@ Session.vim
 # Linux
 *~
 !.gitignore
+
+.rake_t_cache

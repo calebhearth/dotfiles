@@ -1,9 +1,10 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]]; then
+
+# enable vi command line editing mode. Press ESC to ender command mode.
+set -o vi
 
 export DOTFILES=$HOME/.dotfiles
 
@@ -31,6 +32,14 @@ if [ -d $HOME/local/bin ]; then
   export PATH
 fi
 
+# This one is for homebrew
+if [ -d /usr/local/bin ]; then
+  PATH=/usr/local/bin:$PATH
+  export PATH
+fi
+
+PATH=./bin:$PATH
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -53,3 +62,8 @@ for f in $DOTFILES/**/completion.sh; do source $f; done
 
 fi # Match if from beginning of file
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+export PATH=/usr/local/heroku/bin:$PATH

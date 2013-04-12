@@ -1,0 +1,2 @@
+--doc-glob {app{/models,/helpers,/validators},lib}/**/*.rb
+--style-measure 85

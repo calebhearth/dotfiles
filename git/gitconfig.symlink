@@ -21,12 +21,24 @@
 [core]
   excludesfile = "~/.gitignore"
   editor       = "vim"
-[alias]
-  commit = commit -v
-  co = checkout
+  pager = less -FX
+  whitespace = blank-at-eol,tab-in-indent,trailing-space,tabwidth=2
 [push]
   default = tracking
 [receive]
   denyCurrentBranch = ignore
 [http]
   sslverify = false
+[rerere]
+  enabled = 1
+[help]
+  autocorrect = 1
+[alias]
+  stat = status -sb
+  statues = stat
+  commit = commit -v
+  amend = commit --amend
+  ctags = !.git/hooks/ctags
+  current = rev-parse --abbrev-ref HEAD
+[init]
+  templatedir = ~/.dotfiles/git/git_template

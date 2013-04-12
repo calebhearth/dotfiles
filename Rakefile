@@ -57,4 +57,7 @@ task :uninstall do
   end
 end
 
+task :vim do
+  puts 'vim -u $HOME/.dotfiles/vim/vimrc.bundles.symlink - +BundleInstall! +BundleClean +qall'
+end
 task :default => 'install'

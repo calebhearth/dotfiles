@@ -1,2 +1,15 @@
-git clip
-git promote
+#!/usr/bin/env bash
+
+successfully() {
+  $* || (echo "failed" 1>&2 && exit 1)
+}
+
+branch=`git current-branch`
+successfully git fetch
+successfully git rebase -i origin/master
+successfully git push -f
+successfully git checkout master
+successfully git merge $branch
+successfully git push
+successfully git push origin --delete $branch
+successfully git branch -d $branch

@@ -1,0 +1,4 @@
+# Don't display the copyright page
+startup_message off
+# Scrollback buffer length
+defscrollback 10000

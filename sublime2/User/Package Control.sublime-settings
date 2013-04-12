@@ -1,7 +1,16 @@
 {
-	"auto_upgrade_last_run": 1330974872,
+	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
-		"Git"
+		"CoffeeScript",
+		"Cucumber",
+		"DetectSyntax",
+		"Git",
+		"Package Control",
+		"RSpec",
+		"Ruby Slim",
+		"SCSS",
+		"Solarized Color Scheme",
+		"SublimeLinter"
 	]
 }

@@ -2,6 +2,7 @@
 require 'irb/completion'
 require 'irb/ext/save-history'
 require 'rubygems'
+require 'cocaine'
 
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
@@ -16,7 +17,7 @@ class Object
   def local_methods(obj = self)
     (obj.methods - obj.class.superclass.instance_methods).sort
   end
-  
+
   # print documentation
   #
   #   ri 'Array#pop'
@@ -38,4 +39,10 @@ end
 
 def r
   reload!
+end
+
+def c
+  value = yield
+  Cocaine::CommandLine.new('echo', ':text | pbcopy').run(text: value)
+  value
 end
