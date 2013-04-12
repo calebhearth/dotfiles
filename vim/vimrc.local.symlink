@@ -1,0 +1,24 @@
+" ----------------------------------------------------------------------------
+" Trailing Whitespace
+" ----------------------------------------------------------------------------
+
+" from http://vim.wikia.com/wiki/Remove_unwanted_spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+endfunction
+
+" expand existing tabs
+function TabToSpaces()
+  retab
+endfunction
+
+set list listchars=trail:.,extends:>
+autocmd FileWritePre * :call TrimWhiteSpace()
+autocmd FileAppendPre * :call TrimWhiteSpace()
+autocmd FilterWritePre * :call TrimWhiteSpace()
+autocmd BufWritePre * :call TrimWhiteSpace()
+autocmd FileWritePre * :call TabToSpaces()
+autocmd FileAppendPre * :call TabToSpaces()
+autocmd FilterWritePre * :call TabToSpaces()
+autocmd BufWritePre * :call TabToSpaces()
