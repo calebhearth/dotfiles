@@ -1,0 +1,44 @@
+[user]
+  name = Caleb Thompson
+  email = cjaysson@gmail.com
+[github]
+  user = calebthompson
+[color]
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local   = yellow
+  remote  = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old  = red bold
+  new  = green bold
+[color "status"]
+  added     = yellow
+  changed   = green
+  untracked = cyan
+[core]
+  excludesfile = "~/.gitignore"
+  editor       = "vim"
+  pager = less -FX
+  whitespace = blank-at-eol,tab-in-indent,trailing-space,tabwidth=2
+[push]
+  default = tracking
+[receive]
+  denyCurrentBranch = ignore
+[http]
+  sslverify = false
+[rerere]
+  enabled = 1
+[help]
+  autocorrect = 1
+[alias]
+  stat = status -sb
+  statues = stat
+  commit = commit -v
+  amend = commit --amend
+  ctags = !.git/hooks/ctags
+  current = rev-parse --abbrev-ref HEAD
+[init]
+  templatedir = ~/.dotfiles/git/git_template

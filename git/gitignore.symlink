@@ -1,5 +1,23 @@
 .DS_Store
-.svn
-*~
+.tissues
 *.swp
 *.rbc
+*.bak
+.env
+
+# SVN
+.svn
+
+.gitkeep
+
+# Vim
+.*.sw[a-z]
+*.un~
+Session.vim
+
+# Linux
+*~
+
+!.gitignore
+
+.rake_t_cache
