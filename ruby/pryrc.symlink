@@ -1,0 +1,13 @@
+#!/usr/bin/ruby
+
+require 'rubygems'
+
+if Gem.available?('cocaine')
+  require 'cocaine'
+
+  def copy
+    value = yield
+    Cocaine::CommandLine.new('echo', ':text | pbcopy').run(text: value)
+    value
+  end
+end
