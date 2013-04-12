@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+max_length = 80
+
+
+words = []
+output = []
+@indent = nil
+
+def spew(output)
+  unless output.empty?
+    print ' ' * @indent
+    puts output.join(' ')
+  end
+end
+
+while line = gets
+  if line.strip.empty?
+    spew output
+    output = []
+    puts ''
+    next
+  else
+    if @indent.nil?
+      @indent = line.match(/^\s*/)[0].length
+      max_length -= @indent
+    end
+
+    line.strip!
+  end
+
+  words += line.split /\s+/
+
+  while !words.empty?
+    output << words.shift
+    if output.size - 1 + output.map(&:length).inject(0, &:+) > max_length
+      words.unshift output.pop unless output.size == 1
+      spew output
+      output = []
+    end
+  end
+end
+
+spew output
+
