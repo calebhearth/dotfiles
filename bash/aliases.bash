@@ -1,1 +1,1 @@
-alias sc=
+alias ln='ln -v'

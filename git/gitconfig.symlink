@@ -23,6 +23,7 @@
   editor       = "vim"
   pager = less -FX
   whitespace = blank-at-eol,tab-in-indent,trailing-space,tabwidth=2
+  autocrlf = input
 [push]
   default = tracking
 [receive]

@@ -82,7 +82,7 @@ endif
 
 set backspace=indent,eol,start  " backspace for dummies
 set linespace=0                 " No extra spaces between rows
-set nu                          " Line numbers on
+set number                      " Line numbers on
 set showmatch                   " show matching brackets/parenthesis
 set mat=5                       " duration to show matching brace (1/10 sec)
 set incsearch                   " find as you type search
@@ -97,7 +97,7 @@ set scrolljump=5                " lines to scroll when cursor leaves screen
 set scrolloff=3                 " minimum lines to keep above and below cursor
 set foldenable                  " auto fold code
 set list
-set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:»·,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
 set visualbell                  " shut the fuck up
 set nohlsearch                  " don't highlight searches
 set noswapfile                  " Don't need this shit, and it's obnoxious
@@ -315,7 +315,36 @@ endfunction
 autocmd FileType gitcommit source ~/.vim/gitcommit.vim
 autocmd Filetype gitcommit setlocal spell
 
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
+if executable("git")
+  set grepprg=git\ grep
+end
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" vim-rspec mappings
+nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>l :call RunLastSpec()<CR>
+
 " Use local vimrc if available
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+set exrc " enable per-directory .vimrc files
+set secure " disable unsafe commands in local .vimrc files
