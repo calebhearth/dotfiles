@@ -48,3 +48,4 @@ let g:rubycomplete_rails = 1
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-dispatch'
