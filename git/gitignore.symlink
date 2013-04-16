@@ -21,3 +21,5 @@ Session.vim
 !.gitignore
 
 .rake_t_cache
+
+.rvmrc
