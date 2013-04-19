@@ -114,8 +114,18 @@ install_dotfiles () {
   done
 }
 
+install_vim_bundles () {
+  if ! [ -d ~/.vim/bundle/vundle ]
+  then
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle > /dev/null
+  fi
+  vim -u ~/.vimrc.bundles +BundleInstall +qa
+  success "all vundled up."
+}
+
 setup_gitconfig
 install_dotfiles
+install_vim_bundles
 
 # If we are on a mac, lets install and setup homebrew
 if [ "$(uname -s)" == "Darwin" ]

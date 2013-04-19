@@ -1,6 +1,7 @@
 set nocompatible        " must be first line
 set background=dark     " Assume a dark background
 
+filetype on
 filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
