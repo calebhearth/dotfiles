@@ -7,6 +7,7 @@ if [[ -n "$PS1" ]]; then
 set -o vi
 
 export DOTFILES=$HOME/.dotfiles
+export EDITOR=vim
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
