@@ -43,3 +43,5 @@
   current = rev-parse --abbrev-ref HEAD
 [init]
   templatedir = ~/.dotfiles/git/git_template
+[apply]
+  whitespace = fix
