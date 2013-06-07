@@ -97,10 +97,6 @@ __prompt_command() {
   git_dir || svn_dir || bzr_dir
 
   if [ -n "$vcs" ]; then
-    alias st="$vcs status"
-    alias d="$vcs diff"
-    alias up="pull"
-    alias cdb="cd $base_dir"
     base_dir="$(basename "${base_dir}")"
         project="$base_dir:"
     __vcs_label="$vcs_indicator"
