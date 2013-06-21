@@ -1,24 +1,6 @@
-" ----------------------------------------------------------------------------
-" Trailing Whitespace
-" ----------------------------------------------------------------------------
+autocmd filetype crontab set nobackup nowritebackup   
 
-" from http://vim.wikia.com/wiki/Remove_unwanted_spaces
-function TrimWhiteSpace()
-  %s/\s*$//
-  ''
-endfunction
-
-" expand existing tabs
-function TabToSpaces()
-  retab
-endfunction
-
-set list listchars=trail:.,extends:>
-autocmd FileWritePre * :call TrimWhiteSpace()
-autocmd FileAppendPre * :call TrimWhiteSpace()
-autocmd FilterWritePre * :call TrimWhiteSpace()
-autocmd BufWritePre * :call TrimWhiteSpace()
-autocmd FileWritePre * :call TabToSpaces()
-autocmd FileAppendPre * :call TabToSpaces()
-autocmd FilterWritePre * :call TabToSpaces()
-autocmd BufWritePre * :call TabToSpaces()
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END

@@ -21,9 +21,11 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 
 " General Programming
+Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
+Bundle 'calebthompson/vim-whitewash'
 if executable('ctags')
   Bundle 'majutsushi/tagbar'
 endif
@@ -42,6 +44,7 @@ Bundle 'othree/html5.vim'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'thoughtbot/vim-rspec'
+Bundle 'rking/vim-detailed'
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
 
@@ -50,3 +53,4 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-bundler'
