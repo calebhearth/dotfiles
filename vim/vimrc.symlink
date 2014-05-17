@@ -9,6 +9,7 @@ else
   set clipboard=unnamed
 endif
 "
+let g:markdown_fenced_languages = ['ruby', 'erb=eruby']
 
 " Bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -222,14 +223,13 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 
 " ctrlp {
 let g:ctrlp_working_path_mode = 2
-nnoremap <silent> <D-t> :CtrlP<CR>
-nnoremap <silent> <D-r> :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
       \ 'dir':  '\.git$\|\.hg$\|\.svn$',
       \ 'file': '\.exe$\|\.so$\|\.dll$' }
 
-" TagBar
-nnoremap <silent> <leader>tt :TagbarToggle<CR>
+"Configure ctrlp for SPEED
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_use_caching = 700
 
 " indent_guides
 let g:indent_guides_auto_colors = 1
@@ -303,8 +303,7 @@ function! NERDTreeInitAsNeeded()
   endif
 endfunction
 
-autocmd FileType gitcommit source ~/.vim/gitcommit.vim
-autocmd Filetype gitcommit setlocal spell
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -314,7 +313,11 @@ autocmd BufReadPost *
   \   exe "normal g`\"" |
   \ endif
 
-if executable("git")
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command="ag %s -l --nocolor -g ''"
+  let g:ctrlp_use_caching=1000
+elseif executable("git")
   set grepprg=git\ grep
 end
 

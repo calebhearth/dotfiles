@@ -1,0 +1,7 @@
+#! /bin/sh
+
+git rev-list --all |
+  xargs git grep $@ |
+  cut -d ':' -f 1 |
+  uniq |
+  git show

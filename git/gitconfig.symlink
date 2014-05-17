@@ -1,47 +1,67 @@
+[alias]
+  amend = commit --amend
+  cob = !git branch | cut -c 3- | selecta | xargs git checkout
+  ctags = !.git/hooks/ctags
+  current = rev-parse --abbrev-ref HEAD
+  edit-changed = !vim $(git status -s |selecta |cut -c11-)
+  in-repo = !git rev-parse --git-dir > /dev/null 2>&1
+[apply]
+  whitespace = fix
+[column]
+  ui = auto dense
+[color]
+  diff = auto
+  status = auto
+  ui = auto
+[color "branch"]
+  current = green reverse
+  local = green
+  plain = blue
+  remote = yellow
+[color "diff"]
+  frag = cyan dim
+  func = magenta bold
+  meta = yellow bold
+  new = green bold
+  old = red bold
+  whitespace = red
+[color "status"]
+  added = yellow
+  changed = green
+  deleted = red
+  untracked = cyan
+[commit]
+  gpgsign = true
+[core]
+  autocrlf = input
+  editor = "vim"
+  excludesfile = "~/.gitignore"
+  pager = less -FX
+  whitespace = blank-at-eol,tab-in-indent,trailing-space,tabwidth=2
+[github]
+  user = calebthompson
+[gh]
+  autoUpdate = always
+[help]
+  autocorrect = 1
+[http]
+  sslverify = false
+[init]
+  templatedir = ~/.dotfiles/git/git_template
+[merge]
+  ff = only
+[push]
+  default = tracking
+[pull]
+  ff = only
+[receive]
+  denyCurrentBranch = ignore
+[rerere]
+  enabled = 1
+[status]
+  branch = 1
+  short = 1
 [user]
   name = Caleb Thompson
   email = caleb@calebthompson.io
-[github]
-  user = calebthompson
-[color]
-  ui = auto
-[color "branch"]
-  current = yellow reverse
-  local   = yellow
-  remote  = green
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old  = red bold
-  new  = green bold
-[color "status"]
-  added     = yellow
-  changed   = green
-  untracked = cyan
-[core]
-  excludesfile = "~/.gitignore"
-  editor       = "vim"
-  pager = less -FX
-  whitespace = blank-at-eol,tab-in-indent,trailing-space,tabwidth=2
-  autocrlf = input
-[push]
-  default = tracking
-[receive]
-  denyCurrentBranch = ignore
-[http]
-  sslverify = false
-[rerere]
-  enabled = 1
-[help]
-  autocorrect = 1
-[alias]
-  stat = status -sb
-  statues = stat
-  commit = commit -v
-  amend = commit --amend
-  ctags = !.git/hooks/ctags
-  current = rev-parse --abbrev-ref HEAD
-[init]
-  templatedir = ~/.dotfiles/git/git_template
-[apply]
-  whitespace = fix
+  signingkey = Caleb Thompson <caleb@calebthompson.io>

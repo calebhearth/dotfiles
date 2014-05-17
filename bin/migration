@@ -1,0 +1,2 @@
+#!/bin/bash
+vim db/migrate/$(ls db/migrate | selecta)

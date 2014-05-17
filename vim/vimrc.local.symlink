@@ -1,6 +1,23 @@
-autocmd filetype crontab set nobackup nowritebackup   
+autocmd filetype crontab set nobackup nowritebackup
 
 aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
+
+autocmd FileType go compiler go
+autocmd BufEnter *.go :silent call Whitewash()
+autocmd BufWritePre *.go Fmt
+autocmd BufWritePost *.go :silent call Whitewash()
+
+autocmd FileWritePre * :silent call Whitewash()
+autocmd FileWritePre * :silent call Whitewash()
+autocmd FileAppendPre * :silent call Whitewash()
+autocmd FilterWritePre * :silent call Whitewash()
+autocmd BufWritePre * :silent call Whitewash()
+autocmd FileWritePre * :silent call Whitewash()
+autocmd FileAppendPre * :silent call Whitewash()
+autocmd FilterWritePre * :silent call Whitewash()
+autocmd BufWritePre * :silent call Whitewash()
+
+let s:usestate = 0

@@ -1,3 +1,4 @@
+#!/bin/bash
 # Nabbed from relevance/etc
 # Original author Muness Alrubaie (https://github.com/muness)
 # https://github.com/relevance/etc/blob/master/bash/bash_vcs.sh
@@ -100,7 +101,7 @@ __prompt_command() {
     base_dir="$(basename "${base_dir}")"
         project="$base_dir:"
     __vcs_label="$vcs_indicator"
-    __vcs_details="[$ref]"
+    __vcs_details="[`git current`]"
     __vcs_sub_dir="${sub_dir}"
     __vcs_base_dir="${base_dir}"
   else

@@ -1,0 +1,20 @@
+#! /usr/bin/env ruby
+
+class Technologic
+  ACTIONS = %w(buy use break fix trash change mail upgrade charge point zoom press snap work quick_erase write cut paste save load check quit_rewrite plug play burn rip drag_and_drop zip_unzip
+     lock fill call find view code jam_unlock surf scroll pause click cross crack switch_update name rate tune print scan send fax_rename touch bring pay watch turn leave start_format)
+
+  ACTIONS.each do |action|
+    define_method action do
+      actions = action.split("_").join(" - ")
+      "#{actions} it"
+    end
+  end
+
+  def sing
+    list = ACTIONS.map { |action| public_send(action) }.join(", ")
+    puts "#{list}.\n" + ("technologic.\n" * 4)
+  end
+end
+
+Technologic.new.sing

@@ -1,2 +1,4 @@
 [remote "pulls"]
   fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
+[remote "notes"]
+  fetch = +refs/notes/*:refs/remotes/origin/notes/*

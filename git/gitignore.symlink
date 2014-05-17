@@ -23,3 +23,7 @@ Session.vim
 .rake_t_cache
 
 .rvmrc
+.powrc
+.powenv
+.ruby-gemset
+.ruby-version

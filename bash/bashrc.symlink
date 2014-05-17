@@ -3,9 +3,6 @@
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]]; then
 
-# enable vi command line editing mode. Press ESC to ender command mode.
-set -o vi
-
 export DOTFILES=$HOME/.dotfiles
 export EDITOR=vim
 
@@ -17,8 +14,8 @@ HISTCONTROL=erasedups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=1000000
 
 # Add ~/bin to $PATH so that we can have our own, private binaries
 if [ -d $HOME/bin ]; then
@@ -38,6 +35,13 @@ if [ -d /usr/local/bin ]; then
   PATH=/usr/local/bin:$PATH
   export PATH
 fi
+
+# NPM. Gross.
+if [ -d /usr/local/bin ]; then
+  PATH=/usr/local/share/npm/bin:$PATH
+  export PATH
+fi
+
 
 PATH=./bin:$PATH
 
@@ -61,7 +65,13 @@ fi
 # load every completion file
 for f in $DOTFILES/**/completion.sh; do source $f; done
 
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
 fi # Match if from beginning of file
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# added by travis gem
+[ -f /Users/caleb/.travis/travis.sh ] && source /Users/caleb/.travis/travis.sh
