@@ -1,0 +1,2 @@
+tap gfontenot/gitupdate homebrew/dupes homebrew/versions jingweno/gh nviennot/tmate thoughtbot/formulae
+install apple-gcc42 ctags curl gh git git-update go imagemagick mutt openssl postgresql qt readline reattach-to-user-namespace selecta the_silver_searcher tmate tmux tree vim wget zsh
