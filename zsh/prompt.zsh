@@ -1,10 +1,11 @@
+setopt PROMPT_SUBST
 GIT_PS1_DESCRIBE_STYLE=branch
 GIT_PS1_SHOWUPSTREAM="auto git"
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_STATESEPERATOR="5"
+
 precmd () {
   if git rev-parse --git-dir > /dev/null 2>&1; then
     toplevel=$(git rev-parse --show-toplevel)
