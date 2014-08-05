@@ -24,6 +24,7 @@ do
 done
 
 # initialize autocomplete here, otherwise functions won't be loaded
+fpath=($ZSH/zsh/completions $fpath)
 autoload -U compinit
 compinit
 
@@ -34,6 +35,12 @@ do
 done
 
 unset config_files
+
+autoload edit-command-line
+zle -N edit-command-line
+bindkey "^X" edit-command-line
+
+cdpath=(. ~/code)
 
 # handy keybindings
 bindkey "^A" beginning-of-line

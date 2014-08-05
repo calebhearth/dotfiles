@@ -20,10 +20,10 @@ Session.vim
 
 !.gitignore
 
-.rake_t_cache
+/.rake_t_cache
 
-.rvmrc
-.powrc
-.powenv
-.ruby-gemset
-.ruby-version
+/.powrc
+/.powenv
+/.ruby-gemset
+/.ruby-version
+tags

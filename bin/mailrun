@@ -8,4 +8,4 @@ then
   kill -9 $pid
 fi
 
-/usr/local/bin/offlineimap -o -u quiet &
+/usr/local/bin/offlineimap -o -u quiet -a $1 &

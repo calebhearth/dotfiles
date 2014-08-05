@@ -8,7 +8,7 @@ refNames='%C(auto)%d'
 message='%s'
 author=`surround '%C(bold cyan)%aN'`
 sha=`surround '%C(bold red)%h'`
-relativeTime=`surround '%C(bold green)%cr'`
+relativeTime=`surround '%C(bold green)%ar'`
 
 logFormat="$refNames $message$relativeTime$sha$author"
 

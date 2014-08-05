@@ -11,3 +11,27 @@ if Gem.available?('cocaine')
     value
   end
 end
+
+class String
+  def levenshtein(other)
+    matrix = [(0..length).to_a]
+    (1..other.length).each do |j|
+      matrix << [j] + [0] * (length)
+    end
+
+    (1..other.length).each do |i|
+      (1..length).each do |j|
+        if self[j - 1] == other[i - 1]
+          matrix[i][j] = matrix[i - 1][j - 1]
+        else
+          matrix[i][j] = [
+            matrix[i - 1][j],
+            matrix[i][j - 1],
+            matrix[i - 1][j - 1],
+          ].min + 1
+        end
+      end
+    end
+    matrix.last.last
+  end
+end
