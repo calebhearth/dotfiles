@@ -5,6 +5,7 @@
   current = rev-parse --abbrev-ref HEAD
   edit-changed = !vim $(git status -s --no-branch |selecta |cut -c11-)
   in-repo = !git rev-parse --git-dir > /dev/null 2>&1
+  news = !git log --pretty=\"* %s %h%n%n  *%aN*\" $(git describe --abbrev=0 --tags)..
 [apply]
   whitespace = fix
 [column]
