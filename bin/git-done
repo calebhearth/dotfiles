@@ -3,20 +3,20 @@
 set -e
 
 successfully() {
-  $* || (echo "failed" 1>&2 && exit 1)
+	$* || (echo "failed" 1>&2 && exit 1)
 }
 
 branch=`git current`
 remote="$1"
 parent="$2"
 if [ -z "$parent" ]; then
-  parent=${remote:="master"}
-  remote=`git config branch.$branch.remote`
-  remote=${remote:="origin"}
+	parent=${remote:="master"}
+	remote=`git config branch.$branch.remote`
+	remote=${remote:="origin"}
 fi
 
 successfully git fetch $remote
-successfully git rebase -i $remote/$parent
+successfully git rebase -i $remote/$parent --autosquash
 git diff $parent --check || successfully git diff $parent --check
 successfully git push -f
 successfully git checkout $parent

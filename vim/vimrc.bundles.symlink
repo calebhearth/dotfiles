@@ -62,6 +62,7 @@ Plugin 'christoomey/vim-conflicted'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-haml'
 Plugin 'christoomey/vim-rfactory'
+Plugin 'toyamarinyon/vim-swift'
+Plugin 'exu/pgsql.vim'
 
 Plugin 'stefanoverna/vim-i18n'
-Plugin 'henrik/vim-yaml-flattener'

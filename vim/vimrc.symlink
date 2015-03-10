@@ -152,31 +152,13 @@ vnoremap > >gv
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
 
-" Some helpers to edit mode
-" http://vimcasts.org/e/14
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
-
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
-
-" Easier horizontal scrolling
-map zl zL
-map zh zH
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
 
-" PIV
-let g:DisableAutoPHPFolding = 0
-let g:PIVAutoClose = 0
-
-" Misc
-let g:NERDShutUp=1
 let b:match_ignorecase = 1
 
 " OmniComplete
@@ -187,9 +169,9 @@ if has("autocmd") && exists("+omnifunc")
         \endif
 endif
 
-hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+highlight Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+highlight PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+highlight PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
 " some convenient mappings
 inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
@@ -238,24 +220,8 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
-" GUI Settings
-" GVIM- (here instead of .gvimrc)
-if has('gui_running')
-  set guioptions-=T           " remove the toolbar
-  set lines=40                " 40 lines of text instead of 24,
-  if has("gui_gtk2")
-    set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
-  else
-    set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
-  endif
-  if has('gui_macvim')
-    set transparency=5          " Make the window slightly transparent
-  endif
-else
-  if &term == 'xterm' || &term == 'screen'
-    set t_Co=256                 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
-  endif
-  "set term=builtin_ansi       " Make arrow and other keys work
+if &term == 'xterm' || &term == 'screen'
+  set t_Co=256                 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
 endif
 
 " Functions

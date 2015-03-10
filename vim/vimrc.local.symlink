@@ -2,6 +2,7 @@ autocmd filetype crontab set nobackup nowritebackup
 autocmd filetype bash setlocal noexpandtab
 autocmd filetype sh setlocal noexpandtab
 autocmd filetype zsh setlocal noexpandtab
+autocmd filetype dockerfile setlocal noexpandtab
 
 aug QFClose
   au!

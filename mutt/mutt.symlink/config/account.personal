@@ -1,0 +1,9 @@
+set from = "cjaysson@gmail.com"
+set sendmail = "/usr/local/bin/msmtp -a personal"
+set spoolfile = "+Personal/INBOX"
+set mbox = "+Personal/archive"
+set postponed = "+Personal/drafts"
+macro index gi "<change-folder>+Personal/INBOX<enter>" "go to the INBOX"
+macro index gt "<change-folder>+thoughtbot/INBOX<enter>" "go to thoughtbot"
+macro index gc "<change-folder>+Chapso/INBOX<enter>" "go to Chapso"
+my_hdr X-PGP-Key: fp="B432 C068 2FD1 C2D0 6A8B 3951 1621 ADC2 A0AC E70A"\; id="0xA0ACE70A"\; get=<http://calebthompson.io/pubkey.asc>\;

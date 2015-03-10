@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# pgraph - pretty good graphing utility
+# Dependencies:
+# * sig2dot from http://www.chaosreigns.com/code/sig2dot/
+# * graphviz, which provides the neato binary (homebrew has this)
+# * imagemagick, which provides convert (also in homebrew)
+# * open, available in many UNIX flavors
+# Use:
+# pgraph
+# pgraph query
+# pgraph query filename
+query=$1
+name=${2:-"web-of-trust"}
+gpg --list-sigs $query | sig2dot > "${name}.dot"
+neato -Tps "${name}.dot" > "${name}.ps"
+convert "${name}.ps" "${name}.jpg"
+open "${name}.jpg"

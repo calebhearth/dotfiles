@@ -1,5 +1,5 @@
 #compdef tm
 
-_arguments "1: :(`tmux list-sessions -F'#S'`)"
+_arguments "1: :(`tmux list-sessions -F'#S' 2>/dev/null`)"
 
 # vim: filetype=zsh

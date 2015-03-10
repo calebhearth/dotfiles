@@ -1,0 +1,11 @@
+set from = "caleb@thoughtbot.com"
+set sendmail = "/usr/local/bin/msmtp -a thoughtbot"
+set spoolfile = "+thoughtbot/INBOX"
+set mbox = "+thoughtbot/archive"
+set postponed = "+thoughtbot/drafts"
+#macro index gi "<change-folder>+thoughtbot/INBOX<enter>" "go to the INBOX"
+#macro index gp "<change-folder>+Personal/INBOX<enter>" "go to Personal"
+#macro index gc "<change-folder>+Chapso/INBOX<enter>" "go to Chapso"
+macro index gi "<change-folder>+thoughtbot/INBOX<enter>" "go to the INBOX"
+macro index gp "<change-folder>+fastmail/INBOX<enter>" "go to fastmail"
+my_hdr X-PGP-Key: fp="B432 C068 2FD1 C2D0 6A8B 3951 1621 ADC2 A0AC E70A"\; id="0xA0ACE70A"\; get=<http://calebthompson.io/pubkey.asc>\;

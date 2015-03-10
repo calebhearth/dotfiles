@@ -1,0 +1,2 @@
+#!/bin/sh
+curl -X POST -d "custom_fields[GitHub Username]=$1&permalink=$2" 'http://run.jsbox.io/thoughtbot/add_book_owner_to_github?key=83047c6c6c3722d76ea066909d24cfa6'

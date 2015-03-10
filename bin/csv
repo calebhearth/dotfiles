@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euo pipefail
+
+file="${1:--}"
+
+promptForColumns() {
+	head -1 "$file" | tr , \\n | nl
+
+	echo "Which columns (comma delimited)?"
+	read columns
+}
+
+printColumns() {
+	local columns=$1
+	cut -d "," "-f$columns" "$file" | column -t -s ","
+}
+
+csv() {
+	promptForColumns
+	printColumns "$columns"
+}
+
+csv

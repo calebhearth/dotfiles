@@ -1,0 +1,8 @@
+set from = "chapso@chapso.org"
+set sendmail = "/usr/local/bin/msmtp -a chapso"
+set spoolfile = "+Chapso/INBOX"
+set mbox = "+Chapso/archive"
+set postponed = "+Chapso/drafts"
+macro index gp "<change-folder>+Personal/INBOX<enter>" "go to the INBOX"
+macro index gt "<change-folder>+thoughtbot/INBOX<enter>" "go to thoughtbot"
+macro index gc "<change-folder>+Chapso/INBOX<enter>" "go to Chapso"
