@@ -1,0 +1,17 @@
+require 'ostruct'
+require 'json'
+require 'net/http'
+
+repos_url = 'https://8c22f71e686fa8efba1c29554bde20c0b0c29ce2:x-oauth-basic@api.github.com/orgs/thoughtbot/repos'
+repos = []
+(1...10).each do |n|
+  uri = URI(repos_url + "?page=#{n}")
+  response = Net::HTTP.get(uri)
+  repos += JSON.parse(response)
+end
+
+puts repos
+  .sort { |a, b| a['stargazers_count'] <=> b['stargazers_count'] }
+  .reverse
+  .first(20)
+  .map { |r| "#{r['name']}\t#{r['stargazers_count']}" }

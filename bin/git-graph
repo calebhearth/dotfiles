@@ -6,10 +6,10 @@ surround() {
 
 refNames='%C(auto)%d'
 message='%s'
-author=`surround '%C(bold cyan)%aN%G?'`
+author=`surround '%C(bold cyan)%aN%C(blue)%G?'`
 sha=`surround '%C(bold red)%h'`
 relativeTime=`surround '%C(bold green)%ar'`
 
 logFormat="$refNames $message$relativeTime$sha$author"
 
-git log --graph --date-order --all --pretty="format:$logFormat" $*
+git log --graph --decorate --date-order --all --pretty="format:$logFormat" $*

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# tag - search for a tag in git ctags file and open it in Vim
+#
+# tag [tagname]
+#
+# Tag will grep through .git/ctags for [tagname] and pass matching lines into
+# selecta. The result of the search is then used to extract the tagfile and
+# tagaddress, which are passed to your $VISUAL, $EDITOR, or vim (in that order)
+# to bring you to the correct line in the file.
+
+tagline=$(grep -e "^$1\t" .git/tags | selecta)
+tagfile=$(echo "$tagline" | cut -f 2 | sed 's/^..\///')
+tagaddress=$(echo "$tagline" | cut -f 3 | sed 's/;.*//')
+vim "$tagfile" "+set nomagic" "+$tagaddress" "+set magic"

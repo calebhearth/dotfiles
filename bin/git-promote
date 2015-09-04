@@ -20,8 +20,8 @@ merge=$(git config --get "branch.${curr_branch}.merge")
 upstream=$(git config --get "branch.${curr_branch}.remote")
 if [ -n "${upstream}" ] # zero length string
 then
-  echo "I was already tracking ${upstream}"
-  echo "I pushed to ${remote} anyway, but tracking remote will not be changed"
+	echo "I was already tracking ${upstream}"
+	echo "I pushed to ${remote} anyway, but tracking remote will not be changed"
 else
-  git config --add "branch.${curr_branch}.remote" ${remote}
+	git config --add "branch.${curr_branch}.remote" ${remote}
 fi
