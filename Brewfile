@@ -1,64 +1,57 @@
-apple-gcc42
-bash
-brew-cask
-chromedriver
-ctags
-docbook-xsl
-elasticsearch
-emacs
-epubcheck
-gcc
-gh
-ghc
-git
-git-crypt
-git-update
-gnupg2
-gnutls
-graphviz
-gv
-heroku-toolbelt
-htop-osx
-hub
-icu4c
-imagemagick
-irssi
-isync
-jpegoptim
-libxslt
-libyaml
-lsof
-macvim
-maven
-mercurial
-msmtp
-mutt
-mysql
-nmap
-node
-notmuch
-npth
-offline-imap
-openssh
-ossp-uuid
-phantomjs
-postgresql
-python
-qt
-rcm
-reattach-to-user-namespace
-redis
-scrypt
-sdl2
-selecta
-the_silver_searcher
-tmate
-tmux
-tree
-unixodbc
-urlview
-vim
-wget
-wxmac
-xcproj
-zsh
+brew tap \
+  nviennot/tmate \
+  homebrew/dupes \
+  caskroom/cask \
+  gfontenot/gitupdate \
+  homebrew/x11 \
+  homebrew/games
+brew install \
+  homebrew/dupes/apple-gcc42
+  bash
+  caskroom/cask/brew-cask
+  chromedriver
+  cloog
+  ctags
+  docker
+  epubcheck
+  gcc
+  gh
+  git
+  git-crypt
+  gfontenot/gitupdate/git-update
+  gnupg
+  gnupg2
+  gnutls
+  graphviz
+  homebrew/x11/gv
+  heroku-toolbelt
+  imagemagick
+  jpegoptim
+  libxslt
+  libyaml
+  homebrew/dupes/lsof
+  mercurial
+  msmtp
+  mutt
+  homebrew/games/nethack
+  node
+  notmuch
+  offline-imap
+  homebrew/dupes/openssh
+  pandoc
+  pass
+  phantomjs
+  postgresql
+  python
+  qt
+  reattach-to-user-namespace
+  redis
+  scrypt
+  selecta
+  the_silver_searcher
+  nviennot/tmate/tmate
+  tmux
+  urlview
+  vim
+  wget
+  zsh

@@ -4,7 +4,7 @@
 
 DOTFILES_ROOT="`pwd`"
 
-set -e
+set -x
 
 echo ''
 
@@ -54,7 +54,7 @@ install_dotfiles () {
   backup_all=false
   skip_all=false
 
-  for source in `find $DOTFILES_ROOT -maxdepth 2 -name \*.symlink`
+  for source in $DOTFILES_ROOT/**/*.symlink
   do
     dest="$HOME/.`basename \"${source%.*}\"`"
 
@@ -117,39 +117,16 @@ install_dotfiles () {
 install_vim_bundles () {
   if ! [ -d ~/.vim/bundle/vundle ]
   then
+    mkdir -p ~/.vim/bundle
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle > /dev/null
   fi
   vim -u ~/.vimrc.bundles +BundleInstall +qa
   success "all vundled up."
 }
 
-brew_homebrew () {
-  if test ! $(which brew)
-  then
-    success "Installing Homebrew for you."
-    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" > /tmp/homebrew-install.log
-  fi
-
-  brew bundle "$DOTFILES_ROOT/homebrew" > /tmp/brew-bundle.log
-  success "All brewed."
-}
-
 setup_gitconfig
 install_dotfiles
 install_vim_bundles
-brew_homebrew
-
-# If we are on a mac, lets install and setup homebrew
-if [ "$(uname -s)" == "Darwin" ]
-then
-  info "installing dependencies"
-  if . bin/dot > /tmp/dotfiles-dot 2>&1
-  then
-    success "dependencies installed"
-  else
-    fail "error installing dependencies"
-  fi
-fi
 
 echo ''
 echo '  All installed!'

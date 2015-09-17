@@ -9,6 +9,7 @@
 .svn
 
 .gitkeep
+.keep
 
 # Vim
 .*.sw[a-z]
@@ -27,3 +28,4 @@ Session.vim
 /.ruby-gemset
 /.ruby-version
 tags
+/.rvmrc

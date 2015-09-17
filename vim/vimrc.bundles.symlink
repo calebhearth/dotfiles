@@ -49,7 +49,7 @@ Plugin 'rking/vim-detailed'
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
 
-Plugin 'jnwhiteh/vim-golang'
+Plugin 'fatih/vim-go'
 
 " Misc
 Plugin 'tpope/vim-markdown'
@@ -65,4 +65,4 @@ Plugin 'christoomey/vim-rfactory'
 Plugin 'toyamarinyon/vim-swift'
 Plugin 'exu/pgsql.vim'
 
-Plugin 'stefanoverna/vim-i18n'
+"Plugin 'stefanoverna/vim-i18n'

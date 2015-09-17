@@ -1,4 +1,4 @@
-export PATH="$HOME/bin:$PATH:$HOME/.rvm/bin"
+export PATH="$HOME/bin:$PATH:/sbin:$HOME/.rvm/bin"
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -41,10 +41,11 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey "^X" edit-command-line
 
-cdpath=(. ~/code ~/books)
+export WORDCHARS="${WORDCHARS:s#/#}"
+cdpath=(. $GOPATH/src/github.com/skipjacksc ~/code ~/books)
 
 # handy keybindings
-bindkey "^S" beginning-of-line
+bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey "^R" history-incremental-search-backward
 bindkey "^P" history-search-backward
