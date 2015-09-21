@@ -16,11 +16,11 @@ if [ -z "$parent" ]; then
 fi
 
 successfully git fetch $remote
-successfully git rebase -i $remote/$parent --autosquash
+successfully git rebase --interactive $remote/$parent --autosquash
 git diff $parent --check || successfully git diff $parent --check
-successfully git push -f
+successfully git push --force
 successfully git checkout $parent
 successfully git merge $branch --ff-only
 successfully git push
 successfully git push $remote --delete $branch
-successfully git branch -d $branch
+successfully git branch --delete $branch
