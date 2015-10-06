@@ -5,7 +5,8 @@
   in-repo = !git rev-parse --git-dir > /dev/null 2>&1
   news = log --pretty=\"* %s %h%n%n  *%aN*\"
   branches = for-each-ref --sort=-committerdate --format=\"%(color:green)%(authordate) %(color:blue)%(authordate:relative) %(color:red)%(authorname) %(color:white)%(color:bold)%(refname:short)\" refs/heads
-  fixup = commit --fixup=HEAD --all
+  fixup = commit --fixup=HEAD --all --no-gpg-sign
+  difftree = !git diff --stat=1000 master | sed -e '$ d' | cut -d ' ' -f 2 | ftree
 [apply]
   whitespace = fix
 [column]
@@ -38,7 +39,7 @@
   autocrlf = input
   editor = "vim"
   excludesfile = "~/.gitignore"
-  pager = less -FXS
+  pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
   whitespace = blank-at-eol,trailing-space,tabwidth=2
 [fetch]
   prune = true
