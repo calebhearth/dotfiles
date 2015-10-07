@@ -22,3 +22,4 @@ autocmd FilterWritePre * :silent call Whitewash()
 
 let s:usestate = 0
 
+autocmd filetype markdown,gitcommit nnoremap K :Dispatch dict <C-r><C-w><CR>
