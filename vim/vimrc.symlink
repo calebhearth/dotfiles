@@ -26,7 +26,6 @@ syntax on                   " syntax highlighting
 set mouse=a                 " automatically enable mouse usage
 scriptencoding utf-8
 
-" set autowrite                  " automatically write a file when leaving a modified buffer
 set shortmess+=filmnrxoOtTI      " abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
 set virtualedit=onemore         " allow for cursor beyond last character
@@ -86,6 +85,7 @@ set scrolloff=3                 " minimum lines to keep above and below cursor
 set foldenable                  " auto fold code
 set list
 set listchars=tab:»·,trail:·,extends:> " Highlight problematic whitespace
+set nojoinspaces                " One space after ./?/! with join commands
 set visualbell                  " shut the fuck up
 set nohlsearch                  " don't highlight searches
 set noswapfile                  " Don't need this shit, and it's obnoxious

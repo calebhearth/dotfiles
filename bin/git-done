@@ -1,4 +1,9 @@
 #!/usr/bin/env zsh
+# NAME
+#				git-done - Finish a branch by rebasing, pushing, and cleaning up
+#
+#	SYNOPSIS
+#				git done [<remote-name> [<parent-branch-name>]]
 
 set -e
 

@@ -42,7 +42,7 @@ zle -N edit-command-line
 bindkey "^X" edit-command-line
 
 export WORDCHARS="${WORDCHARS:s#/#}"
-cdpath=(. $GOPATH/src/github.com/skipjacksc ~/code ~/books)
+cdpath=(. $GOPATH/src/github.com/{skipjacksc,calebthompson,thoughtbot} ~/code ~/books)
 
 # handy keybindings
 bindkey "^A" beginning-of-line

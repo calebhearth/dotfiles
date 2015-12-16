@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/caleb/code/learn/db/migrate'
 let g:netrw_dirhist_2='/Users/caleb/code/learn/db'
 let g:netrw_dirhist_3='/Users/caleb/code/learn/db/migrate'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/Users/caleb/clients/tapjoy/explore/db/migrate'
 let g:netrw_dirhist_5='/Users/caleb/.dotfiles/npm'
 let g:netrw_dirhist_6='/Users/caleb/code/turpentine/db/migrate'
 let g:netrw_dirhist_7='/Users/caleb/code/time_for_a_boolean/lib/time_for_a_boolean'
+let g:netrw_dirhist_8='/Users/caleb/code/rambleron-web/db/migrate'

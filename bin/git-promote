@@ -1,7 +1,14 @@
 #!/bin/sh
 #
-# Promotes a local topic branch to a remote tracking branch of the same name,
-# by pushing and then setting up the git config
+# NAME
+#				git-promote - Push a branch upstream and track it
+#
+# SYNOPSIS
+#				git promote [<remote-name>]
+#
+# DESCRIPTION
+#				Promotes a local topic branch to a remote tracking branch of the
+#				same name, by pushing and then setting up the git config.
 
 remote=$1
 : ${remote:="origin"} # default remote is origin

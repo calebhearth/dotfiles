@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Find and replace by a given list of files.
+#
+# replace foo bar **/*.rb
+
+set -e
+
+if ! git diff --exit-code > /dev/null; then
+	>&2 echo "Working directory dirty. Please stage, stash, or commit changes."
+	exit 1
+fi
+
+find_this="$1"
+shift
+replace_with="$1"
+shift
+
+ag -l --nocolor "$find_this" "$@" | xargs sed -i '' "s/$find_this/$replace_with/g"
