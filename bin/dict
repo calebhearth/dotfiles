@@ -19,7 +19,9 @@ def main():
     else:
         definition = dictresult.encode('utf-8') \
                 .replace("▶", "\n") \
-                .replace(" •", "\n•")
+                .replace(" •", "\n  •") \
+                .replace("ORIGIN", "\n\nORIGIN\n  ") \
+                .replace("DERIVATIVES", "\n\nDERIVATIVES\n  ")
         definition = re.sub(r" (\d)", r"\n\1", definition)
         print definition
 
