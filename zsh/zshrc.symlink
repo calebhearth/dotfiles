@@ -1,4 +1,4 @@
-export PATH="$HOME/bin:$PATH:/sbin:$HOME/.rvm/bin"
+export PATH="$HOME/bin:$PATH:/Applications/Postgres.app/Contents/Versions/9.6/bin:/sbin:$HOME/.rvm/bin"
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -42,7 +42,7 @@ zle -N edit-command-line
 bindkey "^X" edit-command-line
 
 export WORDCHARS="${WORDCHARS:s#/#}"
-cdpath=(. $GOPATH/src/github.com/{skipjacksc,calebthompson,thoughtbot} ~/code ~/books)
+cdpath=(. $GOPATH/src/github.com/{metmuseum,Hearst-DD,skipjacksc,calebthompson,thoughtbot} ~/code ~/books)
 
 # handy keybindings
 bindkey "^A" beginning-of-line

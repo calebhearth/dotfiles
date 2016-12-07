@@ -83,3 +83,6 @@ set-window-option -g window-status-current-fg black
 
 setw -g utf8 on
 set -g status-utf8 on
+
+bind m switch-client -l
+bind M command-prompt -p 'switch session:' "run \"tm '%%'\""

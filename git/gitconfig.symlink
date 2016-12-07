@@ -3,10 +3,14 @@
   cob = !git branch | cut -c 3- | selecta | xargs git checkout
   current = rev-parse --abbrev-ref HEAD
   in-repo = !git rev-parse --git-dir > /dev/null 2>&1
-  news = log --pretty=\"* %s %h%n%n  *%aN*\"
+  news = log --pretty=news
   branches = for-each-ref --sort=-committerdate --format=\"%(color:green)%(authordate) %(color:blue)%(authordate:relative) %(color:red)%(authorname) %(color:white)%(color:bold)%(refname:short)\" refs/heads
   fixup = commit --fixup=HEAD --all --no-gpg-sign
   difftree = !git diff --stat=1000 master | sed -e '$ d' | cut -d ' ' -f 2 | ftree
+  graph = log --graph --decorate --date-order --all --pretty=graph
+[pretty]
+  news = * %s %h%n%n  *%aN*
+  graph = %C(auto)%d %s%C(reset)%C(bold yellow)─(%C(reset)%C(bold green)%ar%C(reset)%C(bold yellow))%C(reset)%C(bold yellow)─(%C(reset)%C(bold red)%h%C(reset)%C(bold yellow))%C(reset)%C(bold yellow)─(%C(reset)%C(bold cyan)%aN%C(blue)%G?%C(reset)%C(bold yellow))
 [apply]
   whitespace = fix
 [column]
@@ -39,7 +43,7 @@
   autocrlf = input
   editor = "vim"
   excludesfile = "~/.gitignore"
-  pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
+  pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init --tabs=1,3
   whitespace = blank-at-eol,trailing-space,tabwidth=2
 [fetch]
   prune = true
@@ -57,8 +61,10 @@
   ff = only
 [push]
   default = tracking
+  gpgSign = if-asked
 [pull]
   ff = only
+  rebase=preserve
 [receive]
   denyCurrentBranch = ignore
 [rerere]
@@ -82,7 +88,14 @@
   signingkey = Caleb Thompson <caleb@calebthompson.io>
 [tag]
   sort = version:refname
+  forceSignAnnotated = true
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[gpg]
+  program = /usr/local/bin/gpg
+[diff]
+  compactionHeuristic = true
+[rebase]
+  autosquash = true

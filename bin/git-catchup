@@ -1,0 +1,55 @@
+#!/bin/sh
+
+#	NAME
+#        git-catchup - Rebase onto a "mainline" branch.
+#
+# SYNOPSIS
+#        git catchup [<repository> <refspec>]
+#        git catchup <refspec>
+#
+# DESCRIPTION
+#        Incorporate upstream mainline changes into the current branch by
+#        performing a git-pull(1) --rebase --autostash with the rebase in
+#        interactive mode configured to output to STDOUT rather than open a
+#        terminal. Logs changes from the merge-base of <respository>/<refspec>
+#        and HEAD before and after catching up.
+#
+#        <repository> should be the name of a remote repository as passed to git-
+#        fetch(1). <refspec> can name an arbitrary remote ref (for example, the
+#        name of a tag), but usually it is the name of a branch in the remote
+#        repository.
+#
+#        Default value for <repository> is read from the "remote" configuration
+#        for the current branch as set by git-branch(1) --track. Default value
+#        for <refspec> is "master".
+
+set -e
+
+remote="$1"
+parent="$2"
+
+if [ -z "$parent" ]; then
+	parent=${remote:="master"}
+	remote=$(git config branch.$parent.remote)
+	remote=${remote:="origin"}
+fi
+
+previous_head_sha=$(git rev-parse HEAD)
+
+__git_update_prettyprint_log () {
+  format=$(
+    git config --get pretty.update ||
+    echo "%C(yellow)%h%Cblue%d%Creset %s - %C(white)%an %Cgreen(%cr)%Creset")
+
+  merge_base_sha=$(git merge-base "$previous_head_sha" "$remote/$parent")
+	# Use the last commit on a merged branch if merge-base is a merge
+	if git rev-parse $merge_base_sha^2 > /dev/null 2>&1; then
+		merge_base_sha=$(git rev-parse $merge_base_sha^2)
+	fi
+  git log --format="$format" --graph "$merge_base_sha".."$remote_sha" "$merge_base_sha".."$previous_head_sha"
+}
+
+git -c core.editor="grep --invert-match '^#'" pull --rebase=interactive --autostash $remote $parent
+
+remote_sha=$(git rev-parse HEAD)
+__git_update_prettyprint_log

@@ -24,7 +24,7 @@ successfully git fetch $remote
 successfully git rebase --interactive $remote/$parent --autosquash
 git diff $parent --check || successfully git diff $parent --check
 successfully git push --force
-successfully git checkout $parent
+successfully git checkout $parent --
 successfully git merge $branch --ff-only
 successfully git push
 successfully git push $remote --delete $branch

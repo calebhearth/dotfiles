@@ -1,6 +1,12 @@
 " Environment
 " Basics
 set nocompatible        " must be first line
+
+" Bundles
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
 if has ("unix") && "Darwin" != system("echo -n \"$(uname)\"")
   " on Linux use + register for copy-paste
   set clipboard=unnamedplus
@@ -10,11 +16,6 @@ else
 endif
 "
 let g:markdown_fenced_languages = ['ruby', 'erb=eruby']
-
-" Bundles
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
 
 " General
 set background=dark         " Assume a dark background
@@ -291,18 +292,18 @@ end
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+" " Get off my lawn
+" nnoremap h :echoe "Try b, B, F, T, ^"<CR><Left>
+" nnoremap l :echoe "Try w, t, f, e, E, $"<CR><Right>
+" nnoremap k :echoe "Try ?, {"<CR><Up>
+" nnoremap j :echoe "Try /, }"<CR><Down>
 
 " vim-rspec mappings
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
-let g:rspec_command = "Dispatch rspec {spec}"
+let g:rspec_command = "Dispatch rspec --no-color {spec}"
 
 vnoremap <Leader>i :call I18nTranslateString()<CR>
 

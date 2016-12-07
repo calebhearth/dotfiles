@@ -1,6 +1,6 @@
 brew tap \
-  nviennot/tmate \
   homebrew/dupes \
+  nviennot/tmate \
   caskroom/cask \
   gfontenot/gitupdate \
   homebrew/x11 \

@@ -2,7 +2,7 @@
 #
 # Find and replace by a given list of files.
 #
-# replace foo bar **/*.rb
+# git sub foo bar **/*.rb
 
 set -e
 

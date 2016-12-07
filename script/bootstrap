@@ -4,8 +4,6 @@
 
 DOTFILES_ROOT="`pwd`"
 
-set -x
-
 echo ''
 
 info () {

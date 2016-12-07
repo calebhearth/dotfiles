@@ -12,7 +12,6 @@ aug END
 let g:go_fmt_command = "goimports"
 autocmd FileType go compiler go
 autocmd FileType go nnoremap <Leader>t :Dispatch go test ./...<CR>
-" autocmd FileType go nnoremap K :GoDoc<CR>
 autocmd FileType go,zsh,bash,sh setlocal listchars=tab:\ \ ,trail:·,extends:> " Highlight problematic whitespace
 
 autocmd BufWritePre * :silent call Whitewash()
@@ -22,4 +21,19 @@ autocmd FilterWritePre * :silent call Whitewash()
 
 let s:usestate = 0
 
-autocmd filetype markdown,gitcommit nnoremap K :Dispatch dict <C-r><C-w><CR>
+let g:dbext_default_profile_PG = 'type=PGSQL:user=caleb'
+
+function! Psqlc() range
+  Dispatch echo .shellescape(join(getline(31, 33), "\n")) | psql
+endfunction
+
+autocmd filetype markdown nnoremap <Leader>e :normal "wya]}h2] 2j"wpa: <https://example.com><Esc>vi>
+
+autocmd filetype markdown,gitcommit setlocal keywordprg=":Dispatch dict"
+autocmd filetype ruby setlocal keywordprg=":Dispatch ri"
+autocmd filetype sql nnoremap K :Dispatch psql --command=\h <C-r><C-w><CR>
+autocmd FileType go,godoc setlocal keywordprg=":GoDoc"
+
+
+autocmd filetype markdown nnoremap ? :w !wc<CR>
+autocmd filetype markdown vnoremap ? :'<,'>w !wc<CR>
