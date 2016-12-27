@@ -1,68 +1,58 @@
 brew tap \
+  homebrew/boneyard \
   homebrew/dupes \
-  nviennot/tmate \
-  caskroom/cask \
-  gfontenot/gitupdate \
+  homebrew/games \
+  homebrew/science \
+  homebrew/versions \
   homebrew/x11 \
-  homebrew/games
+  universal-ctags/universal-ctags
 brew install caskroom/cask/brew-cask
-brew cask install xquartz
 brew install \
   bash \
   chromedriver \
   cloog \
-  docker \
-  epubcheck \
+  dirmngr \
   gcc \
-  gfontenot/gitupdate/git-update \
   gh \
   git \
   git-crypt \
-  gnupg \
-  gnupg2 \
+  git-lfs \
   gnutls \
+  gpg-agent \
   graphviz \
-  heroku-toolbelt \
-  homebrew/dupes/apple-gcc42 \
-  homebrew/dupes/lsof \
-  homebrew/dupes/openssh \
-  homebrew/games/nethack \
-  homebrew/x11/gv \
-  imagemagick \
-  jpegoptim \
+  heroku \
+  jq \
   libxslt \
-  libyaml \
   mercurial \
-  msmtp \
   mutt \
   node \
-  notmuch \
-  nviennot/tmate/tmate \
-  offline-imap \
   pandoc \
   pass \
+  perl \
   phantomjs \
-  python \
+  python3 \
   qt \
   reattach-to-user-namespace \
   redis \
-  scrypt \
+  ruby \
   selecta \
   the_silver_searcher \
+  tmate \
   tmux \
-  urlview \
+  utf8proc \
   vim \
   wget \
-  zsh
+  xapian
 brew cask install \
-  antirsi \
   calibre \
   cloud \
   dropbox \
   gpgtools \
   mactex \
+  ngrok \
   postgres \
   screenhero \
-  sizeup \
+  utorrent \
+  virtualbox \
   vlc
 brew install --head universal-ctags
