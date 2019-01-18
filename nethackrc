@@ -1,0 +1,5 @@
+OPTION=!rest_on_space, color, autodig, hilite_pet, time, autodescribe
+OPTIONS=clicklook, statushilites, hitpointbar, showscore
+OPTIONS=pickup_types:$"=/!?+
+OPTIONS=name:Brunnhilde,role:Valkyrie,race:Human,gender:female,align:lawful
+OPTIONS=dogname:Caesar,catname:Tiger,horsename:Bucephalus,fruit:srawberry

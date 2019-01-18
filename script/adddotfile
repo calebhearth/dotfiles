@@ -1,0 +1,12 @@
+#!/bin/bash
+# Usage: adddotfile /path/to/dotfile
+
+source=$1
+filename=$(basename "$source")
+destination="./${filename/\./}"
+
+mv "$source" "$destination"
+echo "moved $source to $destination"
+ln -s "$destination" "$source"
+echo "linked $destination to $source"
+git add "$destination"
