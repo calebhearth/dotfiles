@@ -37,7 +37,7 @@
   deleted = red
   untracked = cyan
 [commit]
-  gpgsign = true
+  ; gpgsign = true
   verbose = true
 [core]
   autocrlf = input
@@ -88,14 +88,17 @@
   signingkey = Caleb Thompson <caleb@calebthompson.io>
 [tag]
   sort = version:refname
-  forceSignAnnotated = true
+  ; forceSignAnnotated = true
 [filter "lfs"]
   required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
 [gpg]
   program = /usr/local/bin/gpg
 [diff]
   compactionHeuristic = true
 [rebase]
   autosquash = true
+[lfs]
+  batch = true

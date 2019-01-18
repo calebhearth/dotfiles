@@ -1,0 +1,174 @@
+#!/usr/bin/perl
+#
+# vim:ts=2:sw=2:
+#
+
+# This script is Copyright Carl Hayter <hayter@usc.edu>
+# 2004 - 2006.
+# It is available under the GPL v2.
+# No gaurantees, no warantees.
+# It is currently distributed by Phil Dibowitz <phil@ipom.com>
+# via http://www.phildev.net/pgp/
+#
+# This is similar to the community sig2dot at
+# http://www.chaosreigns.com/code/sig2dot/
+# but was written before that was around (or before
+# we knew about it anyway), and has one crucial feature:
+# the ability to limit the scope of the graph generated.
+# For people with large keyrings this will allow neato
+# to actually complete. The options are:
+#
+# -d <n>                      the max depth
+# -s '<email> [<email> ...]'    the keys to cosnider "source"
+#
+# Recommended usage:
+# $ sig3 > keys.dot
+# $ neato -Tps -Goverlap=scale -Gsplines=true -o keys.ps keys.dot
+# $ convert keys.ps keys.jpg
+# $ rm -f keys.ps keys.dot
+#
+
+use strict;
+use warnings;
+#use Data::Dumper;
+
+my ( $graph_title, $root_style, $uid_style, $bi_style, $depth, $count, $start, $input );
+
+while ( local $_ = shift @ARGV ) {
+  /^-g/ && do { $graph_title = shift @ARGV; next; };
+  /^-r/ && do { $root_style  = shift @ARGV; next; };
+  /^-r/ && do { $uid_style   = shift @ARGV; next; };
+  /^-r/ && do { $bi_style    = shift @ARGV; next; };
+  /^-d/ && do { $depth       = shift @ARGV; next; };
+  /^-c/ && do { $count       = shift @ARGV; next; };
+  /^-s/ && do { $start       = shift @ARGV; next; };
+  /^-i/ && do { $input       = shift @ARGV; next; };
+  die "barfing on arg: $_\n";
+}
+
+$graph_title ||= 'siggraph';
+$root_style ||= 'color=red,style=bold';
+$uid_style ||= 'color=blue,dir=none,style=bold,weight=20,len=.2';
+$bi_style ||= 'color=green,dir=none';
+$depth ||= 2;
+$count ||= 1;
+$start ||= "";
+$input ||= 'gpg --list-sigs --with-colons --fixed-list-mode --with-fingerprint |';
+
+my @start;
+@start = split /\s+/, $start if length $start;
+
+my $ifh;
+open $ifh, $input
+  or die "open: $!\n";
+
+my %sigs;
+my %email;
+my @email;
+my $curr;
+my $first;
+my %uids;
+my @roots;
+
+$count += 1;
+
+while (<$ifh>) {
+  next if skip();
+  my ( $tok, @info ) = split /:/;
+  $tok eq 'pub' && do { $count--; $first = undef; next; };
+  $tok eq 'fpr' && next;
+  $tok eq 'sig' && do {
+    next if $info[8] =~ /user id not found/i;
+    next unless $info[8] =~ /<(.*?)>/;
+    my $email = $1;
+    next if $email eq $curr;
+    unless ( exists $email{$email} ) {
+      $email{$email} = 1;
+      push @email, $email;
+    }
+    $sigs{$curr}{$email} = 1;
+#   print "$email $info[8]\n";
+  };
+  $tok eq 'uid' && do {
+    next unless $info[8] =~ /<(.*?)>/;
+    my $email = $1;
+    $curr = $email;
+    unless ( exists $email{$email} ) {
+      $email{$email} = 1;
+      push @email, $email;
+    }
+    unless ( defined $first ) {
+      $first = $email;
+    } else {
+      $uids{$first}{$email} = 1;
+    }
+    if ( $count > 0 ) { push @roots, $email; }
+#   print "$email $info[8]\n";
+  };
+# print;
+}
+
+my $state;
+sub skip {
+  /^tru/ && return 1;
+  /^rev/ && return 1;
+  /^sub/ && do { $state = 'sub'; return 1; };
+  /^(?:sig|fpr)/ && do { $state eq 'sub' ? return 1 : return 0; };
+  /^pub/ && do { $state = 'pub'; return 0; };
+}
+
+@roots = @start if @start;
+@start = @roots;
+
+my @final;
+
+for my $d ( 0 .. $depth ) {
+  my @this = @roots;
+  @roots = ();
+  for my $t ( @this ) {
+    push @final, $t;
+    push @roots, keys %{ $sigs{$t} };
+  }
+}
+
+@email = @final;
+
+my %want = map { $_ => 1 } @email;
+
+for my $e ( keys %uids ) {
+  if ( exists $want{$e} ) {
+    for my $ee ( keys %{ $uids{$e} } ) {
+      delete $uids{$e}{$ee} unless exists $want{$ee};
+      delete $uids{$e}{$ee} if $e eq $ee;
+    }
+  } else {
+    delete $uids{$e};
+  }
+}
+
+print qq(digraph "$graph_title" {\n);
+print qq({ node [$root_style] ), join("; ", map qq("$_"), @start), qq(; }\n);
+
+for my $e ( keys %uids ) {
+  for my $ee ( keys %{ $uids{$e} } ) {
+    print qq("$e" -> "$ee");
+    print qq( [$uid_style];\n);
+  }
+}
+#for my $e ( @email ) {
+# print qq("$e";\n);
+#}
+for my $e ( @email ) {
+  if ( exists $sigs{$e} ) {
+    for my $k ( keys %{ $sigs{$e} } ) {
+      next if exists $uids{$k}{$e} or exists $uids{$e}{$k};
+      print qq("$k" -> "$e");
+      if ( exists $sigs{$k}{$e} ) {
+        print qq( [$bi_style];\n);
+      } else {
+        print qq(;\n);
+      }
+    }
+  }
+}
+print qq(}\n);

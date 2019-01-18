@@ -1,0 +1,11 @@
+#! /bin/sh
+set -e
+
+heroku sudo -- skynet:userpass:remove -f cant-install-abused-addons -u $1
+echo "Hi there,
+
+It looks like your account was flagged by our anti-spam protections by mistake. This blocked your ability to add email add-ons your apps. That happens sometimes with new accounts. I have unblocked your account. Please try again and get back to us if you still have an issue.
+
+Thanks,
+Caleb" | pbcopy
+echo "Message copied to clipboard."

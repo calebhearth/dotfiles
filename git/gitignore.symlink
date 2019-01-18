@@ -29,3 +29,4 @@ Session.vim
 /.ruby-version
 tags
 /.rvmrc
+/.gem

@@ -27,7 +27,7 @@ function! Psqlc() range
   Dispatch echo .shellescape(join(getline(31, 33), "\n")) | psql
 endfunction
 
-autocmd filetype markdown nnoremap <Leader>e :normal "wya]}h2] 2j"wpa: <https://example.com><Esc>vi>
+autocmd filetype markdown nnoremap <Leader>e :normal mm"wya]}h2] 2j"wpa: <https://example.com><Esc>vi>p`m
 
 autocmd filetype markdown,gitcommit setlocal keywordprg=":Dispatch dict"
 autocmd filetype ruby setlocal keywordprg=":Dispatch ri"

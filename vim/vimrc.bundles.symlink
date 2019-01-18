@@ -70,7 +70,6 @@ Plugin 'toyamarinyon/vim-swift'
 Plugin 'exu/pgsql.vim'
 Plugin 'dbext.vim'
 Plugin 'joker1007/vim-ruby-heredoc-syntax'
-Plugin 'takac/vim-hardtime'
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 1
 

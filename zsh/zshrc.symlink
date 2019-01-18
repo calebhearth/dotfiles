@@ -1,4 +1,10 @@
-export PATH="$HOME/bin:$PATH:/Applications/Postgres.app/Contents/Versions/9.6/bin:/sbin:$HOME/.rvm/bin"
+export PATH="$HOME/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/9.6/bin:/sbin"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+source /usr/local/share/gem_home/gem_home.sh
+gem_home $HOME
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -28,6 +34,8 @@ done
 fpath=($ZSH/zsh/completions $fpath)
 autoload -U compinit
 compinit
+# heroku autocomplete setup
+CLI_ENGINE_AC_ZSH_SETUP_PATH=/Users/caleb.thompson/Library/Caches/heroku/completions/zsh_setup && test -f $CLI_ENGINE_AC_ZSH_SETUP_PATH && source $CLI_ENGINE_AC_ZSH_SETUP_PATH;
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
@@ -52,3 +60,4 @@ bindkey "^P" history-search-backward
 bindkey "^Y" accept-and-hold
 bindkey "^N" insert-last-word
 bindkey -s "^T" "^[Isudo ^[S" # "t" for "toughguy"
+bindkey "^[[3~" delete-char # delete forward

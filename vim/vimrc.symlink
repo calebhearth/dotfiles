@@ -1,6 +1,7 @@
 " Environment
 " Basics
 set nocompatible        " must be first line
+let g:Powerline_symbols = 'fancy'
 
 " Bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -89,7 +90,7 @@ set listchars=tab:»·,trail:·,extends:> " Highlight problematic whitespace
 set nojoinspaces                " One space after ./?/! with join commands
 set visualbell                  " shut the fuck up
 set nohlsearch                  " don't highlight searches
-set noswapfile                  " Don't need this shit, and it's obnoxious
+set swapfile
 
 
 " Formatting
