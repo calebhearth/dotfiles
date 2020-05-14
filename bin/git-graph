@@ -12,6 +12,4 @@ relativeTime=`surround '%C(bold green)%ar'`
 
 logFormat="$refNames $message$relativeTime$sha$author"
 
-echo $logFormat
-exit
 git log --graph --decorate --date-order --all --pretty="format:$logFormat" $*

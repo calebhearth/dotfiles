@@ -83,12 +83,12 @@
   branch = 1
   short = 1
 [user]
-  name = Caleb Thompson
-  email = caleb@calebthompson.io
-  signingkey = Caleb Thompson <caleb@calebthompson.io>
+  name = Caleb Hearth
+  email = caleb@calebhearth.com
+  signingkey = Caleb Hearth <caleb@calebhearth.com>
 [tag]
   sort = version:refname
-  ; forceSignAnnotated = true
+  forceSignAnnotated = true
 [filter "lfs"]
   required = true
   clean = git-lfs clean -- %f
