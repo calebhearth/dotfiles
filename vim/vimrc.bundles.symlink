@@ -25,18 +25,24 @@ Plugin 'pbrisbin/vim-rename-file'
 " General Programming
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
+Plugin 'tpope/vim-dotenv'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'calebthompson/vim-whitewash'
 Plugin 'jayferd/ragel.vim'
-Plugin 'tpope/vim-projectile'
+Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-commentary'
 
 " Javascript
 Plugin 'leshill/vim-json'
 Plugin 'tpope/vim-jdaddy'
-"Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
 Plugin 'nono/vim-handlebars'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'MaxMEllon/vim-jsx-pretty'
+Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 " HTML
 Plugin 'othree/html5.vim'
@@ -62,13 +68,13 @@ Plugin 'tpope/vim-heroku'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-dadbod'
 Plugin 'christoomey/vim-conflicted'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-haml'
 Plugin 'christoomey/vim-rfactory'
 Plugin 'toyamarinyon/vim-swift'
 Plugin 'exu/pgsql.vim'
-Plugin 'dbext.vim'
 Plugin 'joker1007/vim-ruby-heredoc-syntax'
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 1

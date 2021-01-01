@@ -57,6 +57,7 @@
   sslverify = false
 [init]
   templatedir = ~/.dotfiles/git/git_template
+	defaultBranch = main
 [merge]
   ff = only
 [push]

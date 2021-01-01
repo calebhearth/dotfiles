@@ -3,3 +3,5 @@
 --database=postgresql
 --skip-keeps
 --skip-spring
+--skip-bootsnap
+--skip-webpack-install

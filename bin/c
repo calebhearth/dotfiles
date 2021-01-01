@@ -1,0 +1,26 @@
+#! /usr/bin/env zsh
+
+cd $*
+if git rev-parse --git-dir > /dev/null 2>&1; then
+	set -x
+	source /usr/local/share/gem_home/gem_home.sh
+	source /usr/local/share/chruby/chruby.sh
+	toplevel=$(git rev-parse --show-toplevel)
+	if command -v tm > /dev/null; then
+		tm $(basename "$toplevel")
+	fi
+	if [[ -a "$toplevel/.env" ]]; then
+		source "$toplevel/.env"
+	fi
+	if [[ -a "$toplevel/.ruby-version" ]] && type chruby > /dev/null; then
+		chruby $(cat "$toplevel/.ruby-version")
+	fi
+	if type gem_home > /dev/null; then
+		gem_home $toplevel
+	fi
+	if [[ -a "$toplevel/README.md" ]]; then
+		head -n $(echo "$(tput lines)-2" | bc) README.md
+	fi
+	unset toplevel
+	set +x
+fi

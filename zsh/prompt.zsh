@@ -35,7 +35,7 @@ precmd () {
 		psvar[1]=$(basename $toplevel)
 		psvar[2]=${PWD#$toplevel}
 	else
-		psvar[1]=${PWD/\/Users\//"~"}
+		psvar[1]=${${PWD/\/Users\//"~"}/caleb.thompson/calebhearth}
 		psvar[2]=''
 	fi
 	__show_jobs

@@ -273,6 +273,7 @@ endfunction
 
 autocmd Filetype gitcommit setlocal spell textwidth=72
 autocmd Filetype mail setlocal spell textwidth=72
+autocmd Filetype dot setlocal makeprg=dot\ -Tsvg\ %\ -o\ %:r.svg
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler

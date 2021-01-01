@@ -37,3 +37,23 @@ autocmd FileType go,godoc setlocal keywordprg=":GoDoc"
 
 autocmd filetype markdown nnoremap ? :w !wc<CR>
 autocmd filetype markdown vnoremap ? :'<,'>w !wc<CR>
+
+" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
+nnoremap <silent> K :call CocAction('doHover')<CR>
+function! ShowDocIfNoDiagnostic(timer_id)
+  if (coc#util#has_float() == 0)
+    silent call CocActionAsync('doHover')
+  endif
+endfunction
+
+function! s:show_hover_doc()
+  call timer_start(500, 'ShowDocIfNoDiagnostic')
+endfunction
+
+autocmd CursorHoldI * :call <SID>show_hover_doc()
+autocmd CursorHold * :call <SID>show_hover_doc()
