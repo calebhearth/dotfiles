@@ -1,3 +1,9 @@
 \timing
 \x auto
 \set ON_ERROR_ROLLBACK interactive
+\set HISTFILE ~/.psql_history-:DBNAME
+\set HISTCONTROL ignoredups
+\set COMP_KEYWORD_CASE upper
+\unset QUIET
+
+\set contiguous_changes 'select min(table_name) as mapping, min(action) as action, count(*) as consecutive_rows, min(created_at) AS min_created_at from ( select t1.*, sum(group_flag) over (order by created_at) as grp from ( select *, case when lag(table_name) OVER (order by created_at) = table_name AND lag(action) OVER (ORDER BY created_at) = action THEN null else 1 end as group_flag from salesforce._trigger_log) t1) t2 group by grp order by min_created_at; '
