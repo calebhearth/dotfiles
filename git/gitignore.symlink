@@ -31,3 +31,6 @@ tags
 /.rvmrc
 /.gem
 /.envrc
+/.projections.json
+/.vimrc.local
+**/.bundle/config

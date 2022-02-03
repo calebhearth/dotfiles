@@ -305,13 +305,18 @@ nnoremap <Leader>a :call RunAllSpecs()<CR>
 nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
-let g:rspec_command = "Dispatch rspec --no-color {spec}"
+let g:rspec_command = "Dispatch bundle exec rspec --no-color {spec}"
 
 vnoremap <Leader>i :call I18nTranslateString()<CR>
 
-" Use local vimrc if available
+" use local vimrc if available
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
+endif
+
+" use local vimrc if available
+if filereadable(expand("./.vimrc.local"))
+  source ./.vimrc.local
 endif
 
 set exrc " enable per-directory .vimrc files

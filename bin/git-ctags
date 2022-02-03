@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
 PATH="/usr/local/bin:$PATH"
-trap "rm -f .git/tags.$$" EXIT
-ctags --tag-relative=always -Rf.git/tags.$$ --exclude=.git --languages=-javascript,sql
-mv .git/tags.$$ .git/tags
+trap "rm -f tags.$$" EXIT
+ctags --tag-relative=always -Rftags.$$ --exclude=.git --exclude=node_modules --languages=-javascript,sql
+mv tags.$$ tags

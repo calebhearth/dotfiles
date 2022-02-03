@@ -1,0 +1,39 @@
+#!/usr/bin/env -S ruby --disable-gems -x
+
+require 'tempfile'
+
+changes = (`git diff --name-only` + `git diff --name-only origin/main...`).split("\n")
+changes.uniq!
+
+files_and_specs = []
+changes.each do |file|
+  parts = file.split("/")
+  if parts[0] == "app"
+    spec_name = parts.last.split(".").first + "_spec.rb"
+    spec = changes.detect { |c| c.include?("#{parts[-2]}/#{spec_name}") }
+    if spec
+      files_and_specs << [changes.delete(file), changes.delete(spec)]
+    end
+  end
+  files_and_specs
+end
+
+
+tempfile = Tempfile.new(`git rev-parse --abbrev-ref HEAD 2>/dev/null`)
+File.open(tempfile.path, "w") do |f|
+  files_and_specs.map! do |file, spec|
+    ":tabe #{file}\n:vsplit #{spec}\n"
+  end.flatten!
+  changes.map! do |change|
+    ":tabedit #{change}\n"
+  end
+  files_and_specs.each { |it| f.write(it) }
+  changes.each { |change| f.write(change) }
+  if files_and_specs.any?
+    f.write(":tabfirst\n:tabclose\n")
+  else
+    f.write(":bfirst\n")
+  end
+end
+# puts File.read tempfile.path
+exec "vim -S #{tempfile.path}"

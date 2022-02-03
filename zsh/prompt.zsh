@@ -32,10 +32,10 @@ __show_jobs () {
 precmd () {
 	if git rev-parse --git-dir > /dev/null 2>&1; then
 		toplevel=$(git rev-parse --show-toplevel)
-		psvar[1]=$(basename $toplevel)
+		psvar[1]=$(basename "$toplevel")
 		psvar[2]=${PWD#$toplevel}
 	else
-		psvar[1]=${${PWD/\/Users\//"~"}/caleb.thompson/calebhearth}
+		psvar[1]=${${PWD/\/Users\//"~"}/chearth/calebhearth}
 		psvar[2]=''
 	fi
 	__show_jobs

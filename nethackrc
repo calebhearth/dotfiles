@@ -1,7 +1,14 @@
 OPTIONS=!rest_on_space,color,autodig,hilite_pet,time,autodescribe
 OPTIONS=clicklook, statushilites, hitpointbar, showscore
 OPTIONS=pickup_types:$"=/!?+
+AUTOPICKUP_EXCEPTION=">scroll of scare monster"
+AUTOPICKUP_EXCEPTION="<magic lamp"
 OPTIONS=horsename:Bucephalus,fruit:srawberry
 # Wizard/Witch
 #OPTIONS=name:Blackstaff,role:Wizard,race:Gnome,gender:female,align:chaotic,dogname:Abramelin,catname:Tituba,
-
+# Valkyrie
+OPTIONS=name:Taarna,role:Valkyrie,race:Human,gender:female,align:lawful
+# Ranger
+# OPTIONS=name:Oddjob,role:Ranger,race:Elf,gender:male,align:lawful
+# Barbarian
+# OPTIONS=name:Druss,role:Barbarian,race:Human,gender:male,align:neutral

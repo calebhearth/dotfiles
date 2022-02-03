@@ -1,9 +1,14 @@
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+if command -v brew && [ -f "$(brew --prefix)/share/chruby" ]; then
+	source /usr/local/share/chruby/chruby.sh
+	source /usr/local/share/chruby/auto.sh
+fi
+if command -v brew && [ -f "$(brew --prefix)/share/gem_home" ]; then
+	source /usr/local/share/gem_home/gem_home.sh
+fi
+# load the aliases in config_files files (optional)
+[[ -f "$HOME/Development/config_files" ]] && source ~/Development/config_files/square/aliases
 
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-source /usr/local/share/gem_home/gem_home.sh
-gem_home $HOME
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -68,3 +73,4 @@ eval "$(direnv hook zsh)"
 
 eval "$(direnv hook zsh)"
 export PATH="$HOME/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
+alias vim=nvim

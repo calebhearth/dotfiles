@@ -1,15 +1,31 @@
-#!/bin/sh
+#!/bin/bash
 
 surround() {
-	echo "%C(reset)%C(bold yellow)─(%C(reset)${1}%C(reset)%C(bold yellow))"
+	echo " %C(reset)${1}%C(reset)"
 }
 
 refNames='%C(auto)%d'
 message='%s'
-author=`surround '%C(bold cyan)%aN%C(blue)%G?'`
-sha=`surround '%C(bold red)%h'`
-relativeTime=`surround '%C(bold green)%ar'`
+author="$(surround '%C(bold cyan)%aN %C(blue)%G?')"
+sha="$(surround '%C(red)%h')"
+relativeTime="$(surround '%C(green)%ar')"
 
-logFormat="$refNames $message$relativeTime$sha$author"
+# colorCode=$(printf '\\(\33\\[[0-9;]*m\\)')
+logFormat="$refNames$message$relativeTime$sha$author"
 
-git log --graph --decorate --date-order --all --pretty="format:$logFormat" $*
+git \
+	-c log.excludeDecoration=refs/remotes \
+	log \
+	--all \
+	--date-order \
+	--decorate \
+	--decorate-refs=refs/remotes/origin/main \
+	--decorate-refs=refs/remotes/origin/master \
+	--decorate-refs=refs/heads \
+	--decorate-refs=refs/tags \
+	--graph \
+	--color=always \
+	--pretty="format:$logFormat" \
+	$* #| \ These take too long, wonder if they can be made faster...
+# sed "s/ ${colorCode}N${colorCode}//" | # remove "N" for no signature from G?
+# less -R

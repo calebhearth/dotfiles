@@ -1,5 +1,6 @@
 #compdef tm
 
 _arguments "1: :(`tmux list-sessions -F'#S' 2>/dev/null`)"
-
+_arguments "1: :(`for dir in $cdpath; do ls "$dir"; done 2>/dev/null | sort`)"
 # vim: filetype=zsh
+

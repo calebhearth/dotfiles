@@ -1,5 +1,8 @@
+[log]
+  mailmap = true
 [alias]
   amend = commit --amend --reuse-message=HEAD
+  co = checkout
   cob = !git branch | cut -c 3- | selecta | xargs git checkout
   current = rev-parse --abbrev-ref HEAD
   in-repo = !git rev-parse --git-dir > /dev/null 2>&1
@@ -10,13 +13,16 @@
   graph = log --graph --decorate --date-order --all --pretty=graph
 [pretty]
   news = * %s %h%n%n  *%aN*
-  graph = %C(auto)%d %s%C(reset)%C(bold yellow)─(%C(reset)%C(bold green)%ar%C(reset)%C(bold yellow))%C(reset)%C(bold yellow)─(%C(reset)%C(bold red)%h%C(reset)%C(bold yellow))%C(reset)%C(bold yellow)─(%C(reset)%C(bold cyan)%aN%C(blue)%G?%C(reset)%C(bold yellow))
+  graph = %C(auto)%d %s %C(reset)%C(green)%ar%C(reset) %C(reset)%C(red)%h%C(reset) %C(reset)%C(bold cyan)%aN %C(blue)%G?%C(reset)
+  update = graph
 [apply]
   whitespace = fix
 [column]
   ui = auto dense
 [color]
+  branch = auto
   diff = auto
+  interactive = auto
   status = auto
   ui = auto
 [color "branch"]
@@ -37,7 +43,7 @@
   deleted = red
   untracked = cyan
 [commit]
-  ; gpgsign = true
+  gpgsign = true
   verbose = true
 [core]
   autocrlf = input
@@ -48,24 +54,24 @@
 [fetch]
   prune = true
 [github]
-  user = calebthompson
+  user = calebhearth
 [gh]
   autoUpdate = always
 [help]
-  autocorrect = 1
+  autocorrect = immediate
 [http]
   sslverify = false
 [init]
   templatedir = ~/.dotfiles/git/git_template
-	defaultBranch = main
+  defaultBranch = main
 [merge]
   ff = only
 [push]
   default = tracking
-  gpgSign = if-asked
+  ; gpgSign = if-asked
 [pull]
   ff = only
-  rebase=preserve
+  rebase = merges
 [receive]
   denyCurrentBranch = ignore
 [rerere]
@@ -83,23 +89,29 @@
 [status]
   branch = 1
   short = 1
+  showUntrackedFiles = all
 [user]
   name = Caleb Hearth
   email = caleb@calebhearth.com
-  signingkey = Caleb Hearth <caleb@calebhearth.com>
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9V5SC0UdggJItk8StyYrJTj4eSArjuz4kgqXRy8hnf
 [tag]
   sort = version:refname
   forceSignAnnotated = true
-[filter "lfs"]
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
 [gpg]
-  program = /usr/local/bin/gpg
+  program = /usr/bin/ssh-keygen
+  format = ssh
+[gpg "ssh"]
+  ; defaultKeyCommand = ssh-add -L
+  allowedSignersFile = ~/.ssh/allowed_signers
 [diff]
   compactionHeuristic = true
 [rebase]
+  autostash = true
   autosquash = true
 [lfs]
   batch = true
+# Ensure that any references to repos within the GH 'squareup' org that use https scheme will work.
+# Effectively, this rewrite rule will make sure that SSH auth using SSH certificates will be used.
+# This solves a number of repo access problems, including Square's Homebrew and Square's Go modules.
+[url "ssh://org-49461806@github.com/squareup/"]
+  insteadOf = https://github.com/squareup/

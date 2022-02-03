@@ -29,7 +29,10 @@ remote="$1"
 parent="$2"
 
 if [ -z "$parent" ]; then
-	parent=${remote:="master"}
+	parent=${remote:="main"}
+	if ! git rev-parse --abrev-ref main > /dev/null 2>&1; then
+		parent="master"
+	fi
 	remote=$(git config branch.$parent.remote)
 	remote=${remote:="origin"}
 fi
@@ -38,6 +41,7 @@ previous_head_sha=$(git rev-parse HEAD)
 
 __git_update_prettyprint_log () {
   format=$(
+    git config --get pretty.catchup ||
     git config --get pretty.update ||
     echo "%C(yellow)%h%Cblue%d%Creset %s - %C(white)%an %Cgreen(%cr)%Creset")
 
@@ -46,10 +50,8 @@ __git_update_prettyprint_log () {
 	if git rev-parse $merge_base_sha^2 > /dev/null 2>&1; then
 		merge_base_sha=$(git rev-parse $merge_base_sha^2)
 	fi
-  git log --format="$format" --graph "$merge_base_sha".."$remote_sha" "$merge_base_sha".."$previous_head_sha"
+  git log --format="$format" --graph "$merge_base_sha".."$(git rev-parse HEAD)" "$merge_base_sha"^^.."$previous_head_sha"
 }
 
-git -c core.editor="grep --invert-match '^#'" pull --rebase=interactive --autostash $remote $parent
-
-remote_sha=$(git rev-parse HEAD)
+git -c core.editor="grep --invert-match '^#'" pull --rebase=interactive --autostash "$remote" "$parent"
 __git_update_prettyprint_log
