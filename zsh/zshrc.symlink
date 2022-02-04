@@ -1,17 +1,18 @@
-if command -v brew && [ -f "$(brew --prefix)/share/chruby" ]; then
+if command -v brew 2>&1 > /dev/null; then
+	if [ -f "$(brew --prefix)/share/chruby" ]; then
 	source /usr/local/share/chruby/chruby.sh
 	source /usr/local/share/chruby/auto.sh
 fi
-if command -v brew && [ -f "$(brew --prefix)/share/gem_home" ]; then
+if [ -f "$(brew --prefix)/share/gem_home" ]; then
 	source /usr/local/share/gem_home/gem_home.sh
 	gem_home $HOME
+fi
 fi
 # load the aliases in config_files files (optional)
 [[ -f "$HOME/Development/config_files" ]] && source ~/Development/config_files/square/aliases
 
-export PATH="$HOME/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
-export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
+export PATH="$HOME/bin:$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
+export MANPATH="$(brew --prefix)/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -72,6 +73,5 @@ bindkey -s "^T" "^[Isudo ^[S" # "t" for "toughguy"
 bindkey "^[[3~" delete-char # delete forward
 bindkey '[[Z' reverse-menu-complete
 
-eval "$(direnv hook zsh)"
-export PATH="$HOME/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
+command -v direnv 2>&1 > /dev/null && eval "$(direnv hook zsh)"
 [ -f "/Users/caleb/.ghcup/env" ] && source "/Users/caleb/.ghcup/env"
