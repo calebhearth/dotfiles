@@ -1,25 +1,16 @@
-brew install \
-  bash \
-  cloog \
-  gcc \
-  git \
-  git-lfs \
-  gnutls \
-  graphviz \
-  heroku \
-  jq \
-  libxslt \
-  mercurial \
-  pass \
-  qt \
-  reattach-to-user-namespace \
-  redis \
-  ruby \
-  selecta \
-  the_silver_searcher \
-  tmate \
-  tmux \
-  utf8proc \
-  vim \
-  wget \
-  xapian
+brew "jq"
+brew "libxslt"
+brew "mercurial"
+brew "pass"
+brew "qt"
+brew "reattach-to-user-namespace"
+brew "redis"
+brew "ruby"
+brew "selecta"
+brew "the_silver_searcher"
+brew "tmate"
+brew "tmux"
+brew "utf8proc"
+brew "vim"
+brew "wget"
+brew "xapian"

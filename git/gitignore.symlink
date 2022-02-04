@@ -34,3 +34,5 @@ tags
 /.projections.json
 /.vimrc.local
 **/.bundle/config
+
+xcuserdata/

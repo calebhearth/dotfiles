@@ -66,6 +66,7 @@
   defaultBranch = main
 [merge]
   ff = only
+  autostash = true
 [push]
   default = tracking
   ; gpgSign = if-asked
@@ -108,6 +109,7 @@
 [rebase]
   autostash = true
   autosquash = true
+  autostash = true
 [lfs]
   batch = true
 # Ensure that any references to repos within the GH 'squareup' org that use https scheme will work.

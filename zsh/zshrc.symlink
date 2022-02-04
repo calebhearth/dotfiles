@@ -4,11 +4,14 @@ if command -v brew && [ -f "$(brew --prefix)/share/chruby" ]; then
 fi
 if command -v brew && [ -f "$(brew --prefix)/share/gem_home" ]; then
 	source /usr/local/share/gem_home/gem_home.sh
+	gem_home $HOME
 fi
 # load the aliases in config_files files (optional)
 [[ -f "$HOME/Development/config_files" ]] && source ~/Development/config_files/square/aliases
 
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="$HOME/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
+export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -70,7 +73,5 @@ bindkey "^[[3~" delete-char # delete forward
 bindkey '[[Z' reverse-menu-complete
 
 eval "$(direnv hook zsh)"
-
-eval "$(direnv hook zsh)"
 export PATH="$HOME/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
-alias vim=nvim
+[ -f "/Users/caleb/.ghcup/env" ] && source "/Users/caleb/.ghcup/env"
