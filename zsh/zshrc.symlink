@@ -1,12 +1,12 @@
 if command -v brew 2>&1 > /dev/null; then
 	if [ -f "$(brew --prefix)/share/chruby" ]; then
-	source /usr/local/share/chruby/chruby.sh
-	source /usr/local/share/chruby/auto.sh
-fi
-if [ -f "$(brew --prefix)/share/gem_home" ]; then
-	source /usr/local/share/gem_home/gem_home.sh
-	gem_home $HOME
-fi
+		source $(brew --prefix)/share/chruby/chruby.sh
+		source $(brew --prefix)/share/chruby/auto.sh
+	fi
+	if [ -f "$(brew --prefix)/share/gem_home" ]; then
+		source $(brew --prefix)/share/gem_home/gem_home.sh
+		gem_home $HOME
+	fi
 fi
 # load the aliases in config_files files (optional)
 [[ -f "$HOME/Development/config_files" ]] && source ~/Development/config_files/square/aliases
@@ -74,4 +74,4 @@ bindkey "^[[3~" delete-char # delete forward
 bindkey '[[Z' reverse-menu-complete
 
 command -v direnv 2>&1 > /dev/null && eval "$(direnv hook zsh)"
-[ -f "/Users/caleb/.ghcup/env" ] && source "/Users/caleb/.ghcup/env"
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"

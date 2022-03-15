@@ -77,7 +77,7 @@ set -g renumber-windows on
 set -g base-index 1
 
 set -g status-left '#[fg=blue] #S #[default]'
-set -g status-right '#[fg=blue]%d %B %l:%M%p#[default] '
+set -g status-right '#[fg=blue]#(ls) %d %B %l:%M%p#[default] '
 
 set-window-option -g window-status-current-style bg=blue,fg=black
 

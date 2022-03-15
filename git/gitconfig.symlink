@@ -9,7 +9,7 @@
   news = log --pretty=news
   branches = for-each-ref --sort=-committerdate --format=\"%(color:green)%(authordate) %(color:blue)%(authordate:relative) %(color:red)%(authorname) %(color:white)%(color:bold)%(refname:short)\" refs/heads
   fixup = commit --fixup=HEAD --all --no-gpg-sign
-  difftree = !git diff --stat=1000 master | sed -e '$ d' | cut -d ' ' -f 2 | ftree
+  difftree = !git diff --stat=1000 main | sed -e '$ d' | cut -d ' ' -f 2 | ftree
   graph = log --graph --decorate --date-order --all --pretty=graph
 [pretty]
   news = * %s %h%n%n  *%aN*

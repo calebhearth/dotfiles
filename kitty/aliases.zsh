@@ -1,3 +1,7 @@
+if command -v kitty 2>&1 > /dev/null; then
+	alias ssh="kitty +kitten ssh"
+fi
+
 alias icat="kitty +kitten icat --align left"
 
 _dot_opts() {
