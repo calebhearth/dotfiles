@@ -306,12 +306,12 @@ nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
 let g:rspec_command = "Dispatch bundle exec rspec --no-color {spec}"
+nnoremap <Enter> :w<CR>:Dispatch<CR>
 
 nnoremap <Enter> :w<CR> :Dispatch<CR>
 
 vnoremap <Leader>i :call I18nTranslateString()<CR>
 
-" use local vimrc if available
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
@@ -321,5 +321,6 @@ if filereadable(expand("./.vimrc.local"))
   source ./.vimrc.local
 endif
 
+set confirm
 set exrc " enable per-directory .vimrc files
 set secure " disable unsafe commands in local .vimrc files

@@ -1,7 +1,11 @@
---skip-bundle
---skip-test-unit
+--css=sass
 --database=postgresql
---skip-keeps
---skip-spring
+--skip-action-cable
+--skip-action-mailbox
+--skip-action-mailer
+--skip-action-text
 --skip-bootsnap
+--skip-bundle
+--skip-jbuilder
+--skip-spring
 --skip-webpack-install

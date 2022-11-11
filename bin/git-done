@@ -15,17 +15,20 @@ branch=`git current`
 remote="$1"
 parent="$2"
 if [ -z "$parent" ]; then
-	parent=${remote:="master"}
-	remote=`git config branch.$branch.remote`
+	parent=${remote:="main"}
+	if ! git rev-parse --abrev-ref main > /dev/null 2>&1; then
+		parent=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | xargs)
+	fi
+	remote=$(git config branch.$branch.remote)
 	remote=${remote:="origin"}
 fi
 
-successfully git fetch $remote
-successfully git rebase --interactive $remote/$parent --autosquash
-git diff $parent --check || successfully git diff $parent --check
-successfully git push --force
-successfully git checkout $parent --
-successfully git merge $branch --ff-only
+successfully git fetch "$remote" "$parent"
+successfully git rebase --interactive --autosquash "$remote"/"$parent"
+git diff "$parent" --check || successfully git diff "$parent" --check
+successfully git push --force-with-lease
+successfully git checkout "$parent" --
+successfully git merge "$branch" --ff-only
 successfully git push
-successfully git push $remote --delete $branch
-successfully git branch --delete $branch
+successfully git push "$remote" --delete "$branch"
+successfully git branch --delete "$branch"

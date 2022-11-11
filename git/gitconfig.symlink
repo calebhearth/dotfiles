@@ -1,16 +1,20 @@
 [log]
   mailmap = true
 [alias]
+  showlast = show $n
   amend = commit --amend --reuse-message=HEAD
+  branches = for-each-ref --sort=-committerdate --format=\"%(color:green)%(authordate)\t%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/heads
   co = checkout
   cob = !git branch | cut -c 3- | selecta | xargs git checkout
   current = rev-parse --abbrev-ref HEAD
-  in-repo = !git rev-parse --git-dir > /dev/null 2>&1
-  news = log --pretty=news
-  branches = for-each-ref --sort=-committerdate --format=\"%(color:green)%(authordate) %(color:blue)%(authordate:relative) %(color:red)%(authorname) %(color:white)%(color:bold)%(refname:short)\" refs/heads
+  difftree = !git diff --stat=1000 $(git main) | sed -e '$ d' | cut -d ' ' -f 2 | ftree
   fixup = commit --fixup=HEAD --all --no-gpg-sign
-  difftree = !git diff --stat=1000 main | sed -e '$ d' | cut -d ' ' -f 2 | ftree
+  force = push --force-with-lease
   graph = log --graph --decorate --date-order --all --pretty=graph
+  in-repo = !git rev-parse --git-dir > /dev/null 2>&1
+  news = log --pretty=news $(git describe --tags --abbrev=0)...
+  promote = push --set-upstream
+  ready = !git promote && hub pull-request
 [pretty]
   news = * %s %h%n%n  *%aN*
   graph = %C(auto)%d %s %C(reset)%C(green)%ar%C(reset) %C(reset)%C(red)%h%C(reset) %C(reset)%C(bold cyan)%aN %C(blue)%G?%C(reset)
@@ -69,6 +73,7 @@
   autostash = true
 [push]
   default = tracking
+  autoSetupRemote = true
   ; gpgSign = if-asked
 [pull]
   ff = only
@@ -106,14 +111,9 @@
   allowedSignersFile = ~/.ssh/allowed_signers
 [diff]
   compactionHeuristic = true
+  ; external = difft --syntax-highlight=off
 [rebase]
   autostash = true
   autosquash = true
-  autostash = true
 [lfs]
   batch = true
-# Ensure that any references to repos within the GH 'squareup' org that use https scheme will work.
-# Effectively, this rewrite rule will make sure that SSH auth using SSH certificates will be used.
-# This solves a number of repo access problems, including Square's Homebrew and Square's Go modules.
-[url "ssh://org-49461806@github.com/squareup/"]
-  insteadOf = https://github.com/squareup/

@@ -1,10 +1,7 @@
 export GITHUB_PERSONAL_TOKEN=2663e57f9d9049fc14f2f04f7432a08d4bfafe4c
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export EDITOR=nvim
 export VISUAL=nvim
 
-export SQUARE_HOME=~/code
-export JAVA_HOME=$(/usr/libexec/java_home)
 export GHC_OPTIONS="-j4 +RTS -A128m -n2m -RTS"
 export FAST_GHC_OPTIONS=$GHC_OPTIONS
 source $HOME/.dotfiles/git/prompt.sh

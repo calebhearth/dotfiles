@@ -1,15 +1,13 @@
 if command -v brew 2>&1 > /dev/null; then
-	if [ -f "$(brew --prefix)/share/chruby" ]; then
+	if [ -d "$(brew --prefix)/share/chruby" ]; then
 		source $(brew --prefix)/share/chruby/chruby.sh
 		source $(brew --prefix)/share/chruby/auto.sh
 	fi
-	if [ -f "$(brew --prefix)/share/gem_home" ]; then
+	if [ -d "$(brew --prefix)/share/gem_home" ]; then
 		source $(brew --prefix)/share/gem_home/gem_home.sh
 		gem_home $HOME
 	fi
 fi
-# load the aliases in config_files files (optional)
-[[ -f "$HOME/Development/config_files" ]] && source ~/Development/config_files/square/aliases
 
 export PATH="$HOME/bin:$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
 export MANPATH="$(brew --prefix)/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
@@ -73,5 +71,11 @@ bindkey -s "^T" "^[Isudo ^[S" # "t" for "toughguy"
 bindkey "^[[3~" delete-char # delete forward
 bindkey '[[Z' reverse-menu-complete
 
+alias vim=nvim
+
 command -v direnv 2>&1 > /dev/null && eval "$(direnv hook zsh)"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -31,7 +31,7 @@ parent="$2"
 if [ -z "$parent" ]; then
 	parent=${remote:="main"}
 	if ! git rev-parse --abrev-ref main > /dev/null 2>&1; then
-		parent="master"
+		parent=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | xargs)
 	fi
 	remote=$(git config branch.$parent.remote)
 	remote=${remote:="origin"}

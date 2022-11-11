@@ -43,3 +43,24 @@ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 set colorcolumn=81,101,121
+highlight TreesitterContext ctermbg=black cterm=underline guibg=black gui=underline
+lua <<LUA
+  require'treesitter-context'.setup{
+    enable = true,
+    max_lines=-1,
+    trim_scope = 'outer',
+    patterns = {
+      default = {
+        'class',
+        'module',
+        'function',
+        'method',
+        'for',
+        'while',
+        'if',
+        'switch',
+        'case',
+      },
+    },
+  }
+LUA

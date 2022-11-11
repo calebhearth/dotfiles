@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# for some reason ~/.gitconfig really doesn't like the quotes around the pattern
+git branch | grep --only-matching --max-count=1 --extended-regexp "\b(main|master)\b"
