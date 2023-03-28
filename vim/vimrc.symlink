@@ -174,6 +174,18 @@ endif
 highlight Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 highlight PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
 highlight PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+highlight CursorLine cterm=underline gui=underline guibg=NONE ctermbg=NONE
+set termguicolors
+let g:rainbow_guifgs = [
+      \ '#626262',
+      \ '#005f00',
+      \ '#5f00d7',
+      \ '#af0000',
+      \ '#5faf87',
+      \ '#d75f00',
+      \ '#af0087',
+      \ '#00afd7',
+      \ ]
 
 " some convenient mappings
 inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
@@ -184,7 +196,7 @@ inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
 " automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menu,preview,longest
 
 " Ctags

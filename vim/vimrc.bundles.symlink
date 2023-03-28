@@ -80,8 +80,9 @@ let g:hardtime_showmsg = 1
 
 if has('nvim')
   Plugin 'github/copilot.vim'
+  Plugin 'neovim/nvim-lspconfig'
+  Plugin 'nvim-treesitter/nvim-treesitter'
+  Plugin 'nvim-treesitter/nvim-treesitter-context'
 endif
 
 "Plugin 'stefanoverna/vim-i18n'
-Plugin 'nvim-treesitter/nvim-treesitter'
-Plugin 'nvim-treesitter/nvim-treesitter-context'

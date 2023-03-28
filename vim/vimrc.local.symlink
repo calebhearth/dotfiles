@@ -63,4 +63,6 @@ lua <<LUA
       },
     },
   }
+  require'lspconfig'.ruby_ls.setup{}
 LUA
+autocmd FileType ruby :ALEDisable
