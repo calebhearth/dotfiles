@@ -86,3 +86,6 @@ set -gq status-utf8 on
 
 bind m switch-client -l
 bind M command-prompt -p 'switch session:' "run \"tm '%%'\""
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin "nordtheme/tmux"
+run '~/.tmux/plugins/tpm/tpm'
