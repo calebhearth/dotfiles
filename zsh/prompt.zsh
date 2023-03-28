@@ -30,14 +30,26 @@ __show_jobs () {
 }
 
 precmd () {
+	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+		case $(basename $(hostname) .local) in
+			"Trident")
+			 psvar[3]="🔱 ";;
+		 "Umbra")
+			 psvar[3]="🗡️ ";;
+		 *)
+			 psvar[3]="💼 ";;
+		esac
+	 else
+			psvar[3]=""
+	 fi
 	if git rev-parse --git-dir > /dev/null 2>&1; then
 		toplevel=$(git rev-parse --show-toplevel)
 		psvar[1]=$(basename "$toplevel")
 		psvar[2]=${PWD#$toplevel}
 	else
-		psvar[1]=${${PWD/\/Users\//"~"}/chearth/calebhearth}
+		psvar[1]=${PWD/\/Users\//"~"}
 		psvar[2]=''
 	fi
 	__show_jobs
-	__git_ps1 "%3 %1v" "%2v ❯ " "(%s)"
+	__git_ps1 "%3v%1v" "%2v ❯ " "(%s)"
 }
