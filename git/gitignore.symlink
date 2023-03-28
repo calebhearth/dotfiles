@@ -19,7 +19,9 @@ Session.vim
 # Linux
 *~
 
-!.gitignore
+/.gitignore
+/.ignore
+/.agignore
 
 /.rake_t_cache
 
