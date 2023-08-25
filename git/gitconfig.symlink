@@ -53,8 +53,9 @@
   autocrlf = input
   editor = "vim"
   excludesfile = "~/.gitignore"
+  hooksPath = "~/.dotfiles/git/hooks"
   pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init --tabs=1,3
-  whitespace = blank-at-eol,trailing-space,tabwidth=2
+  whitespace = blank-at-eol,trailing-space,tabwidth=3
 [fetch]
   prune = true
 [github]
