@@ -85,4 +85,4 @@ if has('nvim')
   Plugin 'nvim-treesitter/nvim-treesitter-context'
 endif
 
-"Plugin 'stefanoverna/vim-i18n'
+Plugin 'stefanoverna/vim-i18n'

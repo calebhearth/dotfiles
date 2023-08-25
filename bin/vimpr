@@ -1,8 +1,24 @@
 #!/usr/bin/env -S ruby --disable-gems -x
 
 require 'tempfile'
+require 'optparse'
 
-changes = (`git diff --name-only` + `git diff --name-only origin/main...`).split("\n")
+mode = :normal
+OptionParser.new do |opt|
+  opt.on('-s', '--staging', 'Only show unstaged changes') { mode = :staging }
+  opt.on('-c', '--cached', 'Only show cached changes') { mode = :cached }
+  opt.parse!(ARGV)
+end
+
+changes = []
+case mode
+when :normal
+  changes = (`git diff --name-only` + `git diff --name-only origin/main...`).split("\n")
+when :staging
+  changes = `git diff --name-only`.split("\n")
+when :cached
+  changes = `git diff --cached --name-only`.split("\n")
+end
 changes.uniq!
 
 files_and_specs = []
@@ -17,7 +33,6 @@ changes.each do |file|
   end
   files_and_specs
 end
-
 
 tempfile = Tempfile.new(`git rev-parse --abbrev-ref HEAD 2>/dev/null`)
 File.open(tempfile.path, "w") do |f|

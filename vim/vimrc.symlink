@@ -90,7 +90,7 @@ set listchars=tab:»·,trail:·,extends:> " Highlight problematic whitespace
 set nojoinspaces                " One space after ./?/! with join commands
 set visualbell                  " shut the fuck up
 set nohlsearch                  " don't highlight searches
-set swapfile
+set noswapfile
 
 
 " Formatting
@@ -246,8 +246,8 @@ function! InitializeDirectories()
   let prefix = '.vim'
   let dir_list = {
         \ 'backup': 'backupdir',
-        \ 'views': 'viewdir',
-        \ 'swap': 'directory' }
+        \ 'views': 'viewdir' } ",
+        " \ 'swap': 'directory' }
 
   if has('persistent_undo')
     let dir_list['undo'] = 'undodir'
@@ -323,6 +323,8 @@ nnoremap <Enter> :w<CR>:Dispatch<CR>
 nnoremap <Enter> :w<CR> :Dispatch<CR>
 
 vnoremap <Leader>i :call I18nTranslateString()<CR>
+
+let g:dispatch_tmux_pipe_pane=1
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
