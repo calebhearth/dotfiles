@@ -84,6 +84,10 @@ set-window-option -g window-status-current-style bg=blue,fg=black
 setw -gq utf8 on
 set -gq status-utf8 on
 
+set-option -g focus-events on
+
+set-option -sa terminal-features ',xterm-kitty:RGB'
+
 bind m switch-client -l
 bind M command-prompt -p 'switch session:' "run \"tm '%%'\""
 set -g @plugin 'tmux-plugins/tpm'

@@ -1,4 +1,4 @@
-#!/bin/zsh
+!/bin/zsh
 
 # Looks for any commits with messages including $disallowedWords and prevents
 # pushing if they are found and destination branch is main, master, or does not
@@ -32,33 +32,31 @@ remoteTrackingBranch="${remoteTrackingBranch##$remote/}"
 IFS=' '
 while read local_ref local_sha remote_ref remote_sha
 do
-	remoteBranch="${remote_ref##refs/heads/}"
-	if [ "$remoteTrackingBranch" = "$remoteBranch" ] \
-	|| [ "$remoteBranch" = "main" ] \
-	|| [ "$remoteBranch" = "master" ] \
-	|| [ "$remoteBranch" = "develop" ]; then
-		return 0
-	fi
+  remoteBranch="${remote_ref##refs/heads/}"
+  if [ "$remoteTrackingBranch" = "$remoteBranch" ] \
+    || [ "$remoteBranch" = "main" ] \
+    || [ "$remoteBranch" = "master" ] \
+    || [ "$remoteBranch" = "develop" ]; then
 
-	if [ "$local_sha" != $z40 ]; then
-		if [ "$remote_sha" = $z40 ]
-		then
-			# New branch, examine all commits
-			range="$local_sha"
-		else
-			# Update to existing branch, examine new commits
-			range="$remote_sha..$local_sha"
-		fi
+  if [ "$local_sha" != $z40 ]; then
+    if [ "$remote_sha" = $z40 ]
+    then
+      # New branch, examine all commits
+      range="main..$local_sha"
+    else
+      # Update to existing branch, examine new commits
+      range="$remote_sha..$local_sha"
+    fi
 
-		# Check for WIP commit
-		commit=`git rev-list -n 1 --regexp-ignore-case --perl-regexp --grep "\b$disallowedWords\b" "$range"`
-		if [ -n "$commit" ]
-		then
-			echo "Found WIP commit in $local_ref, not pushing"
-			git show --format=%s $commit
-			exit 1
-		fi
-	fi
+    git log --grep="\b$disallowedWords\b" --perl-regexp --regexp-ignore-case --exit-code $range
+    if [ $? -eq 0 ]; then
+      return 0
+    else
+      echo "Found WIP commit in $local_ref, not pushing"
+      exit 1
+    fi
+  fi
+  fi
 done
 
 exit 0
