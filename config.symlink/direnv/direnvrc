@@ -1,0 +1,23 @@
+# Usage: use ruby <version>
+#
+# Loads the specified ruby version into the environent
+use_ruby() {
+	local ruby="$1"
+	if [ -z "$ruby" ]; then
+		if [ -f .ruby-version ]; then
+			local ruby=$(cat .ruby-version)
+		else
+			local ruby=$(/usr/bin/env bundle platform --ruby)
+		fi
+		if [ -z "$ruby" ]; then
+			echo "Specify ruby version in either .ruby-version or Gemfile."
+			exit 1
+		fi
+		# "ruby 1.2.3p456" => "1.2.3"
+		# "ruby-1.2.3" => "1.2.3"
+		ruby=$(echo "${ruby#ruby-}" | cut -d ' ' -f 2 | cut -dp -f 1)
+	fi
+  local ruby_dir=$HOME/.rubies/${1:-ruby}
+  load_prefix $ruby_dir
+  layout ruby
+}
