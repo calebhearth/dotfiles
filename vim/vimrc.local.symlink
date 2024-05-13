@@ -14,10 +14,10 @@ autocmd FileType go compiler go
 autocmd FileType go nnoremap <Leader>t :Dispatch go test ./...<CR>
 autocmd FileType go,zsh,bash,sh setlocal listchars=tab:\ \ ,trail:·,extends:> " Highlight problematic whitespace
 
-autocmd BufWritePre * :silent call Whitewash()
-autocmd FileAppendPre * :silent call Whitewash()
-autocmd FileWritePre * :silent call Whitewash()
-autocmd FilterWritePre * :silent call Whitewash()
+" autocmd BufWritePre * :silent call Whitewash()
+" autocmd FileAppendPre * :silent call Whitewash()
+" autocmd FileWritePre * :silent call Whitewash()
+" autocmd FilterWritePre * :silent call Whitewash()
 
 let s:usestate = 0
 

@@ -1,5 +1,6 @@
---css=sass
+--css=postcss
 --database=postgresql
+--skip-docker
 --skip-action-cable
 --skip-action-mailbox
 --skip-action-mailer
@@ -7,5 +8,3 @@
 --skip-bootsnap
 --skip-bundle
 --skip-jbuilder
---skip-spring
---skip-webpack-install

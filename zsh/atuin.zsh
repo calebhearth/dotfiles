@@ -83,15 +83,15 @@ add-zsh-hook preexec _atuin_preexec
 add-zsh-hook precmd _atuin_precmd
 
 zle -N _atuin_search_widget _atuin_search
-zle -N _atuin_up_search_widget _atuin_up_search
+# zle -N _atuin_up_search_widget _atuin_up_search
 
 bindkey -M emacs '^r' _atuin_search_widget
 bindkey -M vicmd '^r' _atuin_search_widget
 bindkey -M viins '^r' _atuin_search_widget
-bindkey -M emacs '^[[A' _atuin_up_search_widget
-bindkey -M vicmd '^[[A' _atuin_up_search_widget
-bindkey -M viins '^[[A' _atuin_up_search_widget
-bindkey -M emacs '^[OA' _atuin_up_search_widget
-bindkey -M vicmd '^[OA' _atuin_up_search_widget
-bindkey -M viins '^[OA' _atuin_up_search_widget
-bindkey -M vicmd 'k' _atuin_up_search_widget
+# bindkey -M emacs '^[[A' _atuin_up_search_widget
+# bindkey -M vicmd '^[[A' _atuin_up_search_widget
+# bindkey -M viins '^[[A' _atuin_up_search_widget
+# bindkey -M emacs '^[OA' _atuin_up_search_widget
+# bindkey -M vicmd '^[OA' _atuin_up_search_widget
+# bindkey -M viins '^[OA' _atuin_up_search_widget
+# bindkey -M vicmd 'k' _atuin_up_search_widget

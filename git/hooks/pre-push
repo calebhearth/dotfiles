@@ -1,4 +1,4 @@
-!/bin/zsh
+#!/usr/bin/env zsh
 
 # Looks for any commits with messages including $disallowedWords and prevents
 # pushing if they are found and destination branch is main, master, or does not
@@ -48,15 +48,11 @@ do
       range="$remote_sha..$local_sha"
     fi
 
-    git log --grep="\b$disallowedWords\b" --perl-regexp --regexp-ignore-case --exit-code $range
-    if [ $? -eq 0 ]; then
-      return 0
-    else
+
+    if !git log --grep="\b$disallowedWords\b" --perl-regexp --regexp-ignore-case --exit-code $range; then
       echo "Found WIP commit in $local_ref, not pushing"
       exit 1
     fi
   fi
   fi
 done
-
-exit 0
