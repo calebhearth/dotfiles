@@ -1,1 +1,3 @@
 vim/vim.symlink/bundle/
+config.symlink/yarn
+config.symlink/AWSVPNClient
