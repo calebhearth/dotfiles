@@ -1,16 +1,16 @@
 if command -v brew 2>&1 > /dev/null; then
-	if [ -d "$(brew --prefix)/share/chruby" ]; then
-		source $(brew --prefix)/share/chruby/chruby.sh
-		source $(brew --prefix)/share/chruby/auto.sh
+	if [ -d "/opt/homebrew/share/chruby" ]; then
+		source /opt/homebrew/share/chruby/chruby.sh
+		source /opt/homebrew/share/chruby/auto.sh
 	fi
-	if [ -d "$(brew --prefix)/share/gem_home" ]; then
-		source $(brew --prefix)/share/gem_home/gem_home.sh
+	if [ -d "/opt/homebrew/share/gem_home" ]; then
+		source /opt/homebrew/share/gem_home/gem_home.sh
 		gem_home $HOME
 	fi
 fi
 
-export PATH="$HOME/bin:$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
-export MANPATH="$(brew --prefix)/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="$HOME/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
+export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -78,3 +78,6 @@ command -v direnv 2>&1 > /dev/null && eval "$(direnv hook zsh)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(atuin init zsh --disable-up-arrow)"

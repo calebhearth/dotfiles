@@ -37,6 +37,8 @@ tags
 /.vimrc.local
 /.nvimrc
 **/.bundle/config
+.rspec-local
+tmux-client-*.log
 
 xcuserdata/
 /.direnv

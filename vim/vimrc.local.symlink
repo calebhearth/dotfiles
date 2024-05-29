@@ -43,26 +43,36 @@ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 set colorcolumn=81,101,121
-" highlight TreesitterContext ctermbg=black cterm=underline guibg=black gui=underline
-" lua <<LUA
-"   require'treesitter-context'.setup{
-"     enable = true,
-"     max_lines=-1,
-"     trim_scope = 'outer',
-"     patterns = {
-"       default = {
-"         'class',
-"         'module',
-"         'function',
-"         'method',
-"         'for',
-"         'while',
-"         'if',
-"         'switch',
-"         'case',
-"       },
-"     },
-"   }
-"   require'lspconfig'.ruby_ls.setup{}
-" LUA
+highlight TreesitterContext ctermbg=black cterm=underline guibg=black gui=underline
+lua <<LUA
+  require'treesitter-context'.setup{
+    enable = true,
+    max_lines=-1,
+    trim_scope = 'outer',
+    patterns = {
+      default = {
+        'class',
+        'module',
+        'function',
+        'method',
+        'for',
+        'while',
+        'if',
+        'switch',
+        'case',
+      },
+    },
+  }
+  require'lspconfig'.ruby_lsp.setup{ semanticHighlighting = false }
+  require'lspconfig'.rubocop.setup{}
+
+  require'lspconfig'.ruby_lsp.setup {
+    ---@param client lsp.Client
+    on_init = function(client, _)
+      client.server_capabilities.semanticTokensProvider = nil  -- turn off semantic tokens
+    end,
+  }
+LUA
 autocmd FileType ruby :ALEDisable
+autocmd BufWritePre *.rb :lua vim.lsp.buf.format { async = false }
+autocmd FileWritePre *.rb :lua vim.lsp.buf.format { async = false }

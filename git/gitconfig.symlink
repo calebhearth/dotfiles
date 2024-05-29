@@ -1,5 +1,6 @@
 [log]
   mailmap = true
+  follow = true
 [alias]
   amend = commit --amend --reuse-message=HEAD
   branches = !git for-each-ref --color=always --sort=-committerdate --format=\"%(color:green)%(authordate)|%(color:blue)%(authordate:relative)|%(color:red)%(authorname)|%(color:white)%(color:bold)%(refname:short)\" refs/heads | column -s\"|\" -t
@@ -72,7 +73,7 @@
 [http]
   sslverify = false
 [init]
-  templatedir = ~/.dotfiles/git/git_template
+  ; templatedir = ~/.dotfiles/git/git_template
   defaultBranch = main
 [merge]
   ff = only
