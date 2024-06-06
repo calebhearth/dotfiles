@@ -1,6 +1,7 @@
 [log]
   mailmap = true
   follow = true
+  date = human-local
 [alias]
   amend = commit --amend --reuse-message=HEAD
   branches = !git for-each-ref --color=always --sort=-committerdate --format=\"%(color:green)%(authordate)|%(color:blue)%(authordate:relative)|%(color:red)%(authorname)|%(color:white)%(color:bold)%(refname:short)\" refs/heads | column -s\"|\" -t
@@ -18,7 +19,7 @@
   ready = !git promote && hub pull-request
 [pretty]
   news = * %s %h%n%n  *%aN*
-  graph = %C(auto)%d %s %C(reset)%C(green)%ar%C(reset) %C(reset)%C(red)%h%C(reset) %C(reset)%C(bold cyan)%aN %C(blue)%G?%C(reset)
+  graph = %C(auto)%d %s %C(reset)%C(green)%ad%C(reset) %C(reset)%C(red)%h%C(reset) %C(reset)%C(bold cyan)%aN %C(blue)%G?%C(reset)
   update = graph
 [apply]
   whitespace = fix
@@ -122,6 +123,8 @@
   compactionHeuristic = true
   algorithm = histogram
   ; external = difft --syntax-highlight=off
+[diff "rspec"]
+  xfuncname = "^[ \t]*((RSpec|describe|context|it|before|after|around|feature|scenario)[ \t].*)$"
 [rebase]
   autostash = true
   autosquash = true

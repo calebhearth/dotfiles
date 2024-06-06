@@ -187,11 +187,11 @@ __git_ps1_show_upstream ()
 		"0	0") # equal to upstream
       p=" =" ;;
 		"0	"*) # ahead of upstream
-      p=" >" ;;
+      p=" ↑" ;;
 		*"	0") # behind upstream
-      p=" <" ;;
+      p=" ↓" ;;
 		*)	    # diverged from upstream
-      p=" <>" ;;
+      p=" " ;;
 		esac
 	else
 		case "$count" in
@@ -244,7 +244,7 @@ __git_ps1_colorize_gitstring ()
 	c="$branch_color$c"
 
 	z="$c_clear$z"
-	if [ "$w" = "*" ]; then
+	if [ "$w" = "✚" ]; then
 		w="$bad_color$w"
 	fi
 	if [ -n "$i" ]; then
@@ -414,23 +414,23 @@ __git_ps1 ()
 		if [ -n "${GIT_PS1_SHOWDIRTYSTATE-}" ] &&
 		   [ "$(git config --bool bash.showDirtyState)" != "false" ]
 		then
-			git diff --no-ext-diff --quiet --exit-code || w="*"
+			git diff --no-ext-diff --quiet --exit-code || w="✚"
 			if [ -n "$short_sha" ]; then
-				git diff-index --cached --quiet HEAD -- || i="+"
+				git diff-index --cached --quiet HEAD -- || i="●"
 			else
-				i="#"
+				i="✖"
 			fi
 		fi
 		if [ -n "${GIT_PS1_SHOWSTASHSTATE-}" ] &&
 		   [ -r "$g/refs/stash" ]; then
-			s="$"
+			s="⊡"
 		fi
 
 		if [ -n "${GIT_PS1_SHOWUNTRACKEDFILES-}" ] &&
 		   [ "$(git config --bool bash.showUntrackedFiles)" != "false" ] &&
 		   git ls-files --others --exclude-standard --error-unmatch -- '*' >/dev/null 2>/dev/null
 		then
-			u="%${ZSH_VERSION+%}"
+			u="…"
 		fi
 
 		if [ -n "${GIT_PS1_SHOWUPSTREAM-}" ]; then
