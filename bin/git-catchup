@@ -31,27 +31,19 @@ parent="$2"
 if [ -z "$parent" ]; then
 	parent=${remote:="main"}
 	if ! git rev-parse --abrev-ref main > /dev/null 2>&1; then
-		parent=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | xargs)
+		parent=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 	fi
 	remote=$(git config branch.$parent.remote)
 	remote=${remote:="origin"}
 fi
 
 previous_head_sha=$(git rev-parse HEAD)
-
-__git_update_prettyprint_log () {
-  format=$(
-    git config --get pretty.catchup ||
-    git config --get pretty.update ||
-    echo "%C(yellow)%h%Cblue%d%Creset %s - %C(white)%an %Cgreen(%cr)%Creset")
-
-  merge_base_sha=$(git merge-base "$previous_head_sha" "$remote/$parent")
-	# Use the last commit on a merged branch if merge-base is a merge
-	if git rev-parse "$merge_base_sha^2" > /dev/null 2>&1; then
-		merge_base_sha=$(git rev-parse "$merge_base_sha^2")
-	fi
-  git log --format="$format" --graph "$merge_base_sha^1".."$(git rev-parse HEAD)" "$merge_base_sha^1"^^.."$previous_head_sha"
-}
+merge_base_sha=$(git merge-base "$previous_head_sha" "$remote/$parent")
+# Use the last commit on a merged branch if merge-base is a merge
+if git rev-parse "$merge_base_sha^2" > /dev/null 2>&1; then
+	merge_base_sha=$(git rev-parse "$merge_base_sha^2")
+fi
 
 git -c core.editor="grep --invert-match '^#'" pull --rebase=interactive --autostash "$remote" "$parent"
-__git_update_prettyprint_log
+
+git log --pretty=update --graph "$merge_base_sha^1"..HEAD "$merge_base_sha^1"^^.."$previous_head_sha"
