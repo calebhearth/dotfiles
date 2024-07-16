@@ -9,7 +9,8 @@
 # tagaddress, which are passed to your $VISUAL, $EDITOR, or vim (in that order)
 # to bring you to the correct line in the file.
 
-tagline=$(grep -e "^$1\t" .git/tags | selecta)
-tagfile=$(echo "$tagline" | cut -f 2 | sed 's/^..\///')
+tagfile=$([ -f .git/tags ] && echo .git/tags || echo ./tags)
+tagline=$(grep -e "^$1\t" "$tagfile" | selecta)
+file=$(echo "$tagline" | cut -f 2 | sed 's/^..\///')
 tagaddress=$(echo "$tagline" | cut -f 3 | sed 's/;.*//')
-vim "$tagfile" "+set nomagic" "+$tagaddress" "+set magic"
+vim "$file" "+set nomagic" "+$tagaddress" "+set magic"
