@@ -1,5 +1,3 @@
-tap "gfontenot/formulae"
-brew "gfontenot/formulae/git-update"
 brew "jq"
 brew "libxslt"
 brew "mercurial"

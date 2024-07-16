@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+  echo "\033[31mYou must run this command from inside a git repository\033[0m"
+	exit 1
+fi
+
+upstream_branch=$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}")
+head_sha=$(git rev-parse HEAD)
+git fetch $(echo "$upstream_branch" | cut -d "/" -f 1)
+
+remote_sha=$(git rev-parse "$upstream_branch")
+if [ "$head_sha" = "$remote_sha" ]; then
+	echo "Already up to date."
+	exit 0
+fi
+# git pull --rebase=merges --autostash
+git rebase --rebase-merges --autostash --stat
+
+merged_branches=$(git branch --merged | grep --invert-match '^*' | tr --delete '\n')
+if [ -n "$merged_branches" ]; then
+	git branch --delete "$merged_branches"
+fi
+
+git log --pretty=update --graph "$head_sha"^.."$remote_sha"
