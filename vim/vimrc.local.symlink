@@ -44,22 +44,54 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 set colorcolumn=81,101,121
 highlight TreesitterContext ctermbg=black cterm=underline guibg=black gui=underline
+
 lua <<LUA
+  require'nvim-treesitter.configs'.setup {
+
+    ensure_installed = {
+      'bash',
+      'css',
+      'diff',
+      'dockerfile',
+      'dot',
+      'git_config',
+      'git_rebase',
+      'gitattributes',
+      'gitcommit',
+      'gitignore',
+      'html',
+      'javascript',
+      'jq',
+      'json',
+      'lua',
+      'python',
+      'ruby',
+      'sql',
+      'ssh_config',
+      'swift',
+      'tmux',
+      'typescript',
+      'vim',
+      'vimdoc',
+      'yaml',
+    }
+  }
+
   require'treesitter-context'.setup{
-    enable = true,
-    max_lines=-1,
-    trim_scope = 'outer',
-    patterns = {
-      default = {
-        'class',
-        'module',
-        'function',
-        'method',
-        'for',
-        'while',
-        'if',
-        'switch',
-        'case',
+  enable = true,
+  max_lines=3,
+  trim_scope = 'outer',
+  patterns = {
+    default = {
+      'class',
+      'module',
+      'function',
+      'method',
+      'for',
+      'while',
+      'if',
+      'switch',
+      'case',
       },
     },
   }

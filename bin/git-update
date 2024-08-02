@@ -19,9 +19,9 @@ fi
 # git pull --rebase=merges --autostash --stat --prune
 git rebase --rebase-merges --autostash --stat
 
-# merged_branches=$(git branch --merged | grep --invert-match '^*' | tr --delete '\n')
-# if [ -n "$merged_branches" ]; then
-# 	git branch --delete "$merged_branches"
-# fi
+merged_branches=$(git branch --merged | grep --invert-match '^*' | tr --delete '\n')
+if [ -n "$merged_branches" ]; then
+	git branch --delete "$merged_branches"
+fi
 
 git log --pretty=update --graph "$head_sha"^.."$remote_sha"

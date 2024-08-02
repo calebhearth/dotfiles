@@ -10,6 +10,7 @@ if command -v brew 2>&1 > /dev/null; then
 fi
 
 export LC_ALL=en_US.UTF-8
+typeset -U path
 export PATH="$HOME/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
 

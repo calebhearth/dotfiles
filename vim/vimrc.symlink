@@ -134,14 +134,6 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" The following two lines conflict with moving to top and bottom of the
-" screen
-" If you prefer that functionality, add let g:spf13_no_fastTabs = 1 in
-" your .vimrc.bundles.local file
-
-map <S-H> gT
-map <S-L> gt
-
 " Stupid shift key fixes
 if has("user_commands")
   command! -bang -nargs=* -complete=file E e<bang> <args>
@@ -319,20 +311,16 @@ end
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" " Get off my lawn
-" nnoremap h :echoe "Try b, B, F, T, ^"<CR><Left>
-" nnoremap l :echoe "Try w, t, f, e, E, $"<CR><Right>
-" nnoremap k :echoe "Try ?, {"<CR><Up>
-" nnoremap j :echoe "Try /, }"<CR><Down>
-
 " vim-rspec mappings
-nnoremap <Leader>a :call RunAllSpecs()<CR>
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
-let g:rspec_command = "Dispatch bundle exec rspec --no-color {spec}"
-nnoremap <Enter> :w<CR>:Dispatch<CR>
-
+let test#strategy = {
+      \ 'nearest': "dispatch",
+      \ 'file': "dispatch_background",
+      \ 'suite': "dispatch_background",
+      \}
+nnoremap <Leader>a :TestSuite<CR>
+nnoremap <Leader>t :TestFile<CR>
+nnoremap <Leader>s :TestNearest<CR>
+nnoremap <Leader>l :TestLast<CR>
 nnoremap <Enter> :w<CR> :Dispatch<CR>
 
 vnoremap <Leader>i :call I18nTranslateString()<CR>
