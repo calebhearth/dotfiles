@@ -29,10 +29,10 @@ endfunction
 
 autocmd filetype markdown nnoremap <Leader>e :normal mm"wya]}h2] 2j"wpa: <https://example.com><Esc>vi>p`m
 
-autocmd filetype markdown,gitcommit setlocal keywordprg=":Dispatch dict"
-autocmd filetype ruby setlocal keywordprg=":Dispatch ri"
-autocmd filetype sql nnoremap K :Dispatch psql --command=\h <C-r><C-w><CR>
-autocmd FileType go,godoc setlocal keywordprg=":GoDoc"
+autocmd filetype markdown,gitcommit setlocal keywordprg=:Dispatch\ dict
+autocmd filetype ruby setlocal keywordprg=:Dispatch\ ri
+autocmd filetype sql setlocal keywordprg=:DB\ mysql://root:@localhost\ -e\ \\\h
+autocmd FileType go,godoc setlocal keywordprg=:GoDoc
 
 
 autocmd filetype markdown nnoremap ? :w !wc<CR>
@@ -45,7 +45,7 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 set colorcolumn=81,101,121
 highlight TreesitterContext ctermbg=black cterm=underline guibg=black gui=underline
 
-lua <<LUA
+lua << LUA
   require'nvim-treesitter.configs'.setup {
 
     ensure_installed = {
@@ -95,16 +95,35 @@ lua <<LUA
       },
     },
   }
-  require'lspconfig'.ruby_lsp.setup{ semanticHighlighting = false }
   require'lspconfig'.rubocop.setup{}
 
   require'lspconfig'.ruby_lsp.setup {
+    semanticHighlighting = false,
     ---@param client lsp.Client
-    on_init = function(client, _)
+    on_init = function(client)
       client.server_capabilities.semanticTokensProvider = nil  -- turn off semantic tokens
     end,
   }
+
+  local swift_lsp = vim.api.nvim_create_augroup("swift_lsp", { clear = true })
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "swift" },
+    callback = function()
+      local root_dir = vim.fs.dirname(vim.fs.find({
+        "Package.swift",
+        ".git",
+      }, { upward = true })[1])
+      local client = vim.lsp.start({
+        name = "sourcekit-lsp",
+        cmd = { "sourcekit-lsp" },
+        root_dir = root_dir,
+      })
+      vim.lsp.buf_attach_client(0, client)
+    end,
+    group = swift_lsp,
+  })
 LUA
+
 autocmd FileType ruby :ALEDisable
 autocmd BufWritePre *.rb :lua vim.lsp.buf.format { async = false }
 autocmd FileWritePre *.rb :lua vim.lsp.buf.format { async = false }
