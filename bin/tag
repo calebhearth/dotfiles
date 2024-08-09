@@ -10,7 +10,12 @@
 # to bring you to the correct line in the file.
 
 tagfile=$([ -f .git/tags ] && echo .git/tags || echo ./tags)
-tagline=$(grep -e "^$1\t" "$tagfile" | selecta)
+possibletags=$(grep -e "^$1\t" "$tagfile")
+if [ -z "$possibletags" ]; then
+	echo "No tags found for $1"
+	exit 1
+fi
+tagline=$(echo "$possibletags" | selecta)
 file=$(echo "$tagline" | cut -f 2 | sed 's/^..\///')
 tagaddress=$(echo "$tagline" | cut -f 3 | sed 's/;.*//')
-vim "$file" "+set nomagic" "+$tagaddress" "+set magic"
+"${EDITOR:-vim}" "$file" "+set nomagic" "+$tagaddress" "+set magic"
