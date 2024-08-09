@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#	NAME
+# NAME
 #        git-catchup - Rebase onto a "mainline" branch.
 #
 # SYNOPSIS
@@ -25,6 +25,28 @@
 
 set -e
 
+interactive=false
+ARGUMENTS=$(/opt/homebrew/opt/gnu-getopt/bin/getopt -o 'hi' --long 'help,interactive' -- $@)
+while true; do
+	case "$1" in
+		--help | -h)
+			grep -B 100000 "set.*" $0 | grep '^#[^!]'
+			exit 0
+			;;
+		--interactive | -i)
+			interactive=true
+			shift
+			;;
+		--)
+			shift
+			break
+			;;
+		*)
+			break
+			;;
+	esac
+done
+
 remote="$1"
 parent="$2"
 
@@ -44,6 +66,10 @@ if git rev-parse "$merge_base_sha^2" > /dev/null 2>&1; then
 	merge_base_sha=$(git rev-parse "$merge_base_sha^2")
 fi
 
-git -c core.editor="grep --invert-match '^#'" pull --rebase=interactive --autostash "$remote" "$parent"
+if [ "$interactive" = true ]; then
+	git pull --rebase=interactive --autostash "$remote" "$parent"
+else
+	git -c core.editor="grep --invert-match '^#'" pull --rebase=interactive --autostash "$remote" "$parent"
+fi
 
 git log --pretty=update --graph "$merge_base_sha^1"..HEAD "$merge_base_sha^1"^^.."$previous_head_sha"
