@@ -2,16 +2,19 @@
 
 # ~/.macos — https://mths.be/macos
 # https://github.com/mathiasbynens/dotfiles/blob/b7c7894e7bb2de5d60bfb9a2f5e46d01a61300ea/.macos
+set -e
+
+# Ask for the administrator password upfront
+sudo -v
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
 
-# Ask for the administrator password upfront
-sudo -v
-
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &defaults write -g NSWindowShouldDragOnGesture -bool true
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+defaults write -g NSWindowShouldDragOnGesture -bool true
 
 # Adjust toolbar title rollover delay
 # https://macos-defaults.com/finder/nstoolbartitleviewrolloverdelay.html
@@ -127,3 +130,9 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 # Expand the print dialog by default in Chrome
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
+
+# Keyboard shortcuts
+# First add apps to the menu
+defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add 'net.kovidgoyal.kitty'
+# Then add the shortcuts
+defaults write net.kovidgoyal.kitty NSUserKeyEquivalents -dict-add "New Window" -string $'@$\U21a9' # Cmd-Shift-Enter
