@@ -29,7 +29,6 @@ else
   set clipboard=unnamed
 endif
 "
-let g:markdown_fenced_languages = ['ruby', 'erb=eruby']
 
 " General
 set background=dark         " Assume a dark background
@@ -42,7 +41,8 @@ set mouse=a                 " automatically enable mouse usage
 scriptencoding utf-8
 
 set shortmess+=filmnrxoOtTI      " abbrev. of messages (avoids 'hit enter')
-set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
+set viewoptions=folds,options,cursor " better unix / windows compatibility
+set sessionoptions=folds,options,buffers,globals,resize " better unix / windows compatibility
 set virtualedit=onemore         " allow for cursor beyond last character
 set history=1000                " Store a ton of history (default is 20)
 set nospell                     " spell checking off. OMG FUCK SPELLCHECK. usually.
@@ -60,7 +60,7 @@ endif
 colorscheme detailed
 set tabpagemax=15               " only show 15 tabs
 set showmode                    " display the current mode
-
+set colorcolumn=81,101,121
 set cursorline                  " highlight current line
 
 if has('cmdline_info')
@@ -86,9 +86,9 @@ set backspace=indent,eol,start  " backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
 set showmatch                   " show matching brackets/parenthesis
-set mat=5                       " duration to show matching brace (1/10 sec)
+set matchtime=5                 " duration to show matching brace (1/10 sec)
 set incsearch                   " find as you type search
-set hlsearch                    " highlight search terms
+set nohlsearch                  " don't highlight searches
 set winminheight=0              " windows can be 0 line high
 set ignorecase                  " case insensitive search
 set smartcase                   " case sensitive when uc present
@@ -99,20 +99,24 @@ set scrolljump=5                " lines to scroll when cursor leaves screen
 set scrolloff=3                 " minimum lines to keep above and below cursor
 set foldenable                  " auto fold code
 set list
-set listchars=tab:»·,trail:·,extends:> " Highlight problematic whitespace
 set nojoinspaces                " One space after ./?/! with join commands
 set visualbell                  " shut the fuck up
-set nohlsearch                  " don't highlight searches
 set noswapfile
 
 
 " Formatting
 set textwidth=80                " wrap at 80 chars by default
-set nowrap                      " wrap long lines
+set nowrap                      " don't soft wrap long lines
 set autoindent                  " indent at the same level of the previous line
 set smartindent                 " be smart about it
 set shiftwidth=2                " use indents of 2 spaces
 set expandtab                   " tabs are spaces, not tabs
+autocmd BufEnter * if &expandtab " Highlight problematic whitespace
+  setlocal listchars=tab:»·,trail:·,extends:>
+else
+  " don't show tab characters if we're not expanding them
+  setlocal listchars=tab:\ \ ,trail:·,extends:>
+endif
 set tabstop=2                   " an indentation every two columns
 set softtabstop=2               " let backspace delete indent
 set nosmarttab                  " fuck tabs
@@ -207,21 +211,6 @@ set completeopt=menu,preview,longest
 " Ctags
 set tags=./tags;/,~/.vimtags,./.git/tags
 
-" NerdTree {
-map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-map <leader>e :NERDTreeFind<CR>
-nmap <leader>nt :NERDTreeFind<CR>
-
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-let g:nerdtree_tabs_open_on_gui_startup=0
-" }
-
 " ctrlp {
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = {
@@ -276,22 +265,6 @@ function! InitializeDirectories()
 endfunction
 call InitializeDirectories()
 
-function! NERDTreeInitAsNeeded()
-  redir => bufoutput
-  buffers!
-  redir END
-  let idx = stridx(bufoutput, "NERD_tree")
-  if idx > -1
-    NERDTreeMirror
-    NERDTreeFind
-    wincmd l
-  endif
-endfunction
-
-autocmd Filetype gitcommit setlocal spell textwidth=72
-autocmd Filetype mail setlocal spell textwidth=72
-autocmd Filetype dot setlocal makeprg=dot\ -Tsvg\ %\ -o\ %:r.svg
-
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
@@ -322,8 +295,6 @@ nnoremap <Leader>t :TestFile<CR>
 nnoremap <Leader>s :TestNearest<CR>
 nnoremap <Leader>l :TestLast<CR>
 nnoremap <Enter> :w<CR> :Dispatch<CR>
-
-vnoremap <Leader>i :call I18nTranslateString()<CR>
 
 let g:dispatch_tmux_pipe_pane=1
 

@@ -23,6 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'pbrisbin/vim-rename-file'
 Plug 'dense-analysis/ale'
+Plug 'vim-scripts/SyntaxComplete'
 
 " General Programming
 Plug 'tpope/vim-dotenv'

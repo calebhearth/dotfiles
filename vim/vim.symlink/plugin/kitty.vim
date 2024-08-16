@@ -1,3 +1,4 @@
+" https://github.com/SevereOverfl0w/.files/blob/3d7670366931a3428742890d0f63620e972743c7/dotfiles/.config/nvim/plugin/kitty.vim
 if exists('g:loaded_dispatch_kitty')
 	finish
 endif
