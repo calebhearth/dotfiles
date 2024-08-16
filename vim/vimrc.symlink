@@ -112,11 +112,11 @@ set smartindent                 " be smart about it
 set shiftwidth=2                " use indents of 2 spaces
 set expandtab                   " tabs are spaces, not tabs
 autocmd BufEnter * if &expandtab " Highlight problematic whitespace
-  setlocal listchars=tab:»·,trail:·,extends:>
-else
+  \ setlocal listchars=tab:»·,trail:·,extends:>
+\ else
   " don't show tab characters if we're not expanding them
-  setlocal listchars=tab:\ \ ,trail:·,extends:>
-endif
+  \ setlocal listchars=tab:\ \ ,trail:·,extends:>
+\ endif
 set tabstop=2                   " an indentation every two columns
 set softtabstop=2               " let backspace delete indent
 set nosmarttab                  " fuck tabs
