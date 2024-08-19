@@ -46,6 +46,10 @@ require'treesitter-context'.setup{
   trim_scope = 'outer',
 }
 
+vim.keymap.set("n", "[c", function()
+  require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = true })
+
 require'lspconfig'.rubocop.setup{}
 
 require'lspconfig'.ruby_lsp.setup {
