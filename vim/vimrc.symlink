@@ -94,6 +94,7 @@ set ignorecase                  " case insensitive search
 set smartcase                   " case sensitive when uc present
 set wildmenu                    " show list instead of just completing
 set wildmode=list:longest,full  " command <Tab> completion, list matches, then longest common part, then all.
+set wildignore+=.git/*,*/tmp/*,*.swp
 set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
 set scrolljump=5                " lines to scroll when cursor leaves screen
 set scrolloff=3                 " minimum lines to keep above and below cursor
@@ -218,7 +219,6 @@ let g:ctrlp_custom_ignore = {
       \ 'file': '\.exe$\|\.so$\|\.dll$' }
 
 "Configure ctrlp for SPEED
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_use_caching = 700
 
 " indent_guides
@@ -273,10 +273,14 @@ autocmd BufReadPost *
   \   exe "normal g`\"" |
   \ endif
 
-if executable("ag")
+if executable("rg")
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command="rg %s --files --color=never --glob ''"
+  let g:ctrlp_use_caching=0
+elseif executable("ag")
   set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command="ag %s -l --nocolor -g ''"
-  let g:ctrlp_use_caching=1000
+  let g:ctrlp_user_command="ag %s --nocolor --nogroup"
+  let g:ctrlp_use_caching=0
 elseif executable("git")
   set grepprg=git\ grep
 end
