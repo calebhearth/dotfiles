@@ -14,21 +14,26 @@
   news = log --pretty=news $(git describe --tags --abbrev=0)...
   promote = push --set-upstream
   ready = !git promote && hub pull-request
+
 [apply]
   whitespace = fix
+
 [branch]
   sort = -committerdate
+
 [color]
   branch = auto
   diff = auto
   interactive = auto
   status = auto
   ui = auto
+
 [color "branch"]
   current = green reverse
   local = green
   plain = blue
   remote = yellow
+
 [color "diff"]
   ; new = "#c9d1d9 #1C2E4A bold"
   ; old = "#c9d1d9 #d47616 bold"
@@ -39,83 +44,102 @@
   new = "#c9d1d9 #273C5B bold"
   old = "#c9d1d9 #463023 bold"
   whitespace = red
+
 [color "status"]
   added = yellow
   changed = green
   deleted = red
   untracked = cyan
+
 [column]
   ui = auto dense
+
 [commit]
   gpgsign = true
   verbose = true
+
 [core]
-  attributesfile = /Users/caleb/.gitattributes
+  ; pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init --tabs=1,3
+  attributesfile = ~/.gitattributes
   autocrlf = input
-  excludesfile = "~/.gitignore"
-  hooksPath = "~/.dotfiles/git/hooks"
-  pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init --tabs=1,3
+  excludesfile = ~/.gitignore
+  hooksPath = ~/.dotfiles/git/hooks
   whitespace = blank-at-eol,trailing-space,tabwidth=3
+
 [diff]
   algorithm = histogram
   compactionHeuristic = true
-  external = difft
+
 [diff "rspec"]
   xfuncname = "^[ \t]*((RSpec|describe|context|it|before|after|around|feature|scenario)[ \t].*)$"
+
 [difftool]
   prompt = false
-[difftool "difftastic"]
-  cmd = difft "$LOCAL" "$REMOTE"
+
 [fetch]
   prune = true
-[gh]
-  autoUpdate = always
+
 [github]
   user = calebhearth
+
 [gpg]
   format = ssh
   program = /usr/bin/ssh-keygen
+
 [gpg "ssh"]
   allowedSignersFile = ~/.ssh/allowed_signers
   defaultKeyCommand = ssh-add -L
+
 [help]
   autocorrect = immediate
+
 [http]
   sslverify = false
+
 [init]
   ; templatedir = ~/.dotfiles/git/git_template
   defaultBranch = main
+
 [lfs]
   batch = true
+
 [log]
   date = human-local
   follow = true
   mailmap = true
+
 [merge]
   autostash = true
   conflictstyle = zdiff3
   ff = only
   stat = true
+
 [pretty]
   graph = %C(auto)%d %s %C(reset)%C(green)%ad%C(reset) %C(reset)%C(red)%h%C(reset) %C(reset)%C(bold cyan)%aN %C(blue)%G?%C(reset)
   news = * %s %h%n%n  *%aN*
   update = graph
+
 [pull]
   ff = only
   rebase = merges
+
 [push]
   ; gpgSign = if-asked
   autoSetupRemote = true
   default = current
   default = tracking
+
 [rebase]
   autosquash = true
   autostash = true
   stat = true
+
 [receive]
   denyCurrentBranch = ignore
+
 [rerere]
   enabled = 1
+
 [sendemail]
   aliasesfile = ~/.mutt/aliases
   aliasfiletype = mutt
@@ -126,13 +150,22 @@
   smtpserverport = 587
   smtpuser = calebthompson@fastmail.fm
   suppresscc = self
+
 [status]
   branch = 1
   short = 1
   showUntrackedFiles = all
+
 [tag]
   forceSignAnnotated = true
   sort = version:refname
+
 [user]
   email = caleb@calebhearth.com
   name = Caleb Hearth
+
+[include]
+  ; path = ~/.gitconfig.d/difftastic
+  path = ~/.gitconfig.d/delta
+  path = ~/.gitconfig.d/files_com
+  path = ~/.gitconfig.d/gh
