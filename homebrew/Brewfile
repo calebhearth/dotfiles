@@ -1,1 +1,0 @@
-brew install epubcheck gcc gh git git-update gnupg2 gnutls graphviz gv heroku-toolbelt imagemagick jpegoptim libxslt libyaml lsof msmtp mutt nethack node notmuch offline-imap openssh phantomjs postgresql python qt reattach-to-user-namespace redis scrypt selecta the_silver_searcher tmate tmux tree urlview vim wget zsh

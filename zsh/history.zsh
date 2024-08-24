@@ -1,9 +1,0 @@
-export HISTFILE=~/.zsh_history
-export HISTSIZE=10000000
-export SAVEHIST=$HISTSIZE
-setopt HIST_VERIFY
-setopt SHARE_HISTORY # share history between sessions ???
-setopt EXTENDED_HISTORY # add timestamps to history
-setopt INC_APPEND_HISTORY # adds history incrementally
-setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
-setopt HIST_REDUCE_BLANKS

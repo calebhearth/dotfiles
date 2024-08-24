@@ -1,0 +1,11 @@
+#!/bin/sh
+
+_dot_opts $* -Tsvg \
+	| convert \
+		-trim \
+		-bordercolor black \
+		-border 20 \
+		-transparent black \
+		-resize '80%' \
+		-channel RGB -negate \
+		- "$1.svg"

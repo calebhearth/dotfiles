@@ -1,0 +1,4 @@
+brew "difftastic"
+brew "gh"
+brew "git"
+brew "universal-ctags"

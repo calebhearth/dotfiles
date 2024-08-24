@@ -1,0 +1,7 @@
+brew "ruby"
+brew "direnv"
+brew "ruby-install"
+brew "redis"
+brew "selecta"
+brew "qt"
+brew "overmind"

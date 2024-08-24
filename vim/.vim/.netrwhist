@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/private/var/folders/ql/_58v_2r56z72z8bv5yt48mrm0000gp/T/git-difftool.oFPhUG/right'
+let g:netrw_dirhist_3='/private/var/folders/ql/_58v_2r56z72z8bv5yt48mrm0000gp/T/git-difftool.oFPhUG/left'
+let g:netrw_dirhist_2='/Users/caleb/code/files-rails'
+let g:netrw_dirhist_1='/Users/caleb/code/bank-ocr'

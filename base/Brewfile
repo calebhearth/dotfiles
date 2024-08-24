@@ -1,0 +1,4 @@
+brew "jq"
+brew "libxslt"
+brew "pass"
+brew "wget"

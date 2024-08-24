@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+trap "rm -f tags.$$" EXIT
+ctags --tag-relative=always -Rftags.$$ --exclude=.git --exclude=node_modules --exclude=tmp --exclude=log --languages=-javascript,sql
+mv tags.$$ tags
