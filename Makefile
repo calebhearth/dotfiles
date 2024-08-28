@@ -11,7 +11,7 @@ target = /Users/caleb
 all: brew_install rectangle stow vim-plug
 
 .PHONY: stow
-stow: $(data_dir)/packages
+stow: $(data_dir)/packages ~/.stow-global-ignore
 	mkdir -p $(target)
 	stow --adopt --verbose --target=$(target) $(shell cat $(packages))
 
@@ -63,6 +63,9 @@ rectangle: ~/Library/Preferences/com.knollsoft.Rectangle.plist
 # Must be a hard link
 ~/Library/Preferences/com.knollsoft.Rectangle.plist:
 	ln rectangle/Library/Preferences/com.knollsoft.Rectangle.plist $@
+
+~/.stow-global-ignore:
+	ln -s $(PWD)/.stow-global-ignore $@
 
 .PHONY: clean
 clean:
