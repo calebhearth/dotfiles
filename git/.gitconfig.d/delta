@@ -1,12 +1,9 @@
-
 [core]
-  ; pager=delta
+  pager=delta
 
 [delta]
   features = side-by-side defaults collared-trogon
   hyperlinks = true
-  hyperlinks-commit-link-format='https://gitlab.av/repository/files-rails/-/tree/{commit}'
-  hyperlinks-file-link-format = "https://gitlab.av/repository/files-rails/-/tree/master/{path}#L{line}"
   line-numbers = true
   navigate = true
   side-by-side = true
@@ -25,19 +22,16 @@
   line-numbers = true
   line-numbers-left-format = {nm:<4}
   line-numbers-left-style = "#022b45"
-  line-numbers-minus-style = "#80002a"
-  line-numbers-plus-style = "#003300"
+  line-numbers-minus-style = "#463023"
+  line-numbers-plus-style = "#273C5B"
   line-numbers-right-format = {np:<4}
   line-numbers-right-style = "#022b45"
   line-numbers-zero-style = "#999999"
-  minus-emph-style = syntax "#80002a"
-  minus-style = syntax "#330011"
-  plus-emph-style = syntax "#003300"
-  plus-style = syntax "#001a00"
+  minus-emph-style = syntax "#463023"
+  minus-style = syntax "#463023"
+  plus-emph-style = syntax bold "#273C5B"
+  plus-style = syntax "#273C5B "
   syntax-theme = Nord
-
-[diff]
-  colorMoved = default
 
 [interactive]
   diffFilter = delta --color-only

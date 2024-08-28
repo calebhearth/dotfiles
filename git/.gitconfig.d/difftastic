@@ -1,4 +1,4 @@
 [diff]
   external = difft
 [difftool "difftastic"]
-  cmd = difft "$LOCAL" "$REMOTE"
+  cmd = difft "$LOCAL" "$REMOTE" --syntax-highlight
