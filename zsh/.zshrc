@@ -1,15 +1,16 @@
-# if command -v brew 2>&1 > /dev/null; then
-# 	if [ -d "/opt/homebrew/share/chruby" ]; then
-# 		source /opt/homebrew/share/chruby/chruby.sh
-# 		source /opt/homebrew/share/chruby/auto.sh
-# 	fi
-# 	if [ -d "/opt/homebrew/share/gem_home" ]; then
-# 		source /opt/homebrew/share/gem_home/gem_home.sh
-# 		gem_home $HOME
-# 	fi
-# fi
+if command -v brew 2>&1 > /dev/null; then
+  local chruby="$(brew --prefix)/share/chruby"
+	if [ -d "$chruby" ]; then
+		source "$chruby/chruby.sh"
+		source "$chruby/auto.sh"
+	fi
+  local gemHome="$(brew --prefix)/share/gem_home"
+	if [ -d "$gemHome" ]; then
+		source "$gemHome/gem_home.sh"
+		gem_home $HOME
+	fi
+fi
 
-export LC_ALL=en_US.UTF-8
 typeset -U path PATH
 typeset -U fpath FPATH
 
@@ -19,8 +20,6 @@ if command -v brew 2>&1 > /dev/null; then
   export MANPATH="$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 export PATH="$HOME/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
-export GOPATH=~/code/go
-export DISABLE_SPRING=1
 
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000000
@@ -39,16 +38,12 @@ alias ag='echo "Use rg instead of ag"'
 function rg() {
 	command rg --json "$@" | delta
 }
-alias h='TZ=UTC heroku'
 function a() {
 	app=$1
 }
 function ha() {
   heroku "$@" -a $app;
 }
-alias hb='hs run bash -a'
-alias hl='hs logs -t -a'
-alias git=hub
 
 # initialize autocomplete here, otherwise functions won't be loaded
 fpath=(~/.local/share/zsh/site-functions $fpath)
@@ -73,7 +68,6 @@ bindkey -s "^T" "^[Isudo ^[S" # "t" for "toughguy"
 bindkey "^[[3~" delete-char # delete forward
 bindkey '[[Z' reverse-menu-complete
 
-alias vim=nvim
 ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
 
 command -v direnv 2>&1 > /dev/null && eval "$(direnv hook zsh)"
