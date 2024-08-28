@@ -63,7 +63,7 @@
   attributesfile = ~/.gitattributes
   autocrlf = input
   excludesfile = ~/.gitignore
-  hooksPath = ~/.dotfiles/git/hooks
+  hooksPath = ~/.git_hooks
   whitespace = blank-at-eol,trailing-space,tabwidth=3
 
 [diff]
