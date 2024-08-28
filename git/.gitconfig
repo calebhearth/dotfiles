@@ -97,6 +97,9 @@
 [http]
   sslverify = false
 
+[includeIf "hasconfig:remote.*.url:*gitlab.av:*/**"]
+  path = ~/.gitconfig.d/files_com
+
 [init]
   ; templatedir = ~/.dotfiles/git/git_template
   defaultBranch = main
