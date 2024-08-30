@@ -14,6 +14,7 @@ function! dispatch#kitty#handle(request) abort
     " Using it for make is annoying (for now)
     " return 0
     let command = dispatch#prepare_make(a:request)
+    let command = substitute(command, 'sync; perl', 'perl', '')
   elseif a:request.action ==# 'start'
     let command = dispatch#prepare_start(a:request)
   else

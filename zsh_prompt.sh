@@ -45,7 +45,7 @@ precmd () {
 	if git rev-parse --git-dir > /dev/null 2>&1; then
 		toplevel=$(git rev-parse --show-toplevel)
 		psvar[1]=$(basename "$toplevel")
-		psvar[2]=${PWD#$toplevel}
+		psvar[2]=${${PWD:l}#$toplevel:l}
 	else
 		psvar[1]=${PWD/\/Users\//"~"}
 		psvar[2]=''
