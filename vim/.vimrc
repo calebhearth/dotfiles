@@ -51,6 +51,7 @@ set hidden                      " allow buffer switching without saving
 
 " Setting up the directories
 set backup                      " backups are nice ...
+set backupdir=$XDG_STATE_HOME/nvim/backup//
 if has('persistent_undo')
   set undofile                "so is persistent undo ...
   set undolevels=1000         "maximum number of changes that can be undone
@@ -104,7 +105,7 @@ set foldenable                  " auto fold code
 set list
 set nojoinspaces                " One space after ./?/! with join commands
 set visualbell                  " shut the fuck up
-set swapfile
+set noswapfile
 
 
 " Formatting
@@ -233,39 +234,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 if &term == 'xterm' || &term == 'screen'
   set t_Co=256                 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
 endif
-
-" Functions
-
-function! InitializeDirectories()
-  let separator = "."
-  let parent = $HOME
-  let prefix = '.vim'
-  let dir_list = {
-        \ 'backup': 'backupdir',
-        \ 'views': 'viewdir' } ",
-        " \ 'swap': 'directory' }
-
-  if has('persistent_undo')
-    let dir_list['undo'] = 'undodir'
-  endif
-
-  for [dirname, settingname] in items(dir_list)
-    let directory = parent . '/' . prefix . dirname . "/"
-    if exists("*mkdir")
-      if !isdirectory(directory)
-        call mkdir(directory)
-      endif
-    endif
-    if !isdirectory(directory)
-      echo "Warning: Unable to create backup directory: " . directory
-      echo "Try: mkdir -p " . directory
-    else
-      let directory = substitute(directory, " ", "\\\\ ", "g")
-      exec "set " . settingname . "=" . directory
-    endif
-  endfor
-endfunction
-call InitializeDirectories()
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
