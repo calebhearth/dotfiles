@@ -36,7 +36,7 @@ unsetopt nomatch
 
 alias ag='echo "Use rg instead of ag"'
 function rg() {
-	command rg --json "$@" | delta
+	command rg --smart-case --json "$@" | delta
 }
 function a() {
 	app=$1
