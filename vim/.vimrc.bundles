@@ -18,13 +18,11 @@ Plug 'tomtom/tlib_vim'
 " General
 " Plug 'Lokaltog/vim-powerline'
 Plug 'vim-airline/vim-airline'
-Plug 'altercation/vim-colors-solarized'
 Plug 'kien/ctrlp.vim'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'pbrisbin/vim-rename-file'
-Plug 'dense-analysis/ale'
 Plug 'vim-scripts/SyntaxComplete'
 
 " General Programming
@@ -50,9 +48,9 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
 let g:rubycomplete_use_bundler = 1
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'rking/vim-detailed', { 'for': 'ruby' }
-Plug 'tpope/vim-rake', { 'for': 'ruby' }
+Plug 'tpope/vim-rails'
+Plug 'rking/vim-detailed'
+Plug 'tpope/vim-rake'
 Plug 'christoomey/vim-rfactory', { 'for': 'ruby' }
 Plug 'joker1007/vim-ruby-heredoc-syntax', { 'for': 'ruby' }
 
