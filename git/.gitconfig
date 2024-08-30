@@ -3,7 +3,7 @@
   branches = !git for-each-ref --color=always --sort=-committerdate --format=\"%(color:green)%(authordate:short)|%(color:blue)%(authordate:relative)|%(color:red)%(authorname)|%(color:white)%(color:bold)%(refname:short)\" refs/heads | column -s\"|\" -t
   co = checkout
   cob = !git branch | cut -c 3- | selecta | xargs git checkout
-  current = rev-parse --abbrev-ref HEAD
+  current = branch --show-current
   delete-local-merged = !git branch -d $(git branch --merged | grep -v '^*' | tr -d '\n')
   difftree = !git diff --stat=1000 $(git main) | sed -e '$ d' | cut -d ' ' -f 2 | ftree
   fixup = commit --fixup=HEAD --all --no-gpg-sign
