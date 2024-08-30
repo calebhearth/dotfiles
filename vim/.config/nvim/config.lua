@@ -1,16 +1,3 @@
-aug QFClose
-  au!
-  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
-aug END
-
-" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-
-highlight TreesitterContext ctermbg=black cterm=underline guibg=black gui=underline
-
-if has('nvim')
-lua << LUA
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'bash',
@@ -78,5 +65,3 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   group = swift_lsp,
 })
-LUA
-endif

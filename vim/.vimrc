@@ -305,13 +305,8 @@ autocmd BufWinEnter quickfix nnoremap <buffer> <Enter> <Enter>
 
 let g:dispatch_tmux_pipe_pane=1
 
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
-" use local vimrc if available
-if filereadable(expand("./.vimrc.local"))
-  source ./.vimrc.local
+if has('nvim') && filereadable(expand("$HOME/.config/nvim/config.lua"))
+  source $HOME/.config/nvim/config.lua
 endif
 
 set confirm

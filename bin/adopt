@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+set -ex
+
+package=$1
+file=$2
+
+case $(file --brief --no-dereference "$package") in
+	directory)
+    ;; # package exists and is a directory, move on
+	"*No such file or directory")
+		mkdir -p "$package";;
+	"file")
+		echo "package $package exists and is a file"
+		exit 1
+		;;
+	*)
+		echo "Unknown error"
+		exit 1
+		;;
+esac
+
+target="$package"/"${file#$HOME/}"
+
+if [ -f "$target" ]; then
+  echo "$target exists but is untracked. Aborting."
+  exit 1
+elif [ -f "$target" ] && git diff --quiet "$target"; then
+  echo "$target exists and has uncommitted changes. Aborting."
+  exit 1
+fi
+
+mkdir -p $(dirname "$target")
+mv "$file" "$target"
+ln -s $(pwd)/"$target" "$file"

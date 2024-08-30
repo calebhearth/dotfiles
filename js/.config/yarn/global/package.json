@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "heroku-connect-plugin": "^0.10.0",
+    "neovim": "^5.2.0",
+    "node-gyp": "^9.0.0"
+  }
+}
