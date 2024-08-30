@@ -7,11 +7,11 @@ lines=$(unexpand --first-only --tabs=2 \
 
 # include should be last to override things.
 echo "$lines" \
-	| grep -v '^\[include\]' \
+	| grep -v '^\[include' \
 	| awk -F '\t' '!$2 {print "\n"$1} $1 && $2 { print "  " $2 }' \
 	| tail -n +2
 
 echo "$lines" \
-	| grep '^\[include\]' \
+	| grep '^\[include' \
 	| awk -F '\t' '!$2 {print "\n"$1} $1 && $2 { print "  " $2 }'
 
