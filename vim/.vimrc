@@ -51,7 +51,7 @@ set hidden                      " allow buffer switching without saving
 
 " Setting up the directories
 set backup                      " backups are nice ...
-set backupdir=$XDG_STATE_HOME/nvim/backup//
+set backupdir=~/.local/state/nvim/backup//
 if has('persistent_undo')
   set undofile                "so is persistent undo ...
   set undolevels=1000         "maximum number of changes that can be undone
