@@ -3,6 +3,7 @@ if command -v brew 2>&1 > /dev/null; then
 	if [ -d "$chruby" ]; then
 		source "$chruby/chruby.sh"
 		source "$chruby/auto.sh"
+    chruby .
 	fi
   local gemHome="$(brew --prefix)/share/gem_home"
 	if [ -d "$gemHome" ]; then
