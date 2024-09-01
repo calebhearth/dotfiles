@@ -110,6 +110,7 @@
   date = human-local
   follow = true
   mailmap = true
+  graphColors = "#626262", "#005f00", "#5f00d7", "#af0000", "#5faf87", "#d75f00", "#af0087", "#00afd7"
 
 [merge]
   autostash = true
