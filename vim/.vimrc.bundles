@@ -18,7 +18,7 @@ Plug 'tomtom/tlib_vim'
 " General
 " Plug 'Lokaltog/vim-powerline'
 Plug 'vim-airline/vim-airline'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
