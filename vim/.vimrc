@@ -1,20 +1,6 @@
 " Environment
 " Basics
 set nocompatible        " must be first line
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.branch = ''
-" let g:airline_symbols.colnr = ' ℅:'
-let g:airline_symbols.readonly = ''
-" let g:airline_symbols.linenr = ' :'
-" let g:airline_symbols.maxlinenr = '☰ '
-let g:airline_symbols.dirty = '⚡'
-let g:airline_section_z = '%p%% %1:%v'
 
 " Bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -32,15 +18,12 @@ endif
 
 " General
 set background=dark         " Assume a dark background
-if !has('gui')
-  "set term=$TERM          " Make arrow and other keys work
-endif
 filetype plugin on   " Automatically detect file types.
 syntax on                   " syntax highlighting
 set mouse=a                 " automatically enable mouse usage
 scriptencoding utf-8
 
-set shortmess+=filmnrxoOtTI      " abbrev. of messages (avoids 'hit enter')
+set shortmess=aoOtTWF      " abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor " better unix / windows compatibility
 set sessionoptions=folds,options,buffers,globals,resize " better unix / windows compatibility
 set virtualedit=onemore         " allow for cursor beyond last character
@@ -64,26 +47,7 @@ set tabpagemax=15               " only show 15 tabs
 set showmode                    " display the current mode
 set colorcolumn=81,101,121
 set cursorline                  " highlight current line
-
-if has('cmdline_info')
-  set ruler                   " show the ruler
-  set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
-  set showcmd                 " show partial commands in status line and
-  " selected characters/lines in visual mode
-endif
-
-if has('statusline')
-  set laststatus=2
-
-  " Broken down into easily includeable segments
-  set statusline=%<%f\    " Filename
-  set statusline+=%w%h%m%r " Options
-  set statusline+=%{fugitive#statusline()} "  Git Hotness
-  set statusline+=\ [%{&ff}/%Y]            " filetype
-  set statusline+=\ [%{getcwd()}]          " current dir
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
-
+set laststatus=2
 set backspace=indent,eol,start  " backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
@@ -155,8 +119,6 @@ if has("user_commands")
   command! -bang Qa qa<bang>
 endif
 
-cmap Tabe tabe
-
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
@@ -184,9 +146,6 @@ if has("autocmd") && exists("+omnifunc")
         \endif
 endif
 
-highlight Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-highlight PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-highlight PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 highlight CursorLine cterm=underline gui=underline guibg=NONE ctermbg=NONE
 set termguicolors
 let g:rainbow_guifgs = [
@@ -200,48 +159,15 @@ let g:rainbow_guifgs = [
       \ '#00afd7',
       \ ]
 
-" some convenient mappings
-inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-" automatically open and close the popup menu / preview window
-autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menu,preview,longest
-
-" Ctags
-set tags=./tags;/,~/.vimtags,./.git/tags
-
-" ctrlp {
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-      \ 'file': '\.exe$\|\.so$\|\.dll$' }
-
-"Configure ctrlp for SPEED
-let g:ctrlp_use_caching = 700
-
-" indent_guides
-let g:indent_guides_auto_colors = 1
-set ts=2 sw=2 et
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
-
-if &term == 'xterm' || &term == 'screen'
-  set t_Co=256                 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
-endif
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
-autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
-  \ endif
+autocmd BufRead * autocmd FileType <buffer> ++once
+  \ if &filetype !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$")
+    \ | execute 'normal! g`"'
+  \ | endif
 
 if executable("rg")
   set grepprg=rg\ --color=never
@@ -258,7 +184,13 @@ end
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" vim-rspec mappings
+
+function! FocusDispatchStrategy(cmd)
+  execute "FocusDispatch " . a:cmd
+  execute "Dispatch"
+endfunction
+
+let g:test#custom_strategies = {'focus_dispatch': function('FocusDispatchStrategy')}
 let test#strategy = {
       \ 'nearest': "dispatch",
       \ 'file': "dispatch_background",

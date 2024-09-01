@@ -1,6 +1,7 @@
 let s:cpo_save = &cpoptions
 set cpoptions-=C
 
+# Remove warnings from the original vim-ruby plugin
 CompilerSet errorformat=
     \%E%.%#:in\ `load':\ %f:%l:%m,
     \%E%f:%l:in\ `%*[^']':\ %m,
