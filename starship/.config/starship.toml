@@ -42,14 +42,18 @@ format = '\([$hash]($style)'
 style = "red"
 
 [git_status]
+ahead = " 􀾕 "
+behind = " 􀾔 "
+conflicted = "[􀄐 ](red)"
+deleted = '[􀈑 ](red)'
+diverged = '􁅥 '
 format = '$all_status $ahead_behind\)'
-stashed = '[⊡](blue)'
-untracked = '[…](red)'
-modified = '[✚](red)'
-staged = '[●](green)'
-deleted = '[✖](red)'
-diverged = ''
-up_to_date = "="
+modified = '[􀋾 ](red)'
+renamed = "􁁀 "
+staged = '[􀈧 ](green)'
+stashed = '[􀈄 ](blue)'
+untracked = '[􀣗 ](red)'
+up_to_date = " 􀬱 "
 
 [palettes.blueorange]
 red = '#d29922'
