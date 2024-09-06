@@ -76,6 +76,10 @@ ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
 command -v direnv 2>&1 > /dev/null && eval "$(direnv hook zsh)"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
-source ~/.dotfiles/git_prompt.sh
-source ~/.dotfiles/zsh_prompt.sh
+# source ~/.dotfiles/git_prompt.sh
+# source ~/.dotfiles/zsh_prompt.sh
+precmd() {
+  ~/bin/jobs "$(printf '%s^^^' "${jobstates[@]}")" "$(printf '%s^^^' "${jobtexts[@]}")" "$(printf '%s^^^' "${jobdirs[@]}")"
+}
+eval "$(starship init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"

@@ -1,0 +1,56 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = false
+format = "${custom.show_jobs}${custom.ssh_emoji}$directory$git_branch${custom.describe}$git_state$git_status $character"
+palette = "blueorange"
+
+[custom.describe]
+command="git describe --contains --all HEAD 2> /dev/null"
+format = '\([\($output\)]($style) '
+require_repo = true
+style = 'red'
+when = '[ -z "$(git branch --show-current)" ]'
+
+[custom.ssh_emoji]
+command = """
+    case $(basename $(hostname) .local) in
+    "Trident")
+    echo "🔱 ";;
+    "Umbra")
+    echo "🗡️ ";;
+    "F2MCXVH2HW")
+    echo "🗂️ ";;
+    *)
+    echo "💼 ";;
+    esac
+"""
+when = '[ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]'
+
+[directory]
+format = '[$path]($style)'
+home_symbol = "~caleb"
+style = ""
+truncation_length = -1
+
+[git_branch]
+format = '\([$branch]($style) '
+only_attached = true
+style = "green"
+
+[git_commit]
+format = '\([$hash]($style)'
+style = "red"
+
+[git_status]
+format = '$all_status $ahead_behind\)'
+stashed = '[⊡](blue)'
+untracked = '[…](red)'
+modified = '[✚](red)'
+staged = '[●](green)'
+deleted = '[✖](red)'
+diverged = ''
+up_to_date = "="
+
+[palettes.blueorange]
+red = '#d29922'
+green = '#4493f8'
