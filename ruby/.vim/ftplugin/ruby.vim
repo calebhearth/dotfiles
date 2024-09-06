@@ -1,7 +1,10 @@
 vnoremap <Leader>i :call I18nTranslateString()<CR>
 setlocal keywordprg=:Dispatch\ ri
 
-autocmd FileWritePre,BufWritePre *.rb :lua vim.lsp.buf.format { async = true }
+augroup ruby
+  autocmd!
+  autocmd BufWritePre <buffer> lua vim.lsp.buf.format { async = false, timeout_ms = 500 }
+augroup END
 
 let g:tagbar_type_ruby = {
   \ 'kinds' : [
@@ -13,3 +16,9 @@ let g:tagbar_type_ruby = {
     \ 'F:singleton methods'
   \ ]
 \ }
+let ruby_operators = 1
+let ruby_pseudo_operators = 1
+let ruby_space_errors = 1
+let ruby_line_continuation_error = 1
+let ruby_global_variable_error   = 1
+let ruby_spellcheck_strings = 1
