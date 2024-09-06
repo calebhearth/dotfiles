@@ -27,16 +27,13 @@ function! dispatch#kitty#handle(request) abort
     let redir = &shellredir . ' ' . '/dev/null'
   endif
 
-  let kitty = 'kitty @ launch --copy-env --title='.shellescape(a:request.title).' '.'--cwd='.shellescape(a:request.directory)
+  let kitty = 'kitty @ launch --copy-env --keep-focus --title='.shellescape(a:request.title).' '.'--cwd='.shellescape(a:request.directory)
 
   if a:request.action ==# 'start'
     let kitty .= ' --type=tab --tab-title='.shellescape(a:request.title)
   endif
 
-  if a:request.background
-    let kitty .= ' --keep-focus'
-  endif
-
+  " throw kitty.' '.&shell.' -i '.&shellcmdflag.' '.shellescape(command).redir
   call system(kitty.' '.&shell.' -i '.&shellcmdflag.' '.shellescape(command).redir)
   return !v:shell_error
 endfunction
