@@ -6,18 +6,18 @@ package=$1
 file=$2
 
 case $(file --brief --no-dereference "$package") in
-	directory)
+  directory)
     ;; # package exists and is a directory, move on
-	"*No such file or directory")
-		mkdir -p "$package";;
-	"file")
-		echo "package $package exists and is a file"
-		exit 1
-		;;
-	*)
-		echo "Unknown error"
-		exit 1
-		;;
+  *"(No such file or directory)")
+    mkdir -p "$package";;
+  "file")
+    echo "package $package exists and is a file"
+    exit 1
+    ;;
+  *)
+    echo "Unknown error"
+    exit 1
+    ;;
 esac
 
 target="$package"/"${file#$HOME/}"
