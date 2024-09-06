@@ -65,7 +65,7 @@ set wildignore+=.git/*,*/tmp/*,*.swp
 set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
 set scrolljump=5                " lines to scroll when cursor leaves screen
 set scrolloff=3                 " minimum lines to keep above and below cursor
-set foldenable                  " auto fold code
+set nofoldenable                " auto fold code
 set list
 set nojoinspaces                " One space after ./?/! with join commands
 set visualbell                  " shut the fuck up
@@ -164,10 +164,15 @@ set completeopt=menu,preview,longest
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
-autocmd BufRead * autocmd FileType <buffer> ++once
-  \ if &filetype !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$")
-    \ | execute 'normal! g`"'
-  \ | endif
+augroup RestoreCursor
+  autocmd!
+  autocmd BufRead * autocmd FileType <buffer> ++once
+    \ let s:line = line("`\"")
+    \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
+    \      && index(['xxd', 'gitrebase'], &filetype) == -1
+    \ |   execute "normal! g`\""
+    \ | endif
+augroup END
 
 if executable("rg")
   set grepprg=rg\ --color=never
@@ -191,11 +196,7 @@ function! FocusDispatchStrategy(cmd)
 endfunction
 
 let g:test#custom_strategies = {'focus_dispatch': function('FocusDispatchStrategy')}
-let test#strategy = {
-      \ 'nearest': "dispatch",
-      \ 'file': "dispatch_background",
-      \ 'suite': "dispatch_background",
-      \}
+let test#strategy = "focus_dispatch"
 nnoremap <Leader>a :TestSuite<CR>
 nnoremap <Leader>t :TestFile<CR>
 nnoremap <Leader>s :TestNearest<CR>
@@ -204,10 +205,6 @@ nnoremap <Enter> :w<CR> :Dispatch<CR>
 autocmd BufWinEnter quickfix nnoremap <buffer> <Enter> <Enter>
 
 let g:dispatch_tmux_pipe_pane=1
-
-if has('nvim') && filereadable(expand("$HOME/.config/nvim/config.lua"))
-  source $HOME/.config/nvim/config.lua
-endif
 
 set confirm
 set exrc " enable per-directory .vimrc files
