@@ -1,7 +1,7 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 add_newline = false
-format = "${custom.show_jobs}${custom.ssh_emoji}$directory$git_branch${custom.describe}$git_state$git_status $character"
+format = "${custom.show_jobs}${custom.ssh_emoji}${custom.directory}$git_branch${custom.describe}$git_state$git_status${custom.subdir} $character"
 palette = "blueorange"
 
 [custom.describe]
@@ -26,11 +26,17 @@ command = """
 """
 when = '[ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]'
 
-[directory]
-format = '[$path]($style)'
-home_symbol = "~caleb"
+[custom.subdir]
+command = 'echo ${PWD/$(git rev-parse --show-toplevel 2>\/dev\/null)}'
+when = true
+require_repo = true
 style = ""
-truncation_length = -1
+
+[custom.directory]
+format = '[$output]($style)'
+command = 'basename $(git rev-parse --show-toplevel 2>\/dev\/null) 2>/dev/null || print ${PWD//"$HOME"/\~caleb}'
+when = true
+style = "bold"
 
 [git_branch]
 format = '\([$branch]($style) '
@@ -42,19 +48,20 @@ format = '\([$hash]($style)'
 style = "red"
 
 [git_status]
-ahead = " 􀾕 "
-behind = " 􀾔 "
+ahead = " [􀾕 ](green)"
+behind = " [􀾔 ](green)"
 conflicted = "[􀄐 ](red)"
 deleted = '[􀈑 ](red)'
-diverged = '􁅥 '
+diverged = '[􁅥 ](red)'
 format = '$all_status $ahead_behind\)'
 modified = '[􀋾 ](red)'
-renamed = "􁁀 "
+renamed = "[􁁀 ](blue)"
 staged = '[􀈧 ](green)'
 stashed = '[􀈄 ](blue)'
 untracked = '[􀣗 ](red)'
-up_to_date = " 􀬱 "
+up_to_date = "􀆀 "
 
 [palettes.blueorange]
 red = '#d29922'
 green = '#4493f8'
+blue = '#d2a8ff'
