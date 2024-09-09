@@ -4,7 +4,7 @@
   co = checkout
   cob = !git branch | cut -c 3- | selecta | xargs git checkout
   current = branch --show-current
-  delete-local-merged = !git branch -d $(git branch --merged | grep -v '^*' | tr -d '\n')
+  delete-local-merged = !git branch --delete $(git branch --merged | grep --invert-match '^*' | tr --delete '\n')
   difftree = !git diff --stat=1000 $(git main) | sed -e '$ d' | cut -d ' ' -f 2 | ftree
   fixup = commit --fixup=HEAD --all --no-gpg-sign
   force = push --force-with-lease

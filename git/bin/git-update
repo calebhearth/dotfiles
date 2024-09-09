@@ -19,7 +19,7 @@ fi
 # git pull --rebase=merges --autostash --stat --prune
 git rebase --rebase-merges --autostash --stat
 
-merged_branches=$(git branch --merged | grep --invert-match '^*' | tr --delete '\n')
+merged_branches=$(git branch --merged | grep --invert-match '^*' | tr --delete '[:space]')
 if [ -n "$merged_branches" ]; then
 	git branch --delete "$merged_branches"
 fi
