@@ -1,2 +1,4 @@
 *.rb diff=ruby
 *_spec.rb diff=rspec
+*.toml diff=toml
+.gitconfig diff=toml
