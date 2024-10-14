@@ -1,4 +1,5 @@
 vnoremap <Leader>i :call I18nTranslateString()<CR>
+nnoremap <C-/> /\v(def (self.)?)@<=
 setlocal keywordprg=:Dispatch\ ri
 
 augroup ruby

@@ -23,7 +23,7 @@ syntax on                   " syntax highlighting
 set mouse=a                 " automatically enable mouse usage
 scriptencoding utf-8
 
-set shortmess=aoOtTWF      " abbrev. of messages (avoids 'hit enter')
+set shortmess=aoOtTWIF      " abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor " better unix / windows compatibility
 set sessionoptions=folds,options,buffers,globals,resize " better unix / windows compatibility
 set virtualedit=onemore         " allow for cursor beyond last character
@@ -175,7 +175,7 @@ augroup RestoreCursor
 augroup END
 
 if executable("rg")
-  set grepprg=rg\ --color=never
+  set grepprg=rg\ --vimgrep
   let g:ctrlp_user_command="rg %s --files --color=never --glob ''"
   let g:ctrlp_use_caching=0
 elseif executable("ag")
