@@ -33,7 +33,7 @@ function! dispatch#kitty#handle(request) abort
   endif
 
   " throw kitty.' '.&shell.' -i '.&shellcmdflag.' '.shellescape(command).redir
-  call system(kitty.' '.&shell.' -i '.&shellcmdflag.' '.shellescape(command).redir)
+  call system(kitty.' '.&shell.' '.&shellcmdflag.' '.shellescape(command).redir)
   return !v:shell_error
 endfunction
 
