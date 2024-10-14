@@ -39,7 +39,7 @@
 # git config --global mergetool.diffconflicts.trustExitCode true
 # git config --global mergetool.diffconflicts.keepBackup false
 
-if [[ -z $@ || $# != "5" ]] ; then
+if [[ -z $* || $# != "5" ]] ; then
     echo -e "Usage: $0 \$BASE \$LOCAL \$REMOTE \$MERGED"
     exit 1
 fi
@@ -49,15 +49,15 @@ BASE=$2
 LOCAL=$3
 REMOTE=$4
 MERGED=$5
-LCONFL=$(dirname $5)/$$.left.tmp
-RCONFL=$(dirname $5)/$$.right.tmp
+LCONFL=$(dirname "$5")/$$.left.tmp
+RCONFL=$(dirname "$5")/$$.right.tmp
 
 # Remove the conflict markers for each 'side' and put each into a temp file
-sed -e '/^=======$/,/>>>>>>>/d' -e '/<<<<<<</d' $MERGED > $LCONFL
-sed -e '/<<<<<<</,/^=======$/d' -e '/>>>>>>>/d' $MERGED > $RCONFL
+sed -e '/^=======$/,/>>>>>>>/d' -e '/<<<<<<</d' "$MERGED" > "$LCONFL"
+sed -e '/<<<<<<</,/^=======$/d' -e '/>>>>>>>/d' "$MERGED" > "$RCONFL"
 
 # Fire up vimdiff
-$cmd -f -R -d $LCONFL $RCONFL \
+$cmd -f -R -d "$LCONFL" "$RCONFL" \
     -c ":set noro" \
     -c ":tabe $LOCAL" -c ":vert diffs $BASE" -c ":vert diffs $REMOTE" \
     -c ":winc t" -c ":tabe $MERGED" -c ":tabfir"
@@ -66,10 +66,10 @@ EC=$?
 
 # Overwrite $MERGED only if vimdiff exits cleanly.
 if [[ $EC == "0" ]] ; then
-    cat $LCONFL > $MERGED
+    cat "$LCONFL" > "$MERGED"
 fi
 
 # Always delete our temp files; Git will handle it's own temp files
-rm $LCONFL $RCONFL
+rm "$LCONFL" "$RCONFL"
 
-exit $EC
+exit "$EC"

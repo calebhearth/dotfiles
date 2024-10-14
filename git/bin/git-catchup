@@ -26,11 +26,12 @@
 set -e
 
 interactive=false
-ARGUMENTS=$(/opt/homebrew/opt/gnu-getopt/bin/getopt -o 'hi' --long 'help,interactive' -- $@)
+ARGUMENTS=$(/opt/homebrew/opt/gnu-getopt/bin/getopt -o 'hi' --long 'help,interactive' -- "$@")
+eval set -- "$ARGUMENTS"
 while true; do
 	case "$1" in
 		--help | -h)
-			grep -B 100000 "set.*" $0 | grep '^#[^!]'
+			grep -B 100000 "set -.*" "$0" | grep '^#[^!]'
 			exit 0
 			;;
 		--interactive | -i)
@@ -55,7 +56,7 @@ if [ -z "$parent" ]; then
 	if ! git rev-parse --abrev-ref origin/main > /dev/null 2>&1; then
 		parent=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 	fi
-	remote=$(git config get --default origin branch.$parent.remote)
+	remote=$(git config get --default origin branch."$parent".remote)
 fi
 
 previous_head_sha=$(git rev-parse HEAD)
@@ -71,4 +72,4 @@ else
 	git -c core.editor="grep --invert-match '^#'" pull --rebase=interactive --autostash "$remote" "$parent"
 fi
 
-git log --pretty=update --graph "$merge_base_sha^1"..HEAD "$merge_base_sha^1"^^.."$previous_head_sha"
+git log --pretty=update --graph "$merge_base_sha^1..HEAD" "$merge_base_sha^1^^..$previous_head_sha"

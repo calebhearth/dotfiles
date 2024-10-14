@@ -1,4 +1,4 @@
-"jhttps://github.com/SevereOverfl0w/.files/blob/3d7670366931a3428742890d0f63620e972743c7/dotfiles/.config/nvim/autoload/dispatch/kitty.vim
+" https://github.com/SevereOverfl0w/.files/blob/3d7670366931a3428742890d0f63620e972743c7/dotfiles/.config/nvim/autoload/dispatch/kitty.vim
 if exists('g:autoloaded_dispatch_kitty')
   finish
 endif
@@ -28,7 +28,6 @@ function! dispatch#kitty#handle(request) abort
   endif
 
   let kitty = 'kitty @ launch --copy-env --keep-focus --title='.shellescape(a:request.title).' '.'--cwd='.shellescape(a:request.directory)
-
   if a:request.action ==# 'start'
     let kitty .= ' --type=tab --tab-title='.shellescape(a:request.title)
   endif

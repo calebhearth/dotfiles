@@ -10,9 +10,9 @@
 # pgraph
 # pgraph query
 # pgraph query filename
-query=$1
-name=${2:-"web-of-trust"}
-gpg --list-sigs $query | sig2dot > "${name}.dot"
+query="$1"
+name="${2:-"web-of-trust"}"
+gpg --list-sigs "$query" | sig2dot > "${name}.dot"
 neato -Tps "${name}.dot" > "${name}.ps"
 convert "${name}.ps" "${name}.jpg"
 open "${name}.jpg"

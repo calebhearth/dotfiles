@@ -1,7 +1,7 @@
 #!/bin/sh
 
-for f in $(git ls-files | grep \/ | grep -v Brewfile); do
+for f in $(git ls-files | grep / | grep -v Brewfile | grep -v "^bin/"); do
   # Quick and dirty - if the file is a symlink or it's contained directly within
   # a symlinked directory, it's probably set up. Print its name otherwise.
-	[ -h "$HOME/${f#*/}" ] || [ -h $(dirname "$HOME/${f#*/}") ] || echo $f
+	[ -h "$HOME/${f#*/}" ] || [ -h "$(dirname "$HOME/${f#*/}")" ] || echo "$f"
 done

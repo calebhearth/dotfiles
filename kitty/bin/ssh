@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 if [[ $- == *i* ]] && [ -n "$KITTY_PID" ] && command -v kitty 2>&1 > /dev/null; then
-	PATH=${PATH/~\/bin:} kitty +kitten ssh $*
+	PATH="${PATH/~\/bin:}" kitty +kitten ssh "$@"
 else
-  PATH=${PATH/~\/bin:} ssh $*
+  PATH="${PATH/~\/bin:}" ssh "$@"
 fi

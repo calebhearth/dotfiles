@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 _dot_opts() {
 	font="Input Mono"
@@ -42,7 +42,7 @@ _dot_opts() {
 		-Nshape=rect \
 		-Nstyle=rounded \
 		-Nmargin=.25 \
-		$*
+		"$@"
 }
 
-_dot_opts $*
+_dot_opts "$@"

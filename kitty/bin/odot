@@ -1,6 +1,6 @@
 #!/bin/sh
 
-_dot_opts $* -Tsvg \
+_dot_opts "$@" -Tsvg \
 	| convert \
 		-trim \
 		-bordercolor black \

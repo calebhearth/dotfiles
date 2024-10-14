@@ -1,6 +1,6 @@
 #!/bin/sh
 
-_dot_opts $* -Tpng \
+_dot_opts "$@" -Tpng \
 	| convert \
 		-trim \
 		-bordercolor black \

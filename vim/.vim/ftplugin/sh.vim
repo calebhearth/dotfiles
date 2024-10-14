@@ -1,1 +1,2 @@
 setlocal noexpandtab
+compiler shellcheck

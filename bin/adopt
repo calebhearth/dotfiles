@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-set -ex
+set -e
 
 package=$1
 file=$2

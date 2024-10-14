@@ -1,7 +1,7 @@
 #! /bin/bash
 
 if [ "$1" = "heroku" ]; then
-	$(brew --prefix)/bin/heroku "${@:2}"
+	"$(brew --prefix)"/bin/heroku "${@:2}"
 else
-	$(brew --prefix)/bin/heroku "$@"
+	"$(brew --prefix)"/bin/heroku "$@"
 fi
