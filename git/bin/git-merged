@@ -1,0 +1,7 @@
+#!/bin/sh
+
+mainBranch="$(git main)"
+for branch in $(git branch | grep -v "^\*" | grep -v "$mainBranch"); do
+  committerDateDay=$(git log -1 --pretty="format:%cs" "$branch")
+	git log "$mainBranch" --since="$committerDateDay" --format=%T | grep "$(git rev-parse "$branch:")" 1>/dev/null && echo "$branch"
+done | xargs

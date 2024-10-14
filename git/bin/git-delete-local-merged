@@ -1,0 +1,9 @@
+#!/bin/sh
+
+deleted="$(git branch --merged "$(git main)" | grep --invert-match '^\*' | xargs)"
+if [ -n "$deleted" ]; then
+	# shellcheck disable=SC2086
+	git branch --delete $deleted
+else
+	echo "No branches to delete"
+fi

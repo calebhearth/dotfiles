@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+func color() {
+  git config get --type=color "color.$1"
+}
+
+FORMAT=\
+"$(color branch.current)%(refname:short)%(color:reset)
+%(color:blue)%(authordate:short)
+%(color:green)%(authordate:relative)
+%(color:cyan)%(authorname:mailmap)
+%(color:reset)%(if)%(upstream)%(then)\
+  %(if)%(upstream:track)%(then)\
+    %(upstream:track)\
+  %(else) 􀆀
+  %(end)\
+%(else)%(color:red)Unpushed\
+%(end)"
+FORMAT=$(echo $FORMAT | tr -d ' ')
+git for-each-ref \
+  --color=always \
+  --sort=-committerdate \
+  --format="${FORMAT//$'\n'/|}" \
+  refs/heads | column -s"|" -t

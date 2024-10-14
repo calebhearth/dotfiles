@@ -1,15 +1,18 @@
+[advice]
+  mergeConflict = false
+
 [alias]
   amend = commit --amend --reuse-message=HEAD
-  branches = !git for-each-ref --color=always --sort=-committerdate --format=\"%(color:green)%(authordate:short)|%(color:blue)%(authordate:relative)|%(color:red)%(authorname)|%(color:white)%(color:bold)%(refname:short)\" refs/heads | column -s\"|\" -t
+  ; branches = !git for-each-ref --color=always --sort=-committerdate --format=\"%(color:red)%(refname:short)|%(color:blue)%(authordate:short)|%(color:green)%(authordate:relative)|%(color:cyan)%(authorname)|%(color:reset)%(upstream:track)\" refs/heads | column -s\"|\" -t
   co = checkout
   cob = !git branch | cut -c 3- | selecta | xargs git checkout
   current = branch --show-current
-  delete-local-merged = !git branch --delete $(git branch --merged | grep --invert-match '^*' | tr --delete '\n')
   difftree = !git diff --stat=1000 $(git main) | sed -e '$ d' | cut -d ' ' -f 2 | ftree
   fixup = commit --fixup=HEAD --all --no-gpg-sign
   force = push --force-with-lease
-  graph = log --graph --decorate --date-order --all --pretty=graph
+  graph = log --graph --date-order --all --pretty=graph
   in-repo = !git rev-parse --git-dir > /dev/null 2>&1
+  log = log --show-notes-by-default
   main = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
   news = log --pretty=news $(git describe --tags --abbrev=0)...
   promote = push --set-upstream
@@ -17,6 +20,15 @@
 
 [apply]
   whitespace = fix
+
+[blame]
+  blankBoundary = true
+  coloring=highlightRecent
+  date = local
+  ignoreRevsFile = .git-blame-ignore-revs
+  markIgnoredLines = true
+  markUnblamableLines = true
+  showRoot = true
 
 [branch]
   sort = -committerdate
@@ -29,14 +41,28 @@
   ui = auto
 
 [color "branch"]
-  current = green reverse
-  local = green
+  current = "#d29922 #282119 bold"
+  local = "#4493f8"
   plain = blue
-  remote = yellow
+  remote = "#d29922"
+
+[color "decorate"]
+  HEAD = "#c94241"
+  branch = "#4493f8"
+  remoteBranch = "#d29922"
+  stash = "#c94241"
+  tag = magenta
 
 [color "diff"]
   ; new = "#c9d1d9 #1C2E4A bold"
+  ; newMovedAlternative = "#c9d1d9"
+  ; newMovedAlternativeDimmed = "#c9d1d9"
+  ; newMovedDimmed = "#c9d1d9 bold"
   ; old = "#c9d1d9 #d47616 bold"
+  ; oldMovedAlternative = normal
+  ; oldMovedAlternativeDimmed = normal dim
+  ; oldMovedDimmed = normal dim
+  commit = yellow dim
   context = "#c9d1d9"
   frag = cyan dim
   func = magenta bold
@@ -46,11 +72,11 @@
   whitespace = red
 
 [color "status"]
-  added = "#4493f8"
-  changed = "#d29922"
+  added = "#d29922"
+  changed = "#4493f8"
   header = "#8d96a0"
-  localBranch = "#d29922 #282119 bold"
-  remoteBranch = "#4493f8 #131D2E bold"
+  localBranch = "#4493f8 #131D2E bold"
+  remoteBranch = "#d29922 #282119 bold"
   untracked = "#8d96a0 bold"
 
 [column]
@@ -69,9 +95,12 @@
   whitespace = blank-at-eol,trailing-space,tabwidth=3
 
 [diff]
-  algorithm = histogram
-  colorMoved = dimmed-zebra
-  compactionHeuristic = true
+  ; algorithm = histogram
+  ; colorMoved = dimmed-zebra
+  ; colorMovedWS = allow-indentation-change
+  ; compactionHeuristic = true
+  ; mnemonicPrefix = true
+  ; wsErrorHighlight = old,new
 
 [diff "rspec"]
   xfuncname = "^[ \t]*((RSpec|describe|context|it|before|after|around|feature|scenario)[ \t].*)$"
@@ -110,19 +139,27 @@
   batch = true
 
 [log]
+  abbrevCommit = true
   date = human-local
+  decorate = auto
+  excludeDecoration = "refs/remotes/origin/HEAD"
   follow = true
-  mailmap = true
   graphColors = "#626262", "#005f00", "#5f00d7", "#af0000", "#5faf87", "#d75f00", "#af0087", "#00afd7"
+  mailmap = true
 
 [merge]
   autostash = true
   conflictstyle = zdiff3
   ff = only
   stat = true
+  tool = nvimdiff
+
+[mergetool]
+  keepBackup = false
+  prompt = false
 
 [pretty]
-  graph = %C(auto)%d %s %C(reset)%C(green)%ad%C(reset) %C(reset)%C(red)%h%C(reset) %C(reset)%C(bold cyan)%aN %C(blue)%G?%C(reset)
+  graph = %C(auto)%d %s %C(reset green dim)%ad %C(auto)%h %C(bold cyan)%aN %C(reset blue)%G?
   news = * %s %h%n%n  *%aN*
   update = graph
 
@@ -145,7 +182,7 @@
   denyCurrentBranch = ignore
 
 [rerere]
-  enabled = 1
+  enabled = true
 
 [sendemail]
   aliasesfile = ~/.mutt/aliases
@@ -159,8 +196,8 @@
   suppresscc = self
 
 [status]
-  branch = 1
-  short = 1
+  branch = true
+  short = true
   showUntrackedFiles = all
 
 [tag]
@@ -173,8 +210,9 @@
 
 [include]
   ; path = ~/.gitconfig.d/delta
-  path = ~/.gitconfig.d/difftastic
+  ; path = ~/.gitconfig.d/difftastic
   path = ~/.gitconfig.d/gh
+  ; path = ~/.gitconfig.d/diff-highlight
 
 [includeIf "hasconfig:remote.*.url:*gitlab.av:*/**"]
   path = ~/.gitconfig.d/files_com
