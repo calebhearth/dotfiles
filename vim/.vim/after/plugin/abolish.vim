@@ -4,3 +4,4 @@ if !exists(':Abolish')
 endif
 
 Abolish teh the
+Abolish irb pry
