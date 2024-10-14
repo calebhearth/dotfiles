@@ -49,14 +49,14 @@ style = "red"
 
 [git_status]
 ahead = " [􀾕 ](green)"
-behind = " [􀾔 ](green)"
+behind = " [􀾔 ](red)"
 conflicted = "[􀄐 ](red)"
 deleted = '[􀈑 ](red)'
 diverged = '[􁅥 ](red)'
 format = '$all_status $ahead_behind\)'
 modified = '[􀋾 ](red)'
 renamed = "[􁁀 ](blue)"
-staged = '[􀈧 ](green)'
+staged = '[􀈧 ](blue)'
 stashed = '[􀈄 ](blue)'
 untracked = '[􀣗 ](red)'
 up_to_date = "􀆀 "
@@ -64,4 +64,5 @@ up_to_date = "􀆀 "
 [palettes.blueorange]
 red = '#d29922'
 green = '#4493f8'
-blue = '#d2a8ff'
+# blue = '#c94241'
+blue = '#8d96a0'
