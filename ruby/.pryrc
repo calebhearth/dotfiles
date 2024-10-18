@@ -1,29 +1,5 @@
 #!/usr/bin/ruby
 
-class String
-  def levenshtein(other)
-    matrix = [(0..length).to_a]
-    (1..other.length).each do |j|
-      matrix << [j] + [0] * (length)
-    end
-
-    (1..other.length).each do |i|
-      (1..length).each do |j|
-        if self[j - 1] == other[i - 1]
-          matrix[i][j] = matrix[i - 1][j - 1]
-        else
-          matrix[i][j] = [
-            matrix[i - 1][j],
-            matrix[i][j - 1],
-            matrix[i - 1][j - 1],
-          ].min + 1
-        end
-      end
-    end
-    matrix.last.last
-  end
-end
-
 Pry.config.prompt_name = begin
   app = ENV["APP_NAME"]
   if defined?(Rails)
@@ -43,7 +19,8 @@ end
 
 Pry::Prompt.add(:pry_and_branch, "", ["❯", "∙"]) do |context, nesting, pry_instance, separator|
   [
-    pry_instance.config.prompt_name,
+    "􁇵 ",
+   pry_instance.config.prompt_name,
     ("/#{context.to_s}" unless context.nil? || context.to_s == "main"),
     ("/#{ pry_instance.binding_stack.map { |b| Pry.view_clip(format(
       "%<class>s#%<method>s:%<line>s",
