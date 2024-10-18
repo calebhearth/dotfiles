@@ -54,21 +54,21 @@
   tag = magenta
 
 [color "diff"]
-  ; new = "#c9d1d9 #1C2E4A bold"
-  ; newMovedAlternative = "#c9d1d9"
-  ; newMovedAlternativeDimmed = "#c9d1d9"
-  ; newMovedDimmed = "#c9d1d9 bold"
-  ; old = "#c9d1d9 #d47616 bold"
-  ; oldMovedAlternative = normal
-  ; oldMovedAlternativeDimmed = normal dim
-  ; oldMovedDimmed = normal dim
   commit = yellow dim
   context = "#c9d1d9"
   frag = cyan dim
   func = magenta bold
   meta = yellow bold
-  new = "#c9d1d9 #273C5B bold"
-  old = "#c9d1d9 #463023 bold"
+  new = "#c9d1d9 #273C5B bold" ; hsl(216, 40, 25.5)
+  newMoved = "#c9d1d9 #2f3e53" ; hsl(216, 26, 25.5)
+  newMovedAlternative = "#c9d1d9 #2f4c53" ; hsl(191, 27.7, 25.5)
+  newMovedAlternativeDimmed = "#c9d1d9 #38474a" ; hsl(191, 13.3, 25.5)
+  newMovedDimmed = "#c9d1d9 #383f4a" ; hsl(216, 13.3, 25.5)
+  old = "#c9d1d9 #463023 bold" ; hsl(22, 33.3, 20.6)
+  oldMoved = "#c9d1d9 #403129" ; hsl(22, 22.2, 20.6)
+  oldMovedAlternative = "#c9d1d9 #403b29" ; hsl(47, 22.2, 20.6)
+  oldMovedAlternativeDimmed = "#c9d1d9 #3a382f" ; hsl(47, 11.1, 20.6)
+  oldMovedDimmed = "#c9d1d9 #3a332f" ; hsl(22, 11.1, 20.6)
   whitespace = red
 
 [color "status"]
@@ -95,12 +95,12 @@
   whitespace = blank-at-eol,trailing-space,tabwidth=3
 
 [diff]
-  ; algorithm = histogram
-  ; colorMoved = dimmed-zebra
-  ; colorMovedWS = allow-indentation-change
-  ; compactionHeuristic = true
-  ; mnemonicPrefix = true
-  ; wsErrorHighlight = old,new
+  algorithm = histogram
+  colorMoved = dimmed-zebra
+  colorMovedWS = allow-indentation-change
+  compactionHeuristic = true
+  mnemonicPrefix = true
+  wsErrorHighlight = old,new
 
 [diff "rspec"]
   xfuncname = "^[ \t]*((RSpec|describe|context|it|before|after|around|feature|scenario)[ \t].*)$"
