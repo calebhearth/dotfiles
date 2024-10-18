@@ -168,10 +168,11 @@
   rebase = merges
 
 [push]
-  ; gpgSign = if-asked
   autoSetupRemote = true
-  default = current
-  default = tracking
+  default = upstream
+  followTags = true
+  gpgSign = if-asked
+  useForceIfIncludes
 
 [rebase]
   autosquash = true
