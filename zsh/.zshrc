@@ -50,9 +50,9 @@ function ha() {
 
 # initialize autocomplete here, otherwise functions won't be loaded
 fpath=(~/.local/share/zsh/site-functions $fpath)
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 
-autoload edit-command-line
+autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey "^X" edit-command-line
 
