@@ -1,7 +1,3 @@
-[color "diff"]
-  new = "#c9d1d9 #15233A bold"
-  old = "#c9d1d9 #282119 bold"
-
 [color "diff-highlight"]
   oldNormal = "#c9d1d9 #282119"
   ; oldHighlight = "#d29922 #463023 bold"
