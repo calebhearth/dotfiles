@@ -25,7 +25,7 @@
   blankBoundary = true
   coloring=highlightRecent
   date = local
-  ignoreRevsFile = .git-blame-ignore-revs
+  ; ignoreRevsFile = .git-blame-ignore-revs
   markIgnoredLines = true
   markUnblamableLines = true
   showRoot = true
