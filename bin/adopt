@@ -20,12 +20,17 @@ case $(file --brief --no-dereference "$package") in
     ;;
 esac
 
+if [ -L "$file" ]; then
+  echo "$file is already a symlink. Aborting."
+  exit 1
+fi
+
 target="$package"/"${file#$HOME/}"
 
-if [ -f "$target" ]; then
+if [ -f "$target" ] && !git ls-files --error-unmatch "$target"; then
   echo "$target exists but is untracked. Aborting."
   exit 1
-elif [ -f "$target" ] && git diff --quiet "$target"; then
+elif [ -f "$target" ] && !git diff --quiet "$target"; then
   echo "$target exists and has uncommitted changes. Aborting."
   exit 1
 fi
