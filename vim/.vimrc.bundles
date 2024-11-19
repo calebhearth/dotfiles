@@ -50,7 +50,7 @@ let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
 let g:rubycomplete_use_bundler = 1
 Plug 'tpope/vim-rails'
-Plug 'rking/vim-detailed'
+Plug 'calebhearth/vim-detailed'
 Plug 'tpope/vim-rake'
 Plug 'christoomey/vim-rfactory', { 'for': 'ruby' }
 Plug 'joker1007/vim-ruby-heredoc-syntax', { 'for': 'ruby' }
