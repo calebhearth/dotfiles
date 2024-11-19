@@ -1,5 +1,5 @@
-\set PROMPT1 '⛁ %/ %R❯ '
-\set PROMPT2 '⛁ %/ %R❯ '
+\set PROMPT1 '􀡓  %/ %R ❯ '
+\set PROMPT2 '􀡓  %/ %R ∙ '
 \set HISTFILE ~/.local/share/psql/:DBNAME
 \set ON_ERROR_ROLLB ACK interactive
 \set COMP_KEYWORD_CASE upper
