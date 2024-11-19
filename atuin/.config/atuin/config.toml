@@ -162,20 +162,29 @@ enter_accept = true
 
 [stats]
 common_subcommands = [
+  "apt",
   "bundle",
   "cargo",
   "composer",
+  "dnf",
   "docker",
   "docker-compose",
   "git",
   "go",
   "heroku",
+  "ip",
   "kubectl",
+  "nix",
+  "nmcli",
   "npm",
+  "pecl",
   "pnpm",
-  "tmux",
+  "podman",
+  "port",
   "rails",
   "rake",
+  "systemctl",
+  "tmux",
   "yarn",
 ]
 
