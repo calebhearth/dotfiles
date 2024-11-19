@@ -1,0 +1,170 @@
+From 6f1b2a428fa9caa967535b2a862139f0b80964e2 Mon Sep 17 00:00:00 2001
+From: Caleb Hearth <caleb.hearth@files.com>
+Date: Fri, 16 Aug 2024 10:12:30 -0600
+Subject: [PATCH] test vim errormessage formats
+
+I'd really like something like:
+
+    ||   #<RemoteServerClient (class)> received :for_mount with unexpected arguments
+    ||     expected: (<FolderBehavior id:1>, {:point_in_time=>Fri, 01 Jan 2021 00:00:00.000000000 +0000})
+    ||          got: (#<FolderBehavior::RemoteServerMount(<FolderBehavior id:1>)>, {:point_in_time=>Fri, 01 Jan 2021 00:00:00.000000000 +0000})
+    ||   Diff:
+    ||   @@ -1 +1 @@
+    ||   -[<FolderBehavior id:1>,
+    ||   +[#<FolderBehavior::RemoteServerMount(<FolderBehavior id:1>)>,
+    ||
+    ||    Please stub a default value first if message might be received with other args as well.
+    ./app/models/folder_behavior/remote_server_mount.rb|41 error| RemoteServerClient.for_mount(self, **options)
+    ./spec/api/folders_spec.rb|91 error| Api Folders GET /folders with page point_in_time lists folders on an RSM at a point_in_time
+---
+ error.txt  | 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ fake-error | 51 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ vimtest    | 17 +++++++++++++++++
+ 3 files changed, 122 insertions(+)
+ create mode 100644 error.txt
+ create mode 100644 fake-error
+ create mode 100644 vimtest
+
+diff --git a/error.txt b/error.txt
+new file mode 100644
+index 000000000..77ae85473
+--- /dev/null
++++ b/error.txt
+@@ -0,0 +1,54 @@
++Run options: include {:locations=>{"./spec/api/folders_spec.rb"=>[96]}}
++F
++
++Failures:
++
++  1) Api Folders GET /folders with page point_in_time lists folders on an RSM at a point_in_time
++     Failure/Error: RemoteServerClient.for_mount(self, **options)
++
++       #<RemoteServerClient (class)> received :for_mount with unexpected arguments
++         expected: (<FolderBehavior id:1>, {:point_in_time=>Fri, 01 Jan 2021 00:00:00.000000000 +0000})
++              got: (#<FolderBehavior::RemoteServerMount(<FolderBehavior id:1>)>, {:point_in_time=>Fri, 01 Jan 2021 00:00:00.000000000 +0000})
++       Diff:
++       @@ -1 +1 @@
++       -[<FolderBehavior id:1>,
++       +[#<FolderBehavior::RemoteServerMount(<FolderBehavior id:1>)>,
++
++        Please stub a default value first if message might be received with other args as well. 
++     # ./app/models/folder_behavior/remote_server_mount.rb:41:in `remote_server_client'
++     # ./app/models/remote_folder.rb:228:in `remote_server_client'
++     # ./app/models/remote_folder/list.rb:4:in `remote_server_client'
++     # ./app/models/remote_folder/list.rb:104:in `block in remote_file_data'
++     # ./lib/debounced_cache.rb:12:in `block in fetch'
++     # ./lib/debounced_cache.rb:7:in `fetch'
++     # ./app/models/remote_folder/list.rb:84:in `remote_file_data'
++     # ./app/models/remote_folder/list.rb:74:in `objects'
++     # ./app/models/remote_folder/list.rb:55:in `filtered_objects'
++     # ./app/models/remote_folder/list.rb:124:in `remote_objects'
++     # ./app/models/remote_folder/list.rb:138:in `results'
++     # ./app/models/remote_folder.rb:154:in `list'
++     # ./app/api/controllers/folders_controller.rb:154:in `folder_records'
++     # ./app/api/controllers/folders_controller.rb:69:in `block (2 levels) in <class:FoldersController>'
++     # ./app/api/lib/operation.rb:1297:in `instance_eval'
++     # ./app/api/lib/operation.rb:1297:in `block (4 levels) in run'
++     # ./app/api/middlewares/consolidated_middleware.rb:228:in `block (5 levels) in call'
++     # ./lib/active_record_sharding.rb:46:in `use_database_shard'
++     # ./app/api/middlewares/consolidated_middleware.rb:227:in `block (4 levels) in call'
++     # ./app/api/middlewares/consolidated_middleware.rb:206:in `block (3 levels) in call'
++     # ./app/api/middlewares/consolidated_middleware.rb:205:in `block (2 levels) in call'
++     # ./app/models/puma_request.rb:97:in `track_active'
++     # ./app/api/middlewares/consolidated_middleware.rb:204:in `block in call'
++     # ./config/initializers/active_record.rb:22:in `block in with_role'
++     # ./config/initializers/active_record.rb:21:in `with_role'
++     # ./app/api/middlewares/consolidated_middleware.rb:90:in `call'
++     # ./spec/api/folders_spec.rb:102:in `block (5 levels) in <top (required)>'
++     # ./spec/spec_helper.rb:152:in `block (2 levels) in <top (required)>'
++
++Finished in 5.62 seconds (files took 26.93 seconds to load)
++1 example, 1 failure
++
++Failed examples:
++
++rspec ./spec/api/folders_spec.rb:91 # Api Folders GET /folders with page point_in_time lists folders on an RSM at a point_in_time
++
++Coverage report generated for RSpec to /Users/caleb/code/files-rails/coverage. 18114 / 67221 LOC (26.95%) covered.
+diff --git a/fake-error b/fake-error
+new file mode 100644
+index 000000000..ffb46aeab
+--- /dev/null
++++ b/fake-error
+@@ -0,0 +1,51 @@
++Run options: include {:locations=>{"./spec/functional/sftp/auth_spec.rb"=>[91]}}
++2024-08-01 18:06:10 +0000 Thin web server (v1.8.2 codename Ruby Razor)
++2024-08-01 18:06:10 +0000 Maximum connections set to 1024
++2024-08-01 18:06:10 +0000 Listening on 127.0.0.1:6000, CTRL+C to stop
++
++SFTP Auth
++
++From: /Users/caleb/code/files-protocol-server/spec/functional/sftp/auth_spec.rb @ line 94 :
++
++    89:     session = nil
++    90:     expect {
++    91:       begin
++    92:         session = Net::SSH.start(ftp_host, "root", password: "password", port: sftp_port, auth_methods: [ "password" ])
++    93:         rescue Net::SSH::AuthenticationFailed => e
++ => 94:           binding.irb
++    95:           raise
++    96:       end
++    97:     }.to raise_exception(Net::SSH::AuthenticationFailed, "hi")
++    98: 
++    99:     sftp_login = Net::SFTP::Session.new(session, nil)
++
++
++  blacklist user auth fails without hitting the api (FAILED - 1)
++
++Failures:
++
++  1) SFTP Auth blacklist user auth fails without hitting the api
++     Failure/Error:
++       expect {
++         begin
++           session = Net::SSH.start(ftp_host, "root", password: "password", port: sftp_port, auth_methods: [ "password" ])
++           rescue Net::SSH::AuthenticationFailed => e
++             binding.irb
++             raise
++         end
++       }.to raise_exception(Net::SSH::AuthenticationFailed, "hi")
++
++       expected Net::SSH::AuthenticationFailed with "hi", got #<Net::SSH::AuthenticationFailed: Authentication failed for user root@127.0.0.1> with backtrace:
++         # ./spec/functional/sftp/auth_spec.rb:92:in `block (3 levels) in <top (required)>'
++         # ./spec/functional/sftp/auth_spec.rb:90:in `block (2 levels) in <top (required)>'
++     # ./spec/functional/sftp/auth_spec.rb:90:in `block (2 levels) in <top (required)>'
++
++Finished in 11.77 seconds (files took 0.54197 seconds to load)
++1 example, 1 failure
++
++Failed examples:
++
++rspec ./spec/functional/sftp/auth_spec.rb:86 # SFTP Auth blacklist user auth fails without hitting the api
++
++[?25l[1G[K[1G[0mirb(#<RSpec::ExampleGroups::SFTPA...):001> [0m[?12h[?25h[44G[1G[Kirb(#<RSpec::ExampleGroups::SFTPA...):001> 
++[1G
+diff --git a/vimtest b/vimtest
+new file mode 100644
+index 000000000..eaf1ce8d8
+--- /dev/null
++++ b/vimtest
+@@ -0,0 +1,17 @@
++" vim:ft=vim
++"
++let s:cpo_save = &cpo
++set cpo-=C
++
++set errorformat=
++    \%f:%l:\ %tarning:\ %m,
++    \%E%.%#:in\ `load':\ %f:%l:%m,
++    \%E%f:%l:in\ `%*[^']':\ %m,
++    \%-Z\ \ \ \ \ %\\+\#\ %f:%l:%.%#,
++    \%E\ \ \ \ \ Failure/Error:\ %m,
++    \%E\ \ \ \ \ Failure/Error:,
++    \%-C\ \ \ \ \ %m,
++    \%-C%\\s%#
++let &cpo = s:cpo_save
++unlet s:cpo_save
++cgetfile error.txt
+-- 
+2.46.0
+
