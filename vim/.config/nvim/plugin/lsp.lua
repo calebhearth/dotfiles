@@ -24,5 +24,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client.supports_method('textDocument/rangeFormatting') then
       vim.bo[args.buf].formatexpr = 'v:lua.vim.lsp.formatexpr()'
     end
+    -- if client.supports_method('textDocument/diagnostics') then
+    --   vim.keymap.set("n", "[d", vim.lsp.diagnostic.goto_prev, {
+    --     buffer = 0,
+    --     desc = 'vim.lsp.diagnostic.goto_prev()'
+    --   })
+
+    --   vim.keymap.set("n", "]d", vim.lsp.diagnostic.goto_next, {
+    --     buffer = 0,
+    --     desc = 'vim.lsp.diagnostic.goto_next()'
+    --   })
+    -- end
   end,
 })
