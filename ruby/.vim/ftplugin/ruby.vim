@@ -23,3 +23,16 @@ let ruby_space_errors = 1
 let ruby_line_continuation_error = 1
 let ruby_global_variable_error   = 1
 let ruby_spellcheck_strings = 1
+
+let g:splitjoin_trailing_comma = 1
+let g:splitjoin_mapping_fallback = 0
+let g:splitjoin_curly_brace_padding = 1
+let g:splitjoin_ruby_curly_braces = 0
+let g:splitjoin_ruby_trailing_comma = 1
+let splitjoin_ruby_hanging_args = 0
+let g:splitjoin_ruby_options_as_arguments = 1
+let g:splitjoin_html_attributes_bracket_on_new_line = 1
+let g:splitjoin_java_argument_split_first_newline = 1
+let g:splitjoin_java_argument_split_last_newline  = 1
+let g:splitjoin_c_argument_split_first_newline = 1
+let g:splitjoin_c_argument_split_last_newline  = 1

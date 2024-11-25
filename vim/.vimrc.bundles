@@ -24,6 +24,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'pbrisbin/vim-rename-file'
 Plug 'vim-scripts/SyntaxComplete'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " General Programming
 Plug 'tpope/vim-dotenv'
@@ -78,7 +79,7 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter-context'
 endif
 
-Plug 'stefanoverna/vim-i18n'
+" Plug 'stefanoverna/vim-i18n'
 Plug 'vim-test/vim-test'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
 
