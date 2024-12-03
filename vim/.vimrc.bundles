@@ -31,6 +31,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'pbrisbin/vim-rename-file'
 Plug 'vim-scripts/SyntaxComplete'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'luochen1990/rainbow'
+Plug 'rhysd/conflict-marker.vim'
 
 " General Programming
 Plug 'tpope/vim-dotenv'
@@ -87,5 +89,7 @@ endif
 " Plug 'stefanoverna/vim-i18n', { 'for': 'ruby' }
 Plug 'vim-test/vim-test'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
+
+Plug 'mfussenegger/nvim-jdtls'
 
 call plug#end()

@@ -44,15 +44,15 @@
   ui = auto
 
 [color "branch"]
-  current = "#d29922 #282119 bold"
+  current = "#db9500 #282119 bold"
   local = "#4493f8"
   plain = blue
-  remote = "#d29922"
+  remote = "#db9500"
 
 [color "decorate"]
   HEAD = "#c94241"
   branch = "#4493f8"
-  remoteBranch = "#d29922"
+  remoteBranch = "#db9500"
   stash = "#c94241"
   tag = magenta
 
@@ -63,7 +63,7 @@
   func = magenta bold
   meta = yellow bold
   new = "#c9d1d9 #273C5B bold" ; hsl(216, 40, 25.5)
-  newMoved = "#c9d1d9 #15233A"
+  newMoved = "#c9d1d9 #182335"
   newMovedAlternative = "#c9d1d9 #2f3e53"
   newMovedAlternativeDimmed = "#c9d1d9 #38474a" ; hsl(191, 13.3, 25.5)
   newMovedDimmed = "#c9d1d9 #383f4a" ; hsl(216, 13.3, 25.5)
@@ -78,7 +78,7 @@
   added = "#d29922"
   changed = "#4493f8"
   header = "#8d96a0"
-  localBranch = "#4493f8 #131D2E bold"
+  localBranch = "#4493f8 #15233A bold"
   remoteBranch = "#d29922 #282119 bold"
   untracked = "#8d96a0 bold"
 
