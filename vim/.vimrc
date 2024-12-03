@@ -148,16 +148,6 @@ endif
 
 highlight CursorLine cterm=underline gui=underline guibg=NONE ctermbg=NONE
 set termguicolors
-let g:rainbow_guifgs = [
-      \ '#626262',
-      \ '#005f00',
-      \ '#5f00d7',
-      \ '#af0000',
-      \ '#5faf87',
-      \ '#d75f00',
-      \ '#af0087',
-      \ '#00afd7',
-      \ ]
 
 set completeopt=menu,preview,longest
 
@@ -167,7 +157,7 @@ set completeopt=menu,preview,longest
 augroup RestoreCursor
   autocmd!
   autocmd BufRead * autocmd FileType <buffer> ++once
-    \ let s:line = line("`\"")
+    \ let s:line = line("'\"")
     \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
     \      && index(['xxd', 'gitrebase'], &filetype) == -1
     \ |   execute "normal! g`\""
@@ -205,6 +195,13 @@ nnoremap <Enter> :w<CR> :Dispatch<CR>
 autocmd BufWinEnter quickfix nnoremap <buffer> <Enter> <Enter>
 
 let g:dispatch_tmux_pipe_pane=1
+
+hi link @lsp.typemod.method.declaration detailedFunction
+hi link @lsp.type.property detailedInstanceVariable
+hi link javaStatement detailedControl
+hi link javaScopeDecl detailedAccess
+hi link @lsp.type.modifier detailedAccess
+hi link detailedInclude Include
 
 set confirm
 set exrc " enable per-directory .vimrc files

@@ -31,6 +31,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'pbrisbin/vim-rename-file'
 Plug 'vim-scripts/SyntaxComplete'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'luochen1990/rainbow'
+Plug 'rhysd/conflict-marker.vim'
 
 " General Programming
 Plug 'tpope/vim-dotenv'
