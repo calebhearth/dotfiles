@@ -25,6 +25,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'pbrisbin/vim-rename-file'
 Plug 'vim-scripts/SyntaxComplete'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'luochen1990/rainbow'
+Plug 'rhysd/conflict-marker.vim'
 
 " General Programming
 Plug 'tpope/vim-dotenv'
@@ -51,7 +53,7 @@ let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
 let g:rubycomplete_use_bundler = 1
 Plug 'tpope/vim-rails'
-Plug 'calebhearth/vim-detailed'
+Plug '~/code/vim-detailed'
 Plug 'tpope/vim-rake'
 Plug 'christoomey/vim-rfactory', { 'for': 'ruby' }
 Plug 'joker1007/vim-ruby-heredoc-syntax', { 'for': 'ruby' }
@@ -82,5 +84,7 @@ endif
 " Plug 'stefanoverna/vim-i18n'
 Plug 'vim-test/vim-test'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
+
+Plug 'mfussenegger/nvim-jdtls'
 
 call plug#end()

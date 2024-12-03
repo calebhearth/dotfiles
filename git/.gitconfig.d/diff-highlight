@@ -1,6 +1,6 @@
 [color "diff-highlight"]
   oldNormal = "#c9d1d9 #282119"
-  ; oldHighlight = "#d29922 #463023 bold"
+  ; oldHighlight = "#db9500 #463023 bold"
   oldHighlight = "#c9d1d9 #463023 bold"
   oldReset = "default"
   newNormal = "#c9d1d9 #15233A"
