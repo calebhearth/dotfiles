@@ -1,8 +1,8 @@
 :backtrace: true
 :concurrent_downloads: 12
 :sources:
-  - "https://nexus.av/repository/rubygems-group/"
-  - "https://rubygems.org"
+  - https://nexus.av/repository/rubygems-group/
+  - https://rubygems.org
 :verbose: true
 install: --document=ri --no-post-install-message
 update: --document=ri --no-post-install-message
