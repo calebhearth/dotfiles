@@ -157,6 +157,7 @@
 
 [merge]
   autostash = true
+  branchdesc = true
   conflictstyle = zdiff3
   ff = only
   stat = true
