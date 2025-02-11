@@ -39,7 +39,11 @@ unsetopt nomatch
 
 alias ag='echo "Use rg instead of ag"'
 function rg() {
-	command rg --smart-case --json "$@" | delta
+  if [[ "$-" == *i* ]]; then
+    command rg --smart-case --line-number --heading --color=always "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
+  else
+    command rg --smart-case "$@"
+  fi
 }
 function a() {
 	app=$1
