@@ -171,6 +171,9 @@
   keepBackup = false
   prompt = false
 
+[mergetool "nvimdiff"]
+  layout = "LOCAL,BASE,REMOTE / MERGED"
+
 [pretty]
   graph = %C(auto)%d %s %C(reset green dim)%ad %C(auto)%h %C(bold cyan)%aN %C(reset blue)%G?
   news = * %s %h%n%n  *%aN*
