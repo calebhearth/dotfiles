@@ -34,7 +34,7 @@ style = ""
 
 [custom.directory]
 format = '[$output]($style)'
-command = 'basename $(git rev-parse --show-toplevel 2>\/dev\/null) 2>/dev/null || print ${PWD//"$HOME"/\~caleb}'
+command = 'toplevel=$(git rev-parse --show-toplevel 2>\/dev\/null); [[ -n "$toplevel" ]] && basename "$toplevel" || print ${PWD//"$HOME"/\~caleb}'
 when = true
 style = "bold"
 

@@ -8,7 +8,7 @@
 set -e
 
 successfully() {
-	$* || (echo "failed" 1>&2 && exit 1)
+	$* || (echo "failed to $*" 1>&2 && exit 1)
 }
 
 branch=`git current`
@@ -26,7 +26,7 @@ fi
 successfully git fetch "$remote" "$parent"
 successfully git rebase --interactive --autosquash "$remote"/"$parent"
 git diff "$parent" --check || successfully git diff "$parent" --check
-successfully git push --force-with-lease --force-if-includes "$remote" "$branch"
+successfully git push --force-with-lease
 successfully git checkout "$parent" --
 successfully git merge "$branch" --ff-only
 successfully git push

@@ -54,7 +54,7 @@ Plug 'tpope/vim-rails'
 Plug 'calebhearth/vim-detailed'
 Plug 'tpope/vim-rake'
 Plug 'christoomey/vim-rfactory', { 'for': 'ruby' }
-Plug 'joker1007/vim-ruby-heredoc-syntax', { 'for': 'ruby' }
+" Plug 'joker1007/vim-ruby-heredoc-syntax', { 'for': 'ruby' }
 
 Plug 'fatih/vim-go', { 'for': 'go', 'on': 'GoInstallBinaries', 'do': ':GoInstallBinaries' }
 Plug 'toyamarinyon/vim-swift', { 'for': 'swift' }
@@ -79,7 +79,7 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter-context'
 endif
 
-" Plug 'stefanoverna/vim-i18n'
+" Plug 'stefanoverna/vim-i18n', { 'for': 'ruby' }
 Plug 'vim-test/vim-test'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
 

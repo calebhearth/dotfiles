@@ -45,6 +45,7 @@ function rg() {
     command rg --smart-case "$@"
   fi
 }
+
 function a() {
 	app=$1
 }

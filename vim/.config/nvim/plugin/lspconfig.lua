@@ -1,9 +1,6 @@
-require('lspconfig').sourcekit.setup{}
+require('lspconfig').clangd.setup{}
 
-require'lspconfig'.rubocop.setup{}
-require'lspconfig'.clangd.setup{}
-
-require'lspconfig'.ruby_lsp.setup {
+require('lspconfig').ruby_lsp.setup {
   -- init_options = {
   --   enabledFeatures = {
   --     semanticHighlighting = false,
@@ -17,4 +14,19 @@ require'lspconfig'.ruby_lsp.setup {
   --  client.server_capabilities.semanticTokensProvider = nil  -- turn off semantic tokens
   --end,
 }
+
+require('lspconfig').rubocop.setup{}
+
+require('lspconfig').sourcekit.setup{
+  capabilities = {
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = true,
+      },
+    },
+  },
+}
+
+require('lspconfig').ts_ls.setup{}
+
 require('lspconfig.ui.windows').default_options.border = 'rounded'
