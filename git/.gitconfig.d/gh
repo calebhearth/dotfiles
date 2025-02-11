@@ -1,2 +1,5 @@
+[alias]
+  pull-request = !gh pr create --fill-verbose --editor
+
 [gh]
   autoUpdate = always

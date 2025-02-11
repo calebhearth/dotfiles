@@ -15,7 +15,6 @@
   log = log --show-notes-by-default
   main = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
   news = log --pretty=news $(git describe --tags --abbrev=0)...
-  pull-request = !gh pr create --fill-verbose --editor
   ready = !git promote && hub pull-request
 
 [apply]
@@ -140,8 +139,8 @@
   sslverify = false
 
 [init]
-  ; templatedir = ~/.dotfiles/git/git_template
   defaultBranch = main
+  ; templatedir = ~/.dotfiles/git/git_template
 
 [lfs]
   batch = true
@@ -164,8 +163,8 @@
   tool = nvimdiff
 
 [merge "bundler"]
-  name = Gemfile.lock merge driver
   driver = bundler-merge %A %O %B
+  name = Gemfile.lock merge driver
 
 [mergetool]
   keepBackup = false
@@ -227,9 +226,9 @@
 
 [include]
   ; path = ~/.gitconfig.d/delta
+  path = ~/.gitconfig.d/diff-highlight
   ; path = ~/.gitconfig.d/difftastic
   path = ~/.gitconfig.d/gh
-  path = ~/.gitconfig.d/diff-highlight
 
 [includeIf "hasconfig:remote.*.url:*gitlab.av:*/**"]
   path = ~/.gitconfig.d/files_com
