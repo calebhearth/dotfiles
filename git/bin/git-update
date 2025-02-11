@@ -23,10 +23,11 @@ mainBranch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/or
 merged_branches=$(\
 	git branch --merged "$mainBranch" \
 	| grep --invert-match '^\*' \
+	| grep --invert-match "$mainBranch" \
 	| xargs
 )
 if [ -n "$merged_branches" ]; then
-	git branch --delete "$merged_branches"
+	git branch --delete $merged_branches
 fi
 
 git log --pretty=update --graph "$head_sha^..$remote_sha"
