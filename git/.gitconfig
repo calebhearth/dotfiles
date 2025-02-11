@@ -105,6 +105,9 @@
 [diff "rspec"]
   xfuncname = "^[ \t]*((RSpec|describe|context|it|before|after|around|feature|scenario)[ \t].*)$"
 
+[diff "swift"]
+  xfuncname = "^[ \t]*(@?\\w+[ \t]+)*((actor|init|class|enum|func|protocol|struct|var|let)[ \t]*([^:{]+).*)$"
+
 [diff "toml"]
   xfuncname = "^[ \t]*((\\[.*\\])|([^#].*))$"
 
@@ -176,7 +179,7 @@
   default = upstream
   followTags = true
   gpgSign = if-asked
-  useForceIfIncludes
+  useForceIfIncludes = true
 
 [rebase]
   autosquash = true
