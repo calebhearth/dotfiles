@@ -14,6 +14,11 @@ call plug#begin()
 Plug 'gmarik/vundle'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
+Plug 'rcarriga/nvim-notify'
+
+" Colors
+" Plug '~/code/vim-detailed'
+Plug 'dasupradyumna/midnight.nvim'
 
 " Colors
 " Plug 'calebhearth/vim-detailed'
@@ -33,16 +38,22 @@ Plug 'vim-scripts/SyntaxComplete'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'luochen1990/rainbow'
 Plug 'rhysd/conflict-marker.vim'
+Plug 'wsdjeg/vim-fetch' " Open filenames with colons to jump to line / column
 
 " General Programming
 Plug 'tpope/vim-dotenv'
 Plug 'tpope/vim-fugitive'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'tpope/vim-rhubarb'
 " Plug 'calebthompson/vim-whitewash'
 Plug 'jayferd/ragel.vim'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-commentary'
-Plug 'wsdjeg/vim-fetch' " Open filenames with colons to jump to line / column
+Plug 'folke/todo-comments.nvim'
+Plug 'RRethy/vim-illuminate'
+Plug 'sindrets/diffview.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'lewis6991/satellite.nvim'
 
 " Javascript
 " Plug 'leshill/vim-json'
