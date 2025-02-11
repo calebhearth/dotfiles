@@ -34,6 +34,9 @@
   autoSetupRebase = remote
   sort = -committerdate
 
+[checkout]
+  workers = 0
+
 [color]
   branch = auto
   diff = auto
