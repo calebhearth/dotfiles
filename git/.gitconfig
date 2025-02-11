@@ -104,6 +104,7 @@
   colorMovedWS = allow-indentation-change
   compactionHeuristic = true
   mnemonicPrefix = true
+  renames = copies
   wsErrorHighlight = old,new
 
 [diff "rspec"]
