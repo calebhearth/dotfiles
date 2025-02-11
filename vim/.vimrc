@@ -47,6 +47,7 @@ set tabpagemax=15               " only show 15 tabs
 set showmode                    " display the current mode
 set colorcolumn=81,101,121
 set cursorline                  " highlight current line
+set cursorlineopt=number
 set laststatus=2
 set backspace=indent,eol,start  " backspace for dummies
 set linespace=0                 " No extra spaces between rows
@@ -202,6 +203,12 @@ hi link javaStatement detailedControl
 hi link javaScopeDecl detailedAccess
 hi link @lsp.type.modifier detailedAccess
 hi link detailedInclude Include
+
+highlight GitNew guibg=#273C5B gui=bold
+highlight GitDeleted guibg=#463023 gui=bold
+highlight GitDirty guibg=#214610 gui=bold
+highlight GitSignsAdd guifg=#273C5B
+highlight GitSignsChange guifg=#463023
 
 set confirm
 set exrc " enable per-directory .vimrc files
