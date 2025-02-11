@@ -15,6 +15,7 @@
   log = log --show-notes-by-default
   main = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
   news = log --pretty=news $(git describe --tags --abbrev=0)...
+  pull-request = !gh pr create --fill-verbose --editor
   ready = !git promote && hub pull-request
 
 [apply]
