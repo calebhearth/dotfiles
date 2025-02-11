@@ -1,3 +1,6 @@
+[alias]
+  pull-request = "!glab mr create --assignee=caleb.hearth --fill --yes"
+
 [user]
   email = caleb.hearth@files.com
 
