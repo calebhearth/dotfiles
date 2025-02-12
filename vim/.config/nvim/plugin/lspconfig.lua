@@ -17,6 +17,8 @@ require('lspconfig').ruby_lsp.setup {
 
 require('lspconfig').rubocop.setup{}
 
+require('lspconfig').rust_analyzer.setup{}
+
 require('lspconfig').sourcekit.setup{
   capabilities = {
     workspace = {

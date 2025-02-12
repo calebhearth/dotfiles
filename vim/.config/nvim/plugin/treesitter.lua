@@ -18,6 +18,7 @@ require('nvim-treesitter.configs').setup {
     'lua',
     'python',
     'ruby',
+    'rust',
     'sql',
     'ssh_config',
     'swift',

@@ -1,0 +1,2 @@
+brew "rust-analyzer"
+brew "rustup"

@@ -1,0 +1,6 @@
+---
+BUNDLE_GEM__TEST: "minitest"
+BUNDLE_GEM__MIT: "true"
+BUNDLE_GEM__COC: "false"
+BUNDLE_FORCE_RUBY_PLATFORM: "true"
+BUNDLE_JOBS: "10"

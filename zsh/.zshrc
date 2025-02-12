@@ -20,7 +20,7 @@ if command -v brew 2>&1 > /dev/null; then
   fpath=($(brew --prefix)/share/zsh/site-functions ${fpath})
   export MANPATH="$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
-export PATH="$HOME/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
+export PATH="$HOME/bin:$HOME/.cargo/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
 
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000000
