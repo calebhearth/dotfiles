@@ -42,7 +42,7 @@ if has('persistent_undo')
 endif
 
 " Vim UI
-colorscheme detailed
+colorscheme midnight
 set tabpagemax=15               " only show 15 tabs
 set showmode                    " display the current mode
 set colorcolumn=81,101,121
