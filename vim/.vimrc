@@ -89,7 +89,6 @@ autocmd BufEnter * if &expandtab " Highlight problematic whitespace
 set tabstop=2                   " an indentation every two columns
 set softtabstop=2               " let backspace delete indent
 set nosmarttab                  " fuck tabs
-set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
 " Key (re)Mappings
 
