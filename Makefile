@@ -1,5 +1,5 @@
 SHELL = /usr/bin/env zsh
-included := atuin base direnv git heroku kitty rg ruby vim zsh
+included := atuin base direnv git heroku js kitty pg rg ruby rust ssh starship swift tmux vim zsh
 data_dir = $(shell echo $${XDG_DATA_HOME:-${HOME}/.local/share}/dotfiles)
 packages = $(data_dir)/packages
 brew_install = $(data_dir)/Brewfile.lock.json

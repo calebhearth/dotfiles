@@ -1,3 +1,4 @@
+brew "gem_home"
 brew "ruby"
 brew "direnv"
 brew "ruby-install"

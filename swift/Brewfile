@@ -1,3 +1,4 @@
+tap "getsentry/tools"
 brew "getsentry/tools/sentry-wizard"
 brew "swiftformat"
 brew "swiftlint"
