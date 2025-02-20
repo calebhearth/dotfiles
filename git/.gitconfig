@@ -59,8 +59,8 @@
 [color "diff"]
   commit = yellow dim
   context = "#c9d1d9"
-  frag = cyan dim
-  func = magenta bold
+  frag = white bold
+  func = "#c8b670"
   meta = yellow bold
   new = "#c9d1d9 #273C5B bold" ; hsl(216, 40, 25.5)
   newMoved = "#c9d1d9 #182335"
