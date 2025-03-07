@@ -1,7 +1,7 @@
 #!/bin/sh
 
 _dot_opts() {
-	font="Input Mono"
+	font="Operator Mono"
 
 	# Dark mode
 	# dot \
@@ -24,7 +24,7 @@ _dot_opts() {
 	#		$*
 
 	# light mode
-	dot \
+	/opt/homebrew/bin/dot \
 		-Ecolor=white \
 		-Efontcolor=white \
 		-Efontname="$font" \
