@@ -1,0 +1,296 @@
+bplist00Ô_startFeatureRequestYadmAssetsYafmAssets^featureRequestO	S{
+  "starts" : [
+    {
+      "triggerDate" : "2025-02-10T19:12:51Z",
+      "identifier" : "C7E153B9"
+    },
+    {
+      "identifier" : "20E2AF8A",
+      "triggerDate" : "2025-02-10T19:12:57Z"
+    },
+    {
+      "triggerDate" : "2025-02-10T19:12:57Z",
+      "identifier" : "976B5E28"
+    },
+    {
+      "triggerDate" : "2025-02-10T19:12:58Z",
+      "identifier" : "8EE3C9D6"
+    },
+    {
+      "triggerDate" : "2025-02-10T19:12:58Z",
+      "identifier" : "A0FEDF2C"
+    },
+    {
+      "identifier" : "9C3463E1",
+      "triggerDate" : "2025-02-10T19:12:58Z"
+    },
+    {
+      "triggerDate" : "2025-02-10T19:12:58Z",
+      "identifier" : "09152B3F"
+    },
+    {
+      "triggerDate" : "2025-02-10T19:12:58Z",
+      "identifier" : "F850833D"
+    },
+    {
+      "identifier" : "4E5D9319",
+      "triggerDate" : "2025-02-10T22:16:07Z"
+    },
+    {
+      "identifier" : "74994942",
+      "triggerDate" : "2025-02-10T23:01:45Z"
+    },
+    {
+      "identifier" : "9A1D0DDE",
+      "triggerDate" : "2025-02-10T23:25:29Z"
+    },
+    {
+      "triggerDate" : "2025-02-10T23:25:30Z",
+      "identifier" : "B844E2F1"
+    },
+    {
+      "identifier" : "6BE08E88",
+      "triggerDate" : "2025-02-10T23:25:52Z"
+    },
+    {
+      "identifier" : "FCDD49C7",
+      "triggerDate" : "2025-02-10T23:25:52Z"
+    },
+    {
+      "identifier" : "EBB3ABEE",
+      "triggerDate" : "2025-02-11T00:44:00Z"
+    },
+    {
+      "identifier" : "AE716C6B",
+      "triggerDate" : "2025-02-11T04:06:00Z"
+    },
+    {
+      "triggerDate" : "2025-02-11T17:06:37Z",
+      "identifier" : "A67BFD5F"
+    },
+    {
+      "identifier" : "598E140F",
+      "triggerDate" : "2025-02-12T21:14:38Z"
+    },
+    {
+      "triggerDate" : "2025-02-12T21:19:16Z",
+      "identifier" : "0357E10A"
+    },
+    {
+      "triggerDate" : "2025-02-12T21:31:06Z",
+      "identifier" : "0ED4B6B7"
+    },
+    {
+      "identifier" : "6879CCCD",
+      "triggerDate" : "2025-02-12T21:46:52Z"
+    },
+    {
+      "triggerDate" : "2025-02-12T21:53:24Z",
+      "identifier" : "51547D72"
+    },
+    {
+      "identifier" : "3B6B2A79",
+      "triggerDate" : "2025-02-13T21:53:45Z"
+    },
+    {
+      "triggerDate" : "2025-03-07T18:48:08Z",
+      "identifier" : "1BC7EC68"
+    },
+    {
+      "identifier" : "83DE46EE",
+      "triggerDate" : "2025-03-07T18:50:43Z"
+    },
+    {
+      "triggerDate" : "2025-03-10T14:41:18Z",
+      "identifier" : "04D95D77"
+    }
+  ]
+}O{
+  "trigger" : "FeatureRequestHandler.fetchAllFeatures",
+  "releaseReason" : "Prerequisite requirements (HW and\/or SW eligibility) not met.",
+  "downloadAction" : "release",
+  "hostProcess" : "iCloudNotificationAgent",
+  "bypassEnabled" : false,
+  "date" : "2025-03-10T14:41:34Z"
+}O{
+  "downloadAction" : "release",
+  "trigger" : "FeatureRequestHandler.fetchAllFeatures",
+  "hostProcess" : "iCloudNotificationAgent",
+  "releaseReason" : "Prerequisite requirements (HW and\/or SW eligibility) not met.",
+  "date" : "2025-03-10T14:41:33Z",
+  "bypassEnabled" : false
+}OL{
+  "events" : [
+    {
+      "features" : [
+        {
+          "featureID" : "mail.custom-domains.transfer",
+          "canUse" : false,
+          "ttl" : "2025-02-13T21:46:53Z"
+        },
+        {
+          "featureID" : "networking.privacy.subscriber",
+          "ttl" : "2025-02-13T21:46:53Z",
+          "canUse" : false
+        },
+        {
+          "ttl" : "2025-02-13T21:46:53Z",
+          "featureID" : "networking.privacy.attestation",
+          "canUse" : true
+        },
+        {
+          "canUse" : false,
+          "ttl" : "2025-02-13T21:46:53Z",
+          "featureID" : "mail.hide-my-email.create"
+        }
+      ],
+      "completionDate" : "2025-02-12T21:46:53Z",
+      "triggerDate" : "2025-02-12T21:46:52Z",
+      "request" : {
+        "httpStatusCode" : 200,
+        "capabilityHeaders" : {
+          "hardwareCapabilityHeader" : "",
+          "softwareCapabilityHeader" : "cloud.llm, ai.apps.image-playground, ai.paperkit.image-generation, ai.keyboard.emoji-generation"
+        }
+      },
+      "identifier" : "6879CCCD"
+    },
+    {
+      "features" : [
+        {
+          "canUse" : true,
+          "featureID" : "networking.privacy.attestation",
+          "ttl" : "2025-02-13T21:53:24Z"
+        },
+        {
+          "ttl" : "2025-02-13T21:53:24Z",
+          "featureID" : "mail.hide-my-email.create",
+          "canUse" : false
+        },
+        {
+          "canUse" : false,
+          "ttl" : "2025-02-13T21:53:24Z",
+          "featureID" : "mail.custom-domains.transfer"
+        },
+        {
+          "ttl" : "2025-02-13T21:53:24Z",
+          "featureID" : "networking.privacy.subscriber",
+          "canUse" : false
+        }
+      ],
+      "completionDate" : "2025-02-12T21:53:24Z",
+      "request" : {
+        "capabilityHeaders" : {
+          "hardwareCapabilityHeader" : "",
+          "softwareCapabilityHeader" : "cloud.llm, ai.apps.image-playground, ai.paperkit.image-generation, ai.keyboard.emoji-generation"
+        },
+        "httpStatusCode" : 200
+      },
+      "identifier" : "51547D72",
+      "triggerDate" : "2025-02-12T21:53:24Z"
+    },
+    {
+      "triggerDate" : "2025-02-13T21:53:45Z",
+      "request" : {
+        "httpStatusCode" : 200,
+        "capabilityHeaders" : {
+          "hardwareCapabilityHeader" : "",
+          "softwareCapabilityHeader" : "cloud.llm, ai.apps.image-playground, ai.paperkit.image-generation, ai.keyboard.emoji-generation"
+        }
+      },
+      "identifier" : "3B6B2A79",
+      "features" : [
+        {
+          "featureID" : "mail.hide-my-email.create",
+          "ttl" : "2025-02-14T21:53:54Z",
+          "canUse" : false
+        },
+        {
+          "canUse" : false,
+          "ttl" : "2025-02-14T21:53:54Z",
+          "featureID" : "mail.custom-domains.transfer"
+        },
+        {
+          "ttl" : "2025-02-14T21:53:54Z",
+          "featureID" : "networking.privacy.attestation",
+          "canUse" : true
+        },
+        {
+          "ttl" : "2025-02-14T21:53:54Z",
+          "featureID" : "networking.privacy.subscriber",
+          "canUse" : false
+        }
+      ],
+      "completionDate" : "2025-02-13T21:53:54Z"
+    },
+    {
+      "features" : [
+        {
+          "canUse" : true,
+          "featureID" : "networking.privacy.attestation",
+          "ttl" : "2025-03-08T18:51:24Z"
+        },
+        {
+          "canUse" : false,
+          "ttl" : "2025-03-08T18:51:24Z",
+          "featureID" : "networking.privacy.subscriber"
+        },
+        {
+          "canUse" : false,
+          "ttl" : "2025-03-08T18:51:24Z",
+          "featureID" : "mail.hide-my-email.create"
+        },
+        {
+          "featureID" : "mail.custom-domains.transfer",
+          "ttl" : "2025-03-08T18:51:24Z",
+          "canUse" : false
+        }
+      ],
+      "triggerDate" : "2025-03-07T18:50:43Z",
+      "request" : {
+        "httpStatusCode" : 200,
+        "capabilityHeaders" : {
+          "hardwareCapabilityHeader" : "",
+          "softwareCapabilityHeader" : "cloud.llm, ai.apps.image-playground, ai.paperkit.image-generation, ai.keyboard.emoji-generation"
+        }
+      },
+      "identifier" : "83DE46EE",
+      "completionDate" : "2025-03-07T18:51:24Z"
+    },
+    {
+      "triggerDate" : "2025-03-10T14:41:18Z",
+      "request" : {
+        "capabilityHeaders" : {
+          "softwareCapabilityHeader" : "cloud.llm, ai.apps.image-playground, ai.paperkit.image-generation, ai.keyboard.emoji-generation",
+          "hardwareCapabilityHeader" : ""
+        },
+        "httpStatusCode" : 200
+      },
+      "features" : [
+        {
+          "ttl" : "2025-03-11T14:41:33Z",
+          "canUse" : true,
+          "featureID" : "networking.privacy.attestation"
+        },
+        {
+          "canUse" : false,
+          "ttl" : "2025-03-11T14:41:33Z",
+          "featureID" : "mail.custom-domains.transfer"
+        },
+        {
+          "ttl" : "2025-03-11T14:41:33Z",
+          "featureID" : "networking.privacy.subscriber",
+          "canUse" : false
+        },
+        {
+          "featureID" : "mail.hide-my-email.create",
+          "canUse" : false,
+          "ttl" : "2025-03-11T14:41:33Z"
+        }
+      ],
+      "identifier" : "04D95D77",
+      "completionDate" : "2025-03-10T14:41:33Z"
+    }
+  ]
+}   ' 1 ; J	¡
+Àß             	               /
