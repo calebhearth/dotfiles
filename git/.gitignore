@@ -30,7 +30,8 @@ Session.vim
 /.powenv
 /.ruby-gemset
 /.ruby-version
-tags
+/tags
+/tags.[0-9][0-9][0-9][0-9][0-9]
 /.rvmrc
 /.gem
 /.envrc
