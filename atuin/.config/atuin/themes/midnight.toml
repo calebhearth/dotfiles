@@ -1,0 +1,12 @@
+[theme]
+name = "midnight"
+
+[colors]
+AlertInfo = "#ff9d57"
+AlertWarn = "#fa5d56"
+AlertError = "#82cfff"
+Annotation = "#878d96"
+Base = "#b5bdc5"
+Guidance = "#5080ff"
+Important = "#a665d0"
+Title = "#5579f0"
