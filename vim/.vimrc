@@ -179,7 +179,6 @@ end
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-
 function! FocusDispatchStrategy(cmd)
   execute "FocusDispatch " . a:cmd
   execute "Dispatch"
@@ -203,11 +202,17 @@ hi link javaScopeDecl detailedAccess
 hi link @lsp.type.modifier detailedAccess
 hi link detailedInclude Include
 
+" #273C5B hsl(215.77 40% 25%) oklch(0.35 0.0606 257.97)
+" #4493f8 hsl(213.67 93% 62%) oklch(0.66 0.1692 255.92)
 highlight GitNew guibg=#273C5B gui=bold
+" #463023 oklch(0.33 0.039 51.54)
+" #d29922 oklch(0.72 0.1401 79.91)
 highlight GitDeleted guibg=#463023 gui=bold
-highlight GitDirty guibg=#214610 gui=bold
-highlight GitSignsAdd guifg=#273C5B
-highlight GitSignsChange guifg=#463023
+" #38af00 oklch(0.66 0.2372 137.54)
+" #104900 oklch(0.35 0.1267 137.54)
+highlight GitDirty guibg=#104900 gui=bold
+highlight GitSignsAdd guifg=#4493f8
+highlight GitSignsChange guifg=#d29922
 
 set confirm
 set exrc " enable per-directory .vimrc files
