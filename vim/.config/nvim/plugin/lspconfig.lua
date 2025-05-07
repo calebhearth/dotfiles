@@ -1,36 +1,30 @@
-require('lspconfig').clangd.setup{}
+capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.general.positionEncodings = { "utf-16" }
 
-require('lspconfig').gopls.setup{}
-
-require('lspconfig').ruby_lsp.setup {
-  -- init_options = {
-  --   enabledFeatures = {
-  --     semanticHighlighting = false,
-  --     hover = true,
-  --   }
-  -- },
-  --semanticHighlighting = false,
-  -----@param client lsp.Client
-  --on_init = function(client)
-  --  print(vim.inspect(client.server_capabilities))
-  --  client.server_capabilities.semanticTokensProvider = nil  -- turn off semantic tokens
-  --end,
-}
-
-require('lspconfig').rubocop.setup{}
-
-require('lspconfig').rust_analyzer.setup{}
-
-require('lspconfig').sourcekit.setup{
-  capabilities = {
-    workspace = {
-      didChangeWatchedFiles = {
-        dynamicRegistration = true,
+vim.lsp.config('ruby_lsp', {
+  capabilities = capabilities,
+  init_options = {
+    rubyLsp = {
+      featuresConfiguration = {
+        inlayHint = {
+          enableAll = true,
+        },
+      },
+      rubyVersionManager = {
+        identifier = 'mise',
       },
     },
   },
-}
+})
 
-require('lspconfig').ts_ls.setup{}
+vim.lsp.enable({
+  'clangd',
+  'gopls',
+  'ruby_lsp',
+  'rubocop',
+  'rust_analyzer',
+  'sourcekit',
+  'ts_ls',
+})
 
 require('lspconfig.ui.windows').default_options.border = 'rounded'
