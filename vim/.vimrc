@@ -151,19 +151,6 @@ set termguicolors
 
 set completeopt=menu,preview,longest
 
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-augroup RestoreCursor
-  autocmd!
-  autocmd BufRead * autocmd FileType <buffer> ++once
-    \ let s:line = line("'\"")
-    \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
-    \      && index(['xxd', 'gitrebase'], &filetype) == -1
-    \ |   execute "normal! g`\""
-    \ | endif
-augroup END
-
 if executable("rg")
   set grepprg=rg\ --vimgrep
   let g:ctrlp_user_command="rg %s --files --color=never --glob ''"
