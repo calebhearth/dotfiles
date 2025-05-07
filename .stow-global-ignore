@@ -1,3 +1,4 @@
 /Brewfile
 /Gemfile
 !\.gitignore
+.DS_Store
