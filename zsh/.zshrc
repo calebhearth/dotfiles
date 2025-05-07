@@ -1,17 +1,3 @@
-if command -v brew 2>&1 > /dev/null; then
-  local chruby="$(brew --prefix)/share/chruby"
-	if [ -d "$chruby" ]; then
-		source "$chruby/chruby.sh"
-		source "$chruby/auto.sh"
-    chruby .
-	fi
-  local gemHome="$(brew --prefix)/share/gem_home"
-	if [ -d "$gemHome" ]; then
-		source "$gemHome/gem_home.sh"
-		gem_home $HOME
-	fi
-fi
-
 typeset -U path PATH
 typeset -U fpath FPATH
 
@@ -78,9 +64,6 @@ bindkey '[[Z' reverse-menu-complete
 
 ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
 
-command -v direnv 2>&1 > /dev/null && eval "$(direnv hook zsh)"
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
-
 # source ~/.dotfiles/git_prompt.sh
 # source ~/.dotfiles/zsh_prompt.sh
 precmd() {
@@ -88,3 +71,4 @@ precmd() {
 }
 eval "$(starship init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(mise activate zsh)"

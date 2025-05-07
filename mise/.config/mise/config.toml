@@ -1,0 +1,44 @@
+[settings]
+experimental = true
+ruby.ruby_install = true
+jobs = 12
+
+[settings.python]
+compile = false
+
+[tools]
+ruby = "3.2.2"
+
+# Ruby "gemset"
+# [env]
+# GEM_HOME = "{{config_root}}/.gem/ruby/{{exec(command='cat .ruby-version')}}"
+# GEM_PATH = "{{env.GEM_HOME}}"
+# _.file = '.env'
+# _.path = "{{env.GEM_HOME}}/bin"
+# [hooks]
+# enter = [
+#   "[ -d \"$GEM_HOME\" ] || mkdir -p \"$GEM_HOME\"",
+#   "command -v ruby-lsp 2>&1 > /dev/null || gem install ruby-lsp"
+# ]
+
+# [[env]]
+# _.file = '.env'
+
+
+# Overmind example for microservices
+# assumes a Procfile with services defined
+# [tasks.overmind]
+# description = "Run files.com stack from Procfile with Overmind"
+# run = [
+#   "overmind start",
+#   "sleep 0.5",
+#   "overmind connect",
+# ]
+
+# [tasks.overmind.env]
+# OVERMIND_SHELL = "zsh"
+# OVERMIND_TITLE = "files-com"
+# OVERMIND_SHOW_TIMESTAMPS = "true"
+# OVERMIND_AUTO_RESTART = "all"
+# OVERMIND_DAEMONIZE = "true"
+# OVERMIND_TMUX_CONFIG = ""
