@@ -27,14 +27,14 @@ command = """
 when = '[ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]'
 
 [custom.subdir]
-command = 'echo ${PWD/$(git rev-parse --show-toplevel 2>\/dev\/null)}'
+command = 'echo ${PWD/$(git rev-parse --show-toplevel --show-superproject-working-tree | tail -1 2>\/dev\/null)}'
 when = true
 require_repo = true
 style = ""
 
 [custom.directory]
 format = '[$output]($style)'
-command = 'toplevel=$(git rev-parse --show-toplevel 2>\/dev\/null); [[ -n "$toplevel" ]] && basename "$toplevel" || print ${PWD//"$HOME"/\~caleb}'
+command = 'toplevel=$(git rev-parse --show-toplevel --show-superproject-working-tree | tail -1 2>\/dev\/null); [[ -n "$toplevel" ]] && basename "$toplevel" || print ${PWD//"$HOME"/\~caleb}'
 when = true
 style = "bold"
 
@@ -54,6 +54,7 @@ conflicted = "[􀄐 ](red)"
 deleted = '[􀈑 ](red)'
 diverged = '[􁅥 ](red)'
 format = '$all_status $ahead_behind\)'
+ignore_submodules = true
 modified = '[􀋾 ](red)'
 renamed = "[􁁀 ](blue)"
 staged = '[􀈧 ](blue)'
