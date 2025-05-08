@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+possiblyJSON=$(cat "${1:-/dev/stdin}")
+if $(jq -R -n 'inputs | fromjson | empty' <<< $possiblyJSON 2>/dev/null); then
+  jq . <<< $possiblyJSON
+else
+  printf '%s' "$possiblyJSON"
+fi
