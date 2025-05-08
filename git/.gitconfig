@@ -81,7 +81,7 @@
   header = "#8d96a0"
   localBranch = "#4493f8 #15233A bold"
   remoteBranch = "#d29922 #282119 bold"
-  untracked = "#8d96a0 bold"
+  untracked = "#cac5c4 bold"
 
 [column]
   ui = auto dense
