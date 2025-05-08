@@ -1,0 +1,77 @@
+{
+    "NSStatusItem Preferred Position raycastIcon" = 5307;
+    aiDynamicPlaceholdersMigrationDate = "2025-02-16 22:51:42 +0000";
+    "amplitudePulseAnalyticsTracker_nextHeartbeatDate" = "2025-02-17 07:00:00 +0000";
+    "calculator_currenciesRefresh" = {length = 37, bytes = 0x7b227375 63636565 64656422 3a7b225f ... 31383539 32317d7d };
+    "command-extension_brew.outdated__9349c6b9-c442-4895-98e3-b3a926e74ed7-searchBarAccessory_default_dropdown_id_previousValue" = all;
+    "commandScheduler_commandRuns" =     {
+    };
+    commandsPreferencesExpandedItemIds =     (
+        quicklinks,
+        "extension_github__89648e03-cceb-4205-9f40-75fcb039a4c6",
+        "builtin_package_quicklinks"
+    );
+    "database_lastValidAppVersion" = "1.91.2";
+    "database_lastValidOSVersion" = "15.3.1";
+    "fallbackSearches_didMigrateScriptCommands" = 1;
+    "floatingNotes_didCreateOnboardingNote" = 1;
+    "floatingNotes_didMigrateFloatingNotesHotkeysAndAliases" = 1;
+    "floatingNotes_didMigrateFloatingNotesRecords" = 1;
+    hasQueuedStatusBarHint = 0;
+    hasShownStatusBarHintAfterOnboarding = 1;
+    mainWindowPositionCache =     {
+        "1(0.0, 0.0, 1728.0, 1117.0)" = "{489, 675}";
+    };
+    "mainWindow_isMonitoringGlobalHotkeys" = 1;
+    navigationCommandStyleIdentifierKey = vim;
+    onboardingCompleted = 1;
+    "onboarding_completedTaskIdentifiers" =     (
+        installFirstExtension
+    );
+    "onboarding_raycastShortcuts" =     (
+        "\\U2318,",
+        Esc
+    );
+    "onboarding_showTasksProgress" = 1;
+    "permissions.folders.read:/Users/caleb/Desktop" = 1;
+    "permissions.folders.read:/Users/caleb/Documents" = 1;
+    "permissions.folders.read:/Users/caleb/Downloads" = 1;
+    "permissions.folders.read:cloudStorage" = 1;
+    "permissions.folders.read:removableVolumes" = 1;
+    "raycast-preferences-restorableData" = {length = 78, bytes = 0x7b227479 70654e61 6d65223a 22457874 ... 2e313335 3530367d };
+    "raycast-updates-lastAppUpdateCheckDate" = "1739739606.644927";
+    raycastAnonymousId = "E020860E-12D4-4458-9E5D-7B542D388CC0";
+    raycastFirstKnownAppVersion = {length = 8, bytes = 0x22312e39312e3222};
+    raycastGlobalHotkey = "Command-49";
+    raycastInstallationDate = "2025-02-16 21:00:04 +0000";
+    raycastLoginItemAutoInstalled = "2025-02-16 21:00:06 +0000";
+    raycastPreferredWindowMode = default;
+    raycastShouldFollowSystemAppearance = 1;
+    showGettingStartedLink = 1;
+    "store_everInstalled" =     (
+        "89648e03-cceb-4205-9f40-75fcb039a4c6",
+        "b5526a94-aa8f-4e54-958c-97080312a465",
+        "d5d27df2-9818-41ea-b683-0e4af3f4be3d",
+        "5f2e08d5-fdf1-4171-b252-aa53065621b4",
+        "2bfe94cd-50ab-4e48-a6cd-f1ff47a72706",
+        "65e6105d-7b4f-40fc-9a2b-80041aabaaa2",
+        "6090553e-ee96-4c89-af5c-e6c60fa551ba",
+        "40ebc708-964f-473b-8d19-d4e9cbd27ae9",
+        "e1220602-a471-440f-a89f-235b40ca10a4",
+        "2278bb97-e6f6-44ef-bdcd-937fc20bd0c2",
+        "d86c2120-7853-49f1-874d-87ccac1299a1",
+        "8cf232de-c20f-4206-ab17-4777f799c047",
+        "6f991884-51d7-4b60-b27b-453240bf8ff3",
+        "efd37bf6-5682-4037-b32b-eef31c38a247",
+        "de12f437-249e-4419-8387-b29c1f106af8",
+        "9349c6b9-c442-4895-98e3-b3a926e74ed7",
+        "f872e5ef-af26-4086-8b11-261e5c6f6c93"
+    );
+    "store_migratedHackerNews" = 1;
+    "store_migratedNative" = 1;
+    "store_migratedReminders" = 1;
+    "store_termsAccepted" = 1;
+    "subscriptions_active" = 0;
+    useHyperKeyIcon = 0;
+    useSystemInternetProxySettings = 1;
+}
