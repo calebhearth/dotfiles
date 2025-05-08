@@ -37,20 +37,11 @@
       "pinned_version": null
     },
     {
-      "name": "atuin",
-      "installed_versions": [
-        "18.3.0"
-      ],
-      "current_version": "18.4.0",
-      "pinned": false,
-      "pinned_version": null
-    },
-    {
       "name": "awscli",
       "installed_versions": [
         "2.18.11"
       ],
-      "current_version": "2.24.5",
+      "current_version": "2.24.6",
       "pinned": false,
       "pinned_version": null
     },
@@ -61,15 +52,6 @@
         "1.34.3"
       ],
       "current_version": "1.34.4",
-      "pinned": false,
-      "pinned_version": null
-    },
-    {
-      "name": "ca-certificates",
-      "installed_versions": [
-        "2024-09-24"
-      ],
-      "current_version": "2024-12-31",
       "pinned": false,
       "pinned_version": null
     },
@@ -169,7 +151,7 @@
       "installed_versions": [
         "27.1.2"
       ],
-      "current_version": "27.2.2",
+      "current_version": "27.2.3",
       "pinned": false,
       "pinned_version": null
     },
@@ -359,7 +341,16 @@
       "installed_versions": [
         "0.136.3"
       ],
-      "current_version": "0.143.1",
+      "current_version": "0.144.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "hwloc",
+      "installed_versions": [
+        "2.11.2"
+      ],
+      "current_version": "2.12.0",
       "pinned": false,
       "pinned_version": null
     },
@@ -621,7 +612,7 @@
       "installed_versions": [
         "1.48.0-2"
       ],
-      "current_version": "1.50.0-0",
+      "current_version": "1.50.0-1",
       "pinned": false,
       "pinned_version": null
     },
@@ -991,6 +982,15 @@
       "pinned_version": null
     },
     {
+      "name": "rust-analyzer",
+      "installed_versions": [
+        "2025-02-10"
+      ],
+      "current_version": "2025-02-17",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
       "name": "sdl2",
       "installed_versions": [
         "2.30.8"
@@ -1004,7 +1004,7 @@
       "installed_versions": [
         "3.34.2"
       ],
-      "current_version": "3.41.0",
+      "current_version": "3.42.0",
       "pinned": false,
       "pinned_version": null
     },
