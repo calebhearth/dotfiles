@@ -1,5 +1,6 @@
 [advice]
   mergeConflict = false
+  statusHints = false
 
 [alias]
   amend = commit --amend --reuse-message=HEAD
