@@ -12,12 +12,6 @@ hi ConflictMarkerSeparator gui=bold
 hi ConflictMarkerTheirs guibg=#002b08
 hi ConflictMarkerEnd guibg=#002b08 guifg=#3bad4e gui=bold
 
-
-hi gitCommitDiscardedType guifg=#c9d1d9 guibg=#282119
-hi gitCommitDiscardedFile guifg=#c9d1d9 guibg=#282119 gui=bold
-hi gitCommitSelectedType guifg=#c9d1d9 guibg=#182335
-hi gitCommitSelectedFile guifg=#c9d1d9 guibg=#182335 gui=bold
-
 hi diffOldFile guifg=#db9500 guibg=#282119 gui=bold
 hi diffNewFile guifg=#4493f8 guibg=#15233A gui=bold
 hi gitDiff guifg=#c9d1d9
