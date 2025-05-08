@@ -15,12 +15,12 @@ all: brew_install rectangle stow vim-plug
 .PHONY: stow
 stow: $(data_dir)/packages ~/.stow-global-ignore
 	mkdir -p $(target)
-	stow --adopt --verbose --target=$(target) $(shell cat $(packages))
+	stow --adopt --no-fold --verbose --target=$(target) $(shell cat $(packages))
 
 .PHONY: brew_install
 brew_install: $(brew_install)
 $(brew_install): install-homebrew $(data_dir)/Brewfile
-	brew bundle check --file=$(Brewfile)
+	brew bundle check --file=$(Brewfile) > /dev/null 2>&1 || brew bundle install --file=$(Brewfile)
 
 .PHONY: install-homebrew
 install-homebrew:
