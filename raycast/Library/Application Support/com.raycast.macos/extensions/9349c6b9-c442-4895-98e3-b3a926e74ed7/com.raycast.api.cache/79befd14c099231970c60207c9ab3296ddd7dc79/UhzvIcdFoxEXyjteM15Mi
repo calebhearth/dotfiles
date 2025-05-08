@@ -1,1 +1,1174 @@
-{"formulae":[{"name":"abseil","installed_versions":["20240722.0"],"current_version":"20240722.1","pinned":false,"pinned_version":null},{"name":"act","installed_versions":["0.2.68"],"current_version":"0.2.74","pinned":false,"pinned_version":null},{"name":"actionlint","installed_versions":["1.7.4"],"current_version":"1.7.7","pinned":false,"pinned_version":null},{"name":"aom","installed_versions":["3.10.0"],"current_version":"3.12.0","pinned":false,"pinned_version":null},{"name":"atuin","installed_versions":["18.3.0"],"current_version":"18.4.0","pinned":false,"pinned_version":null},{"name":"awscli","installed_versions":["2.18.11"],"current_version":"2.24.5","pinned":false,"pinned_version":null},{"name":"c-ares","installed_versions":["1.34.2","1.34.3"],"current_version":"1.34.4","pinned":false,"pinned_version":null},{"name":"ca-certificates","installed_versions":["2024-09-24"],"current_version":"2024-12-31","pinned":false,"pinned_version":null},{"name":"certifi","installed_versions":["2024.8.30_1","2024.8.30_1"],"current_version":"2025.1.31","pinned":false,"pinned_version":null},{"name":"cfitsio","installed_versions":["4.4.1"],"current_version":"4.5.0_1","pinned":false,"pinned_version":null},{"name":"cgif","installed_versions":["0.4.1"],"current_version":"0.5.0","pinned":false,"pinned_version":null},{"name":"code-minimap","installed_versions":["0.6.7"],"current_version":"0.6.8","pinned":false,"pinned_version":null},{"name":"coreutils","installed_versions":["9.4"],"current_version":"9.6","pinned":false,"pinned_version":null},{"name":"cryptography","installed_versions":["43.0.3"],"current_version":"44.0.1","pinned":false,"pinned_version":null},{"name":"curl","installed_versions":["8.10.1"],"current_version":"8.12.1","pinned":false,"pinned_version":null},{"name":"dav1d","installed_versions":["1.5.0"],"current_version":"1.5.1","pinned":false,"pinned_version":null},{"name":"difftastic","installed_versions":["0.60.0"],"current_version":"0.63.0","pinned":false,"pinned_version":null},{"name":"double-conversion","installed_versions":["3.3.0"],"current_version":"3.3.1","pinned":false,"pinned_version":null},{"name":"erlang","installed_versions":["27.1.2"],"current_version":"27.2.2","pinned":false,"pinned_version":null},{"name":"felinks","installed_versions":["0.17.1.1","HEAD-bb9f958"],"current_version":"HEAD","pinned":false,"pinned_version":null},{"name":"homebrew-ffmpeg/ffmpeg/ffmpeg","installed_versions":["7.1-with-options"],"current_version":"7.1-with-options_4","pinned":false,"pinned_version":null},{"name":"fftw","installed_versions":["3.3.10_1"],"current_version":"3.3.10_2","pinned":false,"pinned_version":null},{"name":"fontconfig","installed_versions":["2.15.0"],"current_version":"2.16.0","pinned":false,"pinned_version":null},{"name":"freetds","installed_versions":["1.4.23"],"current_version":"1.4.26","pinned":false,"pinned_version":null},{"name":"gettext","installed_versions":["0.22.5"],"current_version":"0.23.1","pinned":false,"pinned_version":null},{"name":"gh","installed_versions":["2.59.0"],"current_version":"2.67.0","pinned":false,"pinned_version":null},{"name":"git","installed_versions":["2.47.0"],"current_version":"2.48.1","pinned":false,"pinned_version":null},{"name":"git-delta","installed_versions":["0.18.2"],"current_version":"0.18.2_3","pinned":false,"pinned_version":null},{"name":"glib","installed_versions":["2.82.2"],"current_version":"2.82.4","pinned":false,"pinned_version":null},{"name":"gnu-getopt","installed_versions":["2.40.2"],"current_version":"2.40.4","pinned":false,"pinned_version":null},{"name":"gnupg","installed_versions":["2.4.6"],"current_version":"2.4.7","pinned":false,"pinned_version":null},{"name":"go","installed_versions":["1.23.2"],"current_version":"1.24.0","pinned":false,"pinned_version":null},{"name":"gpgme","installed_versions":["1.23.2_2"],"current_version":"1.24.2","pinned":false,"pinned_version":null},{"name":"graphviz","installed_versions":["12.2.0"],"current_version":"12.2.1","pinned":false,"pinned_version":null},{"name":"groonga","installed_versions":["14.0.9"],"current_version":"15.0.0","pinned":false,"pinned_version":null},{"name":"harfbuzz","installed_versions":["10.1.0"],"current_version":"10.2.0","pinned":false,"pinned_version":null},{"name":"haskell-stack","installed_versions":["3.1.1"],"current_version":"3.3.1","pinned":false,"pinned_version":null},{"name":"hdf5","installed_versions":["1.14.4.3"],"current_version":"1.14.6","pinned":false,"pinned_version":null},{"name":"heroku/brew/heroku","installed_versions":["9.3.1"],"current_version":"10.0.2","pinned":false,"pinned_version":null},{"name":"hugo","installed_versions":["0.136.3"],"current_version":"0.143.1","pinned":false,"pinned_version":null},{"name":"icu4c@75","installed_versions":["75.1"],"current_version":"75.1_1","pinned":false,"pinned_version":null},{"name":"imagemagick","installed_versions":["7.1.1-39"],"current_version":"7.1.1-43","pinned":false,"pinned_version":null},{"name":"jpeg-turbo","installed_versions":["3.0.4"],"current_version":"3.1.0","pinned":false,"pinned_version":null},{"name":"jpeg-xl","installed_versions":["0.11.0_1"],"current_version":"0.11.1","pinned":false,"pinned_version":null},{"name":"libdeflate","installed_versions":["1.22"],"current_version":"1.23","pinned":false,"pinned_version":null},{"name":"libexif","installed_versions":["0.6.24"],"current_version":"0.6.25","pinned":false,"pinned_version":null},{"name":"libffi","installed_versions":["3.4.6"],"current_version":"3.4.7","pinned":false,"pinned_version":null},{"name":"libgcrypt","installed_versions":["1.10.3"],"current_version":"1.11.0","pinned":false,"pinned_version":null},{"name":"libgit2","installed_versions":["1.8.2"],"current_version":"1.9.0","pinned":false,"pinned_version":null},{"name":"libgpg-error","installed_versions":["1.50"],"current_version":"1.51","pinned":false,"pinned_version":null},{"name":"libheif","installed_versions":["1.19.2"],"current_version":"1.19.5_1","pinned":false,"pinned_version":null},{"name":"libimagequant","installed_versions":["4.3.3"],"current_version":"4.3.4","pinned":false,"pinned_version":null},{"name":"libmatio","installed_versions":["1.5.27_1"],"current_version":"1.5.28","pinned":false,"pinned_version":null},{"name":"libomp","installed_versions":["19.1.2"],"current_version":"19.1.7","pinned":false,"pinned_version":null},{"name":"libpng","installed_versions":["1.6.44"],"current_version":"1.6.46","pinned":false,"pinned_version":null},{"name":"libpq","installed_versions":["17.0_1","17.0_2"],"current_version":"17.3","pinned":false,"pinned_version":null},{"name":"libtasn1","installed_versions":["4.19.0"],"current_version":"4.20.0","pinned":false,"pinned_version":null},{"name":"libtool","installed_versions":["2.5.3"],"current_version":"2.5.4","pinned":false,"pinned_version":null},{"name":"libuv","installed_versions":["1.49.2"],"current_version":"1.50.0","pinned":false,"pinned_version":null},{"name":"libvpx","installed_versions":["1.13.1"],"current_version":"1.15.0","pinned":false,"pinned_version":null},{"name":"libx11","installed_versions":["1.8.10"],"current_version":"1.8.11","pinned":false,"pinned_version":null},{"name":"libxau","installed_versions":["1.0.11"],"current_version":"1.0.12","pinned":false,"pinned_version":null},{"name":"libxml2","installed_versions":["2.13.4_2"],"current_version":"2.13.5","pinned":false,"pinned_version":null},{"name":"libxrender","installed_versions":["0.9.11"],"current_version":"0.9.12","pinned":false,"pinned_version":null},{"name":"libzip","installed_versions":["1.11.1"],"current_version":"1.11.3","pinned":false,"pinned_version":null},{"name":"little-cms2","installed_versions":["2.16"],"current_version":"2.17","pinned":false,"pinned_version":null},{"name":"llvm","installed_versions":["19.1.2"],"current_version":"19.1.7","pinned":false,"pinned_version":null},{"name":"luajit","installed_versions":["2.1.1727870382"],"current_version":"2.1.1736781742","pinned":false,"pinned_version":null},{"name":"luv","installed_versions":["1.48.0-2"],"current_version":"1.50.0-0","pinned":false,"pinned_version":null},{"name":"sandreas/tap/m4b-tool","installed_versions":["0.4.2"],"current_version":"0.5.0","pinned":false,"pinned_version":null},{"name":"mercurial","installed_versions":["6.8.1_1"],"current_version":"6.9.1","pinned":false,"pinned_version":null},{"name":"meson","installed_versions":["1.6.0"],"current_version":"1.7.0","pinned":false,"pinned_version":null},{"name":"mosh","installed_versions":["1.4.0_12"],"current_version":"1.4.0_26","pinned":false,"pinned_version":null},{"name":"mpg123","installed_versions":["1.32.7"],"current_version":"1.32.10","pinned":false,"pinned_version":null},{"name":"mysql","installed_versions":["9.0.1_4"],"current_version":"9.2.0","pinned":false,"pinned_version":null},{"name":"neovim","installed_versions":["0.10.2_1"],"current_version":"0.10.4","pinned":false,"pinned_version":null},{"name":"netpbm","installed_versions":["11.02.11"],"current_version":"11.02.12","pinned":false,"pinned_version":null},{"name":"nettle","installed_versions":["3.10"],"current_version":"3.10.1","pinned":false,"pinned_version":null},{"name":"node","installed_versions":["22.10.0","23.2.0_1","23.3.0"],"current_version":"23.7.0","pinned":false,"pinned_version":null},{"name":"node@16","installed_versions":["16.20.2_2"],"current_version":"16.20.2_3","pinned":false,"pinned_version":null},{"name":"npth","installed_versions":["1.7"],"current_version":"1.8","pinned":false,"pinned_version":null},{"name":"nss","installed_versions":["3.105","3.106"],"current_version":"3.108","pinned":false,"pinned_version":null},{"name":"oniguruma","installed_versions":["6.9.9"],"current_version":"6.9.10","pinned":false,"pinned_version":null},{"name":"open-mpi","installed_versions":["5.0.5"],"current_version":"5.0.7","pinned":false,"pinned_version":null},{"name":"openexr","installed_versions":["3.3.1"],"current_version":"3.3.2","pinned":false,"pinned_version":null},{"name":"openjpeg","installed_versions":["2.5.2"],"current_version":"2.5.3","pinned":false,"pinned_version":null},{"name":"openldap","installed_versions":["2.6.8"],"current_version":"2.6.9","pinned":false,"pinned_version":null},{"name":"openssl@3","installed_versions":["3.3.2","3.4.0"],"current_version":"3.4.1","pinned":false,"pinned_version":null},{"name":"pango","installed_versions":["1.54.0"],"current_version":"1.56.1","pinned":false,"pinned_version":null},{"name":"perl","installed_versions":["5.38.2_1","5.40.0"],"current_version":"5.40.1","pinned":false,"pinned_version":null},{"name":"php","installed_versions":["8.3.13_1"],"current_version":"8.4.4","pinned":false,"pinned_version":null},{"name":"pipx","installed_versions":["1.7.1"],"current_version":"1.7.1_1","pinned":false,"pinned_version":null},{"name":"pixman","installed_versions":["0.42.2"],"current_version":"0.44.2","pinned":false,"pinned_version":null},{"name":"pmix","installed_versions":["5.0.3"],"current_version":"5.0.6","pinned":false,"pinned_version":null},{"name":"poppler","installed_versions":["24.04.0_1"],"current_version":"25.02.0","pinned":false,"pinned_version":null},{"name":"protobuf","installed_versions":["28.2"],"current_version":"29.3","pinned":false,"pinned_version":null},{"name":"python-packaging","installed_versions":["24.1_1"],"current_version":"24.2","pinned":false,"pinned_version":null},{"name":"python@3.10","installed_versions":["3.10.15"],"current_version":"3.10.16","pinned":false,"pinned_version":null},{"name":"python@3.11","installed_versions":["3.11.10"],"current_version":"3.11.11","pinned":false,"pinned_version":null},{"name":"python@3.12","installed_versions":["3.12.7_1"],"current_version":"3.12.9","pinned":false,"pinned_version":null},{"name":"python@3.13","installed_versions":["3.13.0_1"],"current_version":"3.13.2","pinned":false,"pinned_version":null},{"name":"python@3.9","installed_versions":["3.9.19"],"current_version":"3.9.21","pinned":false,"pinned_version":null},{"name":"qt","installed_versions":["6.7.2_2"],"current_version":"6.8.2","pinned":false,"pinned_version":null},{"name":"rabbitmq","installed_versions":["4.0.2"],"current_version":"4.0.6","pinned":false,"pinned_version":null},{"name":"rbenv","installed_versions":["1.3.0"],"current_version":"1.3.2","pinned":false,"pinned_version":null},{"name":"redis","installed_versions":["7.2.6"],"current_version":"7.2.7","pinned":false,"pinned_version":null},{"name":"ruby","installed_versions":["3.3.5"],"current_version":"3.4.2","pinned":false,"pinned_version":null},{"name":"ruby-build","installed_versions":["20241017"],"current_version":"20250215","pinned":false,"pinned_version":null},{"name":"ruby-install","installed_versions":["0.9.3"],"current_version":"0.10.1","pinned":false,"pinned_version":null},{"name":"sdl2","installed_versions":["2.30.8"],"current_version":"2.32.0","pinned":false,"pinned_version":null},{"name":"getsentry/tools/sentry-wizard","installed_versions":["3.34.2"],"current_version":"3.41.0","pinned":false,"pinned_version":null},{"name":"sqlite","installed_versions":["3.46.1","3.47.0"],"current_version":"3.49.0","pinned":false,"pinned_version":null},{"name":"srt","installed_versions":["1.5.3"],"current_version":"1.5.4","pinned":false,"pinned_version":null},{"name":"starship","installed_versions":["1.21.1"],"current_version":"1.22.1","pinned":false,"pinned_version":null},{"name":"tesseract","installed_versions":["5.4.1_2"],"current_version":"5.5.0","pinned":false,"pinned_version":null},{"name":"tre","installed_versions":["0.8.0"],"current_version":"0.9.0","pinned":false,"pinned_version":null},{"name":"tree","installed_versions":["2.1.1_1"],"current_version":"2.2.1","pinned":false,"pinned_version":null},{"name":"tree-sitter","installed_versions":["0.24.3"],"current_version":"0.24.7","pinned":false,"pinned_version":null},{"name":"universal-ctags","installed_versions":["p6.1.20241006.0"],"current_version":"p6.1.20250216.0","pinned":false,"pinned_version":null},{"name":"vim","installed_versions":["9.1.0100"],"current_version":"9.1.1100","pinned":false,"pinned_version":null},{"name":"webp","installed_versions":["1.4.0"],"current_version":"1.5.0","pinned":false,"pinned_version":null},{"name":"weechat","installed_versions":["4.4.3"],"current_version":"4.5.1_1","pinned":false,"pinned_version":null},{"name":"wget","installed_versions":["1.24.5"],"current_version":"1.25.0","pinned":false,"pinned_version":null},{"name":"x265","installed_versions":["3.6","4.0_1"],"current_version":"4.1","pinned":false,"pinned_version":null},{"name":"xapian","installed_versions":["1.4.24"],"current_version":"1.4.27","pinned":false,"pinned_version":null},{"name":"xz","installed_versions":["5.6.3"],"current_version":"5.6.4","pinned":false,"pinned_version":null},{"name":"yt-dlp","installed_versions":["2024.10.7"],"current_version":"2025.1.26","pinned":false,"pinned_version":null}],"casks":[{"name":"kitty","installed_versions":["0.36.1"],"current_version":"0.39.1"},{"name":"ngrok","installed_versions":["3.6.0,qZzy6MZGEs,a"],"current_version":"3.19.1,32ay38T2E92,a"}]}
+{
+  "formulae": [
+    {
+      "name": "abseil",
+      "installed_versions": [
+        "20240722.0"
+      ],
+      "current_version": "20240722.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "act",
+      "installed_versions": [
+        "0.2.68"
+      ],
+      "current_version": "0.2.74",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "actionlint",
+      "installed_versions": [
+        "1.7.4"
+      ],
+      "current_version": "1.7.7",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "aom",
+      "installed_versions": [
+        "3.10.0"
+      ],
+      "current_version": "3.12.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "atuin",
+      "installed_versions": [
+        "18.3.0"
+      ],
+      "current_version": "18.4.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "awscli",
+      "installed_versions": [
+        "2.18.11"
+      ],
+      "current_version": "2.24.5",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "c-ares",
+      "installed_versions": [
+        "1.34.2",
+        "1.34.3"
+      ],
+      "current_version": "1.34.4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "ca-certificates",
+      "installed_versions": [
+        "2024-09-24"
+      ],
+      "current_version": "2024-12-31",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "certifi",
+      "installed_versions": [
+        "2024.8.30_1",
+        "2024.8.30_1"
+      ],
+      "current_version": "2025.1.31",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "cfitsio",
+      "installed_versions": [
+        "4.4.1"
+      ],
+      "current_version": "4.5.0_1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "cgif",
+      "installed_versions": [
+        "0.4.1"
+      ],
+      "current_version": "0.5.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "code-minimap",
+      "installed_versions": [
+        "0.6.7"
+      ],
+      "current_version": "0.6.8",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "coreutils",
+      "installed_versions": [
+        "9.4"
+      ],
+      "current_version": "9.6",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "cryptography",
+      "installed_versions": [
+        "43.0.3"
+      ],
+      "current_version": "44.0.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "curl",
+      "installed_versions": [
+        "8.10.1"
+      ],
+      "current_version": "8.12.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "dav1d",
+      "installed_versions": [
+        "1.5.0"
+      ],
+      "current_version": "1.5.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "difftastic",
+      "installed_versions": [
+        "0.60.0"
+      ],
+      "current_version": "0.63.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "double-conversion",
+      "installed_versions": [
+        "3.3.0"
+      ],
+      "current_version": "3.3.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "erlang",
+      "installed_versions": [
+        "27.1.2"
+      ],
+      "current_version": "27.2.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "felinks",
+      "installed_versions": [
+        "0.17.1.1",
+        "HEAD-bb9f958"
+      ],
+      "current_version": "HEAD",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "homebrew-ffmpeg/ffmpeg/ffmpeg",
+      "installed_versions": [
+        "7.1-with-options"
+      ],
+      "current_version": "7.1-with-options_4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "fftw",
+      "installed_versions": [
+        "3.3.10_1"
+      ],
+      "current_version": "3.3.10_2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "fontconfig",
+      "installed_versions": [
+        "2.15.0"
+      ],
+      "current_version": "2.16.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "freetds",
+      "installed_versions": [
+        "1.4.23"
+      ],
+      "current_version": "1.4.26",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "gettext",
+      "installed_versions": [
+        "0.22.5"
+      ],
+      "current_version": "0.23.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "gh",
+      "installed_versions": [
+        "2.59.0"
+      ],
+      "current_version": "2.67.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "git",
+      "installed_versions": [
+        "2.47.0"
+      ],
+      "current_version": "2.48.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "git-delta",
+      "installed_versions": [
+        "0.18.2"
+      ],
+      "current_version": "0.18.2_3",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "glib",
+      "installed_versions": [
+        "2.82.2"
+      ],
+      "current_version": "2.82.4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "gnu-getopt",
+      "installed_versions": [
+        "2.40.2"
+      ],
+      "current_version": "2.40.4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "gnupg",
+      "installed_versions": [
+        "2.4.6"
+      ],
+      "current_version": "2.4.7",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "go",
+      "installed_versions": [
+        "1.23.2"
+      ],
+      "current_version": "1.24.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "gpgme",
+      "installed_versions": [
+        "1.23.2_2"
+      ],
+      "current_version": "1.24.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "graphviz",
+      "installed_versions": [
+        "12.2.0"
+      ],
+      "current_version": "12.2.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "groonga",
+      "installed_versions": [
+        "14.0.9"
+      ],
+      "current_version": "15.0.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "harfbuzz",
+      "installed_versions": [
+        "10.1.0"
+      ],
+      "current_version": "10.2.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "haskell-stack",
+      "installed_versions": [
+        "3.1.1"
+      ],
+      "current_version": "3.3.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "hdf5",
+      "installed_versions": [
+        "1.14.4.3"
+      ],
+      "current_version": "1.14.6",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "heroku/brew/heroku",
+      "installed_versions": [
+        "9.3.1"
+      ],
+      "current_version": "10.0.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "hugo",
+      "installed_versions": [
+        "0.136.3"
+      ],
+      "current_version": "0.143.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "icu4c@75",
+      "installed_versions": [
+        "75.1"
+      ],
+      "current_version": "75.1_1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "imagemagick",
+      "installed_versions": [
+        "7.1.1-39"
+      ],
+      "current_version": "7.1.1-43",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "jpeg-turbo",
+      "installed_versions": [
+        "3.0.4"
+      ],
+      "current_version": "3.1.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "jpeg-xl",
+      "installed_versions": [
+        "0.11.0_1"
+      ],
+      "current_version": "0.11.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libdeflate",
+      "installed_versions": [
+        "1.22"
+      ],
+      "current_version": "1.23",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libexif",
+      "installed_versions": [
+        "0.6.24"
+      ],
+      "current_version": "0.6.25",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libffi",
+      "installed_versions": [
+        "3.4.6"
+      ],
+      "current_version": "3.4.7",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libgcrypt",
+      "installed_versions": [
+        "1.10.3"
+      ],
+      "current_version": "1.11.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libgit2",
+      "installed_versions": [
+        "1.8.2"
+      ],
+      "current_version": "1.9.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libgpg-error",
+      "installed_versions": [
+        "1.50"
+      ],
+      "current_version": "1.51",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libheif",
+      "installed_versions": [
+        "1.19.2"
+      ],
+      "current_version": "1.19.5_1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libimagequant",
+      "installed_versions": [
+        "4.3.3"
+      ],
+      "current_version": "4.3.4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libmatio",
+      "installed_versions": [
+        "1.5.27_1"
+      ],
+      "current_version": "1.5.28",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libomp",
+      "installed_versions": [
+        "19.1.2"
+      ],
+      "current_version": "19.1.7",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libpng",
+      "installed_versions": [
+        "1.6.44"
+      ],
+      "current_version": "1.6.46",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libpq",
+      "installed_versions": [
+        "17.0_1",
+        "17.0_2"
+      ],
+      "current_version": "17.3",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libtasn1",
+      "installed_versions": [
+        "4.19.0"
+      ],
+      "current_version": "4.20.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libtool",
+      "installed_versions": [
+        "2.5.3"
+      ],
+      "current_version": "2.5.4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libuv",
+      "installed_versions": [
+        "1.49.2"
+      ],
+      "current_version": "1.50.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libvpx",
+      "installed_versions": [
+        "1.13.1"
+      ],
+      "current_version": "1.15.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libx11",
+      "installed_versions": [
+        "1.8.10"
+      ],
+      "current_version": "1.8.11",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libxau",
+      "installed_versions": [
+        "1.0.11"
+      ],
+      "current_version": "1.0.12",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libxml2",
+      "installed_versions": [
+        "2.13.4_2"
+      ],
+      "current_version": "2.13.5",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libxrender",
+      "installed_versions": [
+        "0.9.11"
+      ],
+      "current_version": "0.9.12",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "libzip",
+      "installed_versions": [
+        "1.11.1"
+      ],
+      "current_version": "1.11.3",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "little-cms2",
+      "installed_versions": [
+        "2.16"
+      ],
+      "current_version": "2.17",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "llvm",
+      "installed_versions": [
+        "19.1.2"
+      ],
+      "current_version": "19.1.7",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "luajit",
+      "installed_versions": [
+        "2.1.1727870382"
+      ],
+      "current_version": "2.1.1736781742",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "luv",
+      "installed_versions": [
+        "1.48.0-2"
+      ],
+      "current_version": "1.50.0-0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "sandreas/tap/m4b-tool",
+      "installed_versions": [
+        "0.4.2"
+      ],
+      "current_version": "0.5.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "mercurial",
+      "installed_versions": [
+        "6.8.1_1"
+      ],
+      "current_version": "6.9.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "meson",
+      "installed_versions": [
+        "1.6.0"
+      ],
+      "current_version": "1.7.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "mosh",
+      "installed_versions": [
+        "1.4.0_12"
+      ],
+      "current_version": "1.4.0_26",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "mpg123",
+      "installed_versions": [
+        "1.32.7"
+      ],
+      "current_version": "1.32.10",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "mysql",
+      "installed_versions": [
+        "9.0.1_4"
+      ],
+      "current_version": "9.2.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "neovim",
+      "installed_versions": [
+        "0.10.2_1"
+      ],
+      "current_version": "0.10.4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "netpbm",
+      "installed_versions": [
+        "11.02.11"
+      ],
+      "current_version": "11.02.12",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "nettle",
+      "installed_versions": [
+        "3.10"
+      ],
+      "current_version": "3.10.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "node",
+      "installed_versions": [
+        "22.10.0",
+        "23.2.0_1",
+        "23.3.0"
+      ],
+      "current_version": "23.7.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "node@16",
+      "installed_versions": [
+        "16.20.2_2"
+      ],
+      "current_version": "16.20.2_3",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "npth",
+      "installed_versions": [
+        "1.7"
+      ],
+      "current_version": "1.8",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "nss",
+      "installed_versions": [
+        "3.105",
+        "3.106"
+      ],
+      "current_version": "3.108",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "oniguruma",
+      "installed_versions": [
+        "6.9.9"
+      ],
+      "current_version": "6.9.10",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "open-mpi",
+      "installed_versions": [
+        "5.0.5"
+      ],
+      "current_version": "5.0.7",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "openexr",
+      "installed_versions": [
+        "3.3.1"
+      ],
+      "current_version": "3.3.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "openjpeg",
+      "installed_versions": [
+        "2.5.2"
+      ],
+      "current_version": "2.5.3",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "openldap",
+      "installed_versions": [
+        "2.6.8"
+      ],
+      "current_version": "2.6.9",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "openssl@3",
+      "installed_versions": [
+        "3.3.2",
+        "3.4.0"
+      ],
+      "current_version": "3.4.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "pango",
+      "installed_versions": [
+        "1.54.0"
+      ],
+      "current_version": "1.56.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "perl",
+      "installed_versions": [
+        "5.38.2_1",
+        "5.40.0"
+      ],
+      "current_version": "5.40.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "php",
+      "installed_versions": [
+        "8.3.13_1"
+      ],
+      "current_version": "8.4.4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "pipx",
+      "installed_versions": [
+        "1.7.1"
+      ],
+      "current_version": "1.7.1_1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "pixman",
+      "installed_versions": [
+        "0.42.2"
+      ],
+      "current_version": "0.44.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "pmix",
+      "installed_versions": [
+        "5.0.3"
+      ],
+      "current_version": "5.0.6",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "poppler",
+      "installed_versions": [
+        "24.04.0_1"
+      ],
+      "current_version": "25.02.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "protobuf",
+      "installed_versions": [
+        "28.2"
+      ],
+      "current_version": "29.3",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "python-packaging",
+      "installed_versions": [
+        "24.1_1"
+      ],
+      "current_version": "24.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "python@3.10",
+      "installed_versions": [
+        "3.10.15"
+      ],
+      "current_version": "3.10.16",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "python@3.11",
+      "installed_versions": [
+        "3.11.10"
+      ],
+      "current_version": "3.11.11",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "python@3.12",
+      "installed_versions": [
+        "3.12.7_1"
+      ],
+      "current_version": "3.12.9",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "python@3.13",
+      "installed_versions": [
+        "3.13.0_1"
+      ],
+      "current_version": "3.13.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "python@3.9",
+      "installed_versions": [
+        "3.9.19"
+      ],
+      "current_version": "3.9.21",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "qt",
+      "installed_versions": [
+        "6.7.2_2"
+      ],
+      "current_version": "6.8.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "rabbitmq",
+      "installed_versions": [
+        "4.0.2"
+      ],
+      "current_version": "4.0.6",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "rbenv",
+      "installed_versions": [
+        "1.3.0"
+      ],
+      "current_version": "1.3.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "redis",
+      "installed_versions": [
+        "7.2.6"
+      ],
+      "current_version": "7.2.7",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "ruby",
+      "installed_versions": [
+        "3.3.5"
+      ],
+      "current_version": "3.4.2",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "ruby-build",
+      "installed_versions": [
+        "20241017"
+      ],
+      "current_version": "20250215",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "ruby-install",
+      "installed_versions": [
+        "0.9.3"
+      ],
+      "current_version": "0.10.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "sdl2",
+      "installed_versions": [
+        "2.30.8"
+      ],
+      "current_version": "2.32.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "getsentry/tools/sentry-wizard",
+      "installed_versions": [
+        "3.34.2"
+      ],
+      "current_version": "3.41.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "sqlite",
+      "installed_versions": [
+        "3.46.1",
+        "3.47.0"
+      ],
+      "current_version": "3.49.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "srt",
+      "installed_versions": [
+        "1.5.3"
+      ],
+      "current_version": "1.5.4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "starship",
+      "installed_versions": [
+        "1.21.1"
+      ],
+      "current_version": "1.22.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "tesseract",
+      "installed_versions": [
+        "5.4.1_2"
+      ],
+      "current_version": "5.5.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "tre",
+      "installed_versions": [
+        "0.8.0"
+      ],
+      "current_version": "0.9.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "tree",
+      "installed_versions": [
+        "2.1.1_1"
+      ],
+      "current_version": "2.2.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "tree-sitter",
+      "installed_versions": [
+        "0.24.3"
+      ],
+      "current_version": "0.24.7",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "universal-ctags",
+      "installed_versions": [
+        "p6.1.20241006.0"
+      ],
+      "current_version": "p6.1.20250216.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "vim",
+      "installed_versions": [
+        "9.1.0100"
+      ],
+      "current_version": "9.1.1100",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "webp",
+      "installed_versions": [
+        "1.4.0"
+      ],
+      "current_version": "1.5.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "weechat",
+      "installed_versions": [
+        "4.4.3"
+      ],
+      "current_version": "4.5.1_1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "wget",
+      "installed_versions": [
+        "1.24.5"
+      ],
+      "current_version": "1.25.0",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "x265",
+      "installed_versions": [
+        "3.6",
+        "4.0_1"
+      ],
+      "current_version": "4.1",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "xapian",
+      "installed_versions": [
+        "1.4.24"
+      ],
+      "current_version": "1.4.27",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "xz",
+      "installed_versions": [
+        "5.6.3"
+      ],
+      "current_version": "5.6.4",
+      "pinned": false,
+      "pinned_version": null
+    },
+    {
+      "name": "yt-dlp",
+      "installed_versions": [
+        "2024.10.7"
+      ],
+      "current_version": "2025.1.26",
+      "pinned": false,
+      "pinned_version": null
+    }
+  ],
+  "casks": [
+    {
+      "name": "kitty",
+      "installed_versions": [
+        "0.36.1"
+      ],
+      "current_version": "0.39.1"
+    },
+    {
+      "name": "ngrok",
+      "installed_versions": [
+        "3.6.0,qZzy6MZGEs,a"
+      ],
+      "current_version": "3.19.1,32ay38T2E92,a"
+    }
+  ]
+}
