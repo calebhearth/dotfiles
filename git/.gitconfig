@@ -95,8 +95,8 @@
   autocrlf = input
   excludesfile = ~/.gitignore
   hooksPath = ~/.git_hooks
-  pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init --tabs=1,3
-  whitespace = blank-at-eol,trailing-space,tabwidth=3
+  pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init --tabs=2,4
+  whitespace = blank-at-eol,trailing-space,tabwidth=2
 
 [diff]
   algorithm = histogram
