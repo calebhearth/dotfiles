@@ -35,6 +35,6 @@ elif [ -f "$target" ] && !git diff --quiet "$target"; then
   exit 1
 fi
 
-mkdir -p $(dirname "$target")
+mkdir -p "$(dirname "$target")"
 mv "$file" "$target"
-ln -s $(pwd)/"$target" "$file"
+ln -s "$(pwd)/$target" "$file"
