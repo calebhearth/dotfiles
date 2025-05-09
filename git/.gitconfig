@@ -46,7 +46,7 @@
   ui = auto
 
 [color "branch"]
-  current = "#db9500 #282119 bold"
+  current = "#4493f8 #15233A bold"
   local = "#4493f8"
   plain = blue
   remote = "#db9500"
@@ -61,6 +61,8 @@
 [color "diff"]
   commit = yellow dim
   context = "#c9d1d9"
+  contextBold = "#002b08 #3bad4e bold"
+  contextDimmed = "#c9d1d9 #214610 bold"
   frag = white bold
   func = "#c8b670"
   meta = yellow bold
@@ -77,8 +79,8 @@
   whitespace = red
 
 [color "status"]
-  added = "#d29922"
-  changed = "#4493f8"
+  added = "#4493f8"
+  changed = "#d29922"
   header = "#8d96a0"
   localBranch = "#4493f8 #15233A bold"
   remoteBranch = "#d29922 #282119 bold"
