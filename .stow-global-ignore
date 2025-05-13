@@ -2,3 +2,4 @@
 /Gemfile
 !\.gitignore
 .DS_Store
+com.knollsoft.Rectangle.plist

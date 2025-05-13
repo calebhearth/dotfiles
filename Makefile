@@ -15,7 +15,7 @@ all: brew_install rectangle stow vim-plug
 .PHONY: stow
 stow: $(data_dir)/packages ~/.stow-global-ignore
 	mkdir -p $(target)
-	stow --adopt --no-fold --verbose --target=$(target) $(shell cat $(packages))
+	stow --adopt --verbose --no-folding --target=$(target) $(shell cat $(packages))
 
 .PHONY: brew_install
 brew_install: $(brew_install)
@@ -72,11 +72,20 @@ $(data_dir):
 	mkdir -p $(data_dir)
 
 .PHONY: vim-plug
-vim-plug: ~/.vim/autoload/plug.vim ~/.vimrc.bundles
+vim-plug: ~/.local/state/nvim/backup ~/.local/state/nvim/swap ~/.local/state/nvim/trust ~/.local/state/nvim/undo ~/.vimrc.bundles
 	nvim -u ~/.vimrc.bundles +PlugInstall +qall
 
-~/.vim/autoload/plug.vim:
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+~/.local/state/nvim/backup:
+	mkdir -p ~/.local/state/nvim/backup
+
+~/.local/state/nvim/swap:
+	mkdir -p ~/.local/state/nvim/swap
+
+~/.local/state/nvim/trust:
+	mkdir -p ~/.local/state/nvim/trust
+
+~/.local/state/nvim/undo:
+	mkdir -p ~/.local/state/nvim/undo
 
 .PHONY: rectangle
 rectangle: ~/Library/Preferences/com.knollsoft.Rectangle.plist
@@ -93,5 +102,5 @@ clean:
 		stow --verbose --delete --target=$(target) $(shell cat $(packages)); \
 	fi
 	rm -rf $(data_dir)
-	rm -rf ~/.vim/autoload/plug.vim
 	rm ~/Library/Preferences/com.knollsoft.Rectangle.plist
+	rm ~/.stow-global-ignore
