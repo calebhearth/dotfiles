@@ -2,11 +2,11 @@ typeset -U path PATH
 typeset -U fpath FPATH
 
 if command -v brew 2>&1 > /dev/null; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$($(brew --prefix)/bin/brew shellenv)"
   fpath=($(brew --prefix)/share/zsh/site-functions ${fpath})
   export MANPATH="$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
-export PATH="$HOME/bin:$HOME/.cargo/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
+export PATH="$HOME/bin:$HOME/.cargo/bin:$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin:/sbin"
 
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000000
@@ -66,9 +66,10 @@ ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
 
 # source ~/.dotfiles/git_prompt.sh
 # source ~/.dotfiles/zsh_prompt.sh
-precmd() {
-  ~/bin/jobs "$(printf '%s^^^' "${jobstates[@]}")" "$(printf '%s^^^' "${jobtexts[@]}")" "$(printf '%s^^^' "${jobdirs[@]}")"
-}
+# precmd() {
+#   ~/bin/jobs "$(printf '%s^^^' "${jobstates[@]}")" "$(printf '%s^^^' "${jobtexts[@]}")" "$(printf '%s^^^' "${jobdirs[@]}")"
+# }
 eval "$(starship init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(mise activate zsh)"
+export HOMEBREW_NO_AUTO_UPDATE=1
