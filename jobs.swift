@@ -3,7 +3,6 @@
 
 import Foundation
 
-
 @main
 struct Job {
 	static func main() {
