@@ -1,8 +1,25 @@
 capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.general.positionEncodings = { "utf-16" }
 
+vim.lsp.config('*', { capabilities = capabilities })
+
+vim.lsp.config('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+      check = {
+        command = 'clippy',
+        features = 'all',
+      },
+      diagnostic = {
+        styleLints = {
+          enable = true,
+        },
+      },
+    }
+  },
+})
+
 vim.lsp.config('ruby_lsp', {
-  capabilities = capabilities,
   init_options = {
     rubyLsp = {
       featuresConfiguration = {
@@ -19,7 +36,7 @@ vim.lsp.config('ruby_lsp', {
 
 vim.lsp.enable({
   'clangd',
-  'gopls',
+  -- 'gopls',
   'ruby_lsp',
   'rubocop',
   'rust_analyzer',
