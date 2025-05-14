@@ -125,6 +125,7 @@ gitcolor.highlight({
 }, "color.diff.old")
 gitcolor.highlight({
   "GitSignsChange",
+  "GitSignsDelete",
   "gitCommitSelectedFile",
   "gitCommitSelectedFileType",
 }, "color.status.changed")
@@ -149,7 +150,6 @@ gitcolor.highlight("ConflictMarkerCommonAncestorsHunk", "color.diff.oldMoved")
 -- #104900 oklch(0.35 0.1267 137.54)
 gitcolor.highlight({
   "GitDirty",
-  "GitSignsDelete",
   "gitCommitRemovedFile",
   "gitCommitRemovedType",
   "Changed",
