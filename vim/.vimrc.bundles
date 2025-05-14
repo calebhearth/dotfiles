@@ -101,4 +101,6 @@ endif
 Plug 'vim-test/vim-test'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
 
+Plug 'mfussenegger/nvim-jdtls'
+
 call plug#end()
