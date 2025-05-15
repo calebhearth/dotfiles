@@ -46,16 +46,16 @@
   ui = auto
 
 [color "branch"]
-  current = "#db9500 #282119 bold"
-  local = "#4493f8"
-  plain = blue
-  remote = "#db9500"
+  current = "#d28f01 #432e21 bold"
+  local = "#4596ff"
+  plain = "#008905"
+  remote = "#d28f01"
 
 [color "decorate"]
-  HEAD = "#c94241"
-  branch = "#4493f8"
-  remoteBranch = "#db9500"
-  stash = "#c94241"
+  HEAD = "#00429b"
+  branch = "#4596ff"
+  remoteBranch = "#d28f01"
+  stash = "#003100"
   tag = magenta
 
 [color "diff"]
@@ -64,24 +64,24 @@
   frag = white bold
   func = "#c8b670"
   meta = yellow bold
-  new = "#c9d1d9 #273C5B bold" ; hsl(216, 40, 25.5)
-  newMoved = "#c9d1d9 #182335"
-  newMovedAlternative = "#c9d1d9 #2f3e53"
-  newMovedAlternativeDimmed = "#c9d1d9 #38474a" ; hsl(191, 13.3, 25.5)
-  newMovedDimmed = "#c9d1d9 #383f4a" ; hsl(216, 13.3, 25.5)
-  old = "#c9d1d9 #463023 bold" ; hsl(22, 33.3, 20.6)
-  oldMoved = "#c9d1d9 #282119"
-  oldMovedAlternative = "#c9d1d9 #403129"
-  oldMovedAlternativeDimmed = "#c9d1d9 #3a382f" ; hsl(47, 11.1, 20.6)
-  oldMovedDimmed = "#c9d1d9 #3a332f" ; hsl(22, 11.1, 20.6)
-  whitespace = red
+  new = "#c9d1d9 #233653 bold" ; hsl(216, 40, 25.5)
+  newMoved = "#c9d1d9 #0d1b30"
+  newMovedAlternative = "#c9d1d9 #2b3b52"
+  newMovedAlternativeDimmed = "#c9d1d9 #333b46"
+  newMovedDimmed = "#c9d1d9 #141b26"
+  old = "#c9d1d9 #432e21 bold"
+  oldMoved = "#c9d1d9 #2b1e17"
+  oldMovedAlternative = "#c9d1d9 #43352c"
+  oldMovedAlternativeDimmed = "#c9d1d9 #3c372f"
+  oldMovedDimmed = "#c9d1d9 #25211e"
+  whitespace = #9e011b
 
 [color "status"]
-  added = "#d29922"
-  changed = "#4493f8"
+  added = "#d28f01"
+  changed = "#4596ff"
   header = "#8d96a0"
-  localBranch = "#4493f8 #15233A bold"
-  remoteBranch = "#d29922 #282119 bold"
+  localBranch = "#4596ff #233653 bold"
+  remoteBranch = "#d28f01 #432e21 bold"
   untracked = "#cac5c4 bold"
 
 [column]
@@ -153,7 +153,7 @@
   decorate = auto
   excludeDecoration = "refs/remotes/origin/HEAD"
   follow = true
-  graphColors = "#626262", "#005f00", "#5f00d7", "#af0000", "#5faf87", "#d75f00", "#af0087", "#00afd7"
+  graphColors = "#626262", "#008905", "#6100ca", "#9e011b", "#5faf87", "#b95700", "#d01478", "#00afd7"
   mailmap = true
 
 [merge]
