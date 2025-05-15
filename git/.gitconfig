@@ -52,10 +52,10 @@
   remote = "#db9500"
 
 [color "decorate"]
-  HEAD = "#c94241"
+  HEAD = "#273C5B"
   branch = "#4493f8"
   remoteBranch = "#db9500"
-  stash = "#c94241"
+  stash = "#214610"
   tag = magenta
 
 [color "diff"]
