@@ -1,7 +1,7 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 add_newline = false
-format = "${custom.show_jobs}${custom.ssh_emoji}${custom.directory}$git_branch${custom.describe}$git_state$git_status${custom.subdir} $character"
+format = "${custom.show_jobs}${custom.ssh_emoji}${custom.directory}$git_branch${custom.describe}$git_state$git_status${custom.subdir} $mise$character"
 palette = "blueorange"
 
 [custom.describe]
@@ -61,6 +61,11 @@ staged = '[􀈧 ](blue)'
 stashed = '[􀈄 ](blue)'
 untracked = '[􀣗 ](red)'
 up_to_date = "􀆀 "
+
+[mise]
+healthy_symbol = "􀥺"
+unhealthy_symbol = "􀥺 "
+disabled = false
 
 [palettes.blueorange]
 red = '#d29922'
