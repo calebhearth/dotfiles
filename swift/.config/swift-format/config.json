@@ -11,6 +11,7 @@
   "lineBreakBeforeControlFlowKeywords": false,
   "lineBreakBeforeEachArgument": true,
   "lineBreakBeforeEachGenericRequirement": true,
+  "lineBreakBetweenDeclarationAttributes": true,
   "lineLength": 120,
   "maximumBlankLines": 1,
   "multiElementCollectionTrailingCommas": true,
@@ -20,12 +21,16 @@
     ]
   },
   "prioritizeKeepingFunctionOutputTogether": false,
+  "reflowMultilineStringLiterals": {
+    "never": {}
+  },
   "respectsExistingLineBreaks": true,
   "rules": {
     "AllPublicDeclarationsHaveDocumentation": false,
     "AlwaysUseLiteralForEmptyCollectionInit": true,
     "AlwaysUseLowerCamelCase": true,
     "AmbiguousTrailingClosureOverload": true,
+    "AvoidRetroactiveConformances": false,
     "BeginDocumentationCommentWithOneLineSummary": true,
     "DoNotUseSemicolons": true,
     "DontRepeatTypeInStaticProperties": true,
@@ -35,11 +40,12 @@
     "IdentifiersMustBeASCII": true,
     "NeverForceUnwrap": false,
     "NeverUseForceTry": false,
-    "NeverUseImplicitlyUnwrappedOptionals": true,
+    "NeverUseImplicitlyUnwrappedOptionals": false,
     "NoAccessLevelOnExtensionDeclaration": true,
     "NoAssignmentInExpressions": true,
     "NoBlockComments": true,
     "NoCasesWithOnlyFallthrough": true,
+    "NoEmptyLinesOpeningClosingBraces": true,
     "NoEmptyTrailingClosureParentheses": true,
     "NoLabelsInCasePatterns": true,
     "NoLeadingUnderscores": true,
@@ -51,7 +57,7 @@
     "OneVariableDeclarationPerLine": true,
     "OnlyOneTrailingClosureArgument": true,
     "OrderedImports": true,
-    "ReplaceForEachWithForLoop": false,
+    "ReplaceForEachWithForLoop": true,
     "ReturnVoidInsteadOfEmptyTuple": true,
     "TypeNamesShouldBeCapitalized": true,
     "UseEarlyExits": true,
@@ -65,6 +71,7 @@
     "ValidateDocumentationComments": true
   },
   "spacesAroundRangeFormationOperators": false,
+  "spacesBeforeEndOfLineComments": 2,
   "tabWidth": 2,
   "version": 1
 }
