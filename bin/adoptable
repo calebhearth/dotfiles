@@ -5,4 +5,4 @@ ls ~/.* -F --directory | grep -v "[@/]$"
 
 # Recursively find dotfiles under ~/.config and ~/.vim that are not symlinks, excluding known
 # noise
-find ~/.config ~/.vim -type f | grep -v node_modules | grep -v AWSVPNClient | grep -v raycast
+find ~/.config ~/.vim -type f | grep -v -e node_modules -e AWSVPNClient -e raycast -e "\.vim/plugged"
