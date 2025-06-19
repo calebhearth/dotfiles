@@ -26,7 +26,7 @@
 set -e
 
 interactive=false
-ARGUMENTS=$(/opt/homebrew/opt/gnu-getopt/bin/getopt -o 'hi' --long 'help,interactive' -- "$@")
+ARGUMENTS=$($(brew --prefix)/opt/gnu-getopt/bin/getopt -o 'hi' --long 'help,interactive' -- "$@")
 eval set -- "$ARGUMENTS"
 while true; do
 	case "$1" in
