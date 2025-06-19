@@ -81,7 +81,9 @@
   changed = "#4596ff"
   header = "#8d96a0"
   localBranch = "#4596ff #233653 bold"
+  noBranch = "#3bad4e #002b08 bold"
   remoteBranch = "#d28f01 #432e21 bold"
+  unmerged = "#3bad4e"
   untracked = "#cac5c4 bold"
 
 [column]
