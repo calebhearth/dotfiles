@@ -34,9 +34,24 @@ vim.lsp.config('ruby_lsp', {
   },
 })
 
+vim.lsp.config['herb_ls'] = {
+  cmd = { 'herb-language-server', '--stdio' },
+  filetypes = { 'html', 'ruby', 'eruby' },
+  root_markers = { 'Gemfile', '.git' },
+}
+
+skCapabilities = capabilities
+-- https://www.swift.org/documentation/articles/zero-to-swift-nvim.html#file-updating
+skCapabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+vim.lsp.config('sourcekit', {
+  capabilities = skCapabilities
+})
+
 vim.lsp.enable({
   'clangd',
+  'eslint',
   -- 'gopls',
+  'herb_ls',
   'ruby_lsp',
   'rubocop',
   'rust_analyzer',
