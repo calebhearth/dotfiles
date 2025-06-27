@@ -63,6 +63,13 @@ vim.api.nvim_create_autocmd('LspDetach', {
   end
 })
 
+-- LSP inlays will look like Comments but also be underdotted.
+vim.api.nvim_set_hl(0, 'LspInlayHint', vim.tbl_extend(
+  'force',
+  vim.api.nvim_get_hl(0, { name='Comment' }),
+  { underdotted = true })
+)
+
 -- function lsp_progress()
 --   local messages = vim.lsp.status()
 --   if #messages == 0 then
