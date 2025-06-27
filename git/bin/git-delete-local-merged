@@ -1,6 +1,6 @@
 #!/bin/sh
 
-deleted="$(git branch --merged "$(git main)" | grep --invert-match '^\*' | xargs)"
+deleted="$(git branch --merged "$(git main)" | grep --invert-match --regexp '^\*' --regexp '->' | xargs)"
 if [ -n "$deleted" ]; then
 	# shellcheck disable=SC2086
 	git branch --delete $deleted
