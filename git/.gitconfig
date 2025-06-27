@@ -109,13 +109,14 @@
   wsErrorHighlight = old,new
 
 [diff "rspec"]
-  xfuncname = "^[ \t]*((RSpec|describe|context|it|before|after|around|feature|scenario)[ \t].*)$"
+  xfuncname = "^[[:space:]]*((RSpec|describe|context|it|before|after|around|feature|scenario)[[:space:]].*)$"
 
 [diff "swift"]
-  xfuncname = "^[ \t]*(@?\\w+[ \t]+)*((actor|init|class|enum|func|protocol|struct|var|let)[ \t]*([^:{]+).*)$"
+  xfuncname = "^[[:space:]]*((@?\\w+[[:space:]])*(actor|class|enum|extension|func>|init|protocol|struct)[[:space:]]*[^:{]+[^{]*)[[:space:]]*{?[} \\w]*$"
 
 [diff "toml"]
-  xfuncname = "^[ \t]*((\\[.*\\])|([^#].*))$"
+  xfuncname = "^[[:space:]]*((\\[.*\\])|([^#].*))$"
+  xfuncname = "^[[:space:]]*(\\[.*\\])$"
 
 [difftool]
   prompt = false
@@ -177,6 +178,7 @@
 
 [pretty]
   graph = %C(auto)%d %C(reset bold "#c9d1d9")%s %C(reset "#6100ca")%ad %C(auto)%h %C("#005b00")%aN %C(reset "#00429b")%G?
+  ; graph = %C(auto)%d %s %ad %h %aN %G?
   news = * %s %h%n%n  *%aN*
   update = graph
 
