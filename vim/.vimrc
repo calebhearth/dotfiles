@@ -80,15 +80,14 @@ set autoindent                  " indent at the same level of the previous line
 set smartindent                 " be smart about it
 set shiftwidth=2                " use indents of 2 spaces
 set expandtab                   " tabs are spaces, not tabs
-autocmd BufEnter * if &expandtab " Highlight problematic whitespace
-  \ setlocal listchars=tab:»·,trail:·,extends:>
-\ else
-  " don't show tab characters if we're not expanding them
-  \ setlocal listchars=tab:\ \ ,trail:·,extends:>
-\ endif
+" Highlight problematic whitespace but don't show tab characters if we're not expanding them
+autocmd BufEnter * if &expandtab
+      \| setlocal listchars=tab:\ \ ,trail:·,extends:> smarttab
+      \| else
+      \| setlocal listchars=tab:»·,trail:·,extends:> nosmarttab
+      \| endif
 set tabstop=2                   " an indentation every two columns
 set softtabstop=2               " let backspace delete indent
-set nosmarttab                  " fuck tabs
 
 " Key (re)Mappings
 
