@@ -1,0 +1,32 @@
+#! /usr/bin/env bash
+
+exit
+# Defines Git prepare commit message functionality.
+# https://alchemists.io/articles/git_trailers
+
+# Enable safe defaults.
+set -o nounset
+set -o errexit
+set -o pipefail
+IFS=$'\n\t'
+
+# The first argument, provided by Git, is the path to your commit message.
+commit_message_path="$1"
+
+# The second argument, provided by Git, is the kind of commit being made.
+kind="${2:-}"
+
+# We start by obtaining the name of the current branch.
+branch="$(git branch --show-current | tr -d '\n')"
+
+# Next, we let Git parse any trailers from the branch description as a new line delimited string.
+# Use of (|| :) is a no operation to prevent premature Git hook abortion should the command fail.
+trailers="$(git config get "branch.$branch.description" | git interpret-trailers --parse || :)"
+
+# Finally, we add trailers to the commit message based on kind of commit being created.
+case "$kind" in
+  merge | commit | message | template)
+    ;;
+  "")
+    echo -e "\n\n$trailers\n$(cat "$commit_message_path")" > "$commit_message_path" ;;
+esac
