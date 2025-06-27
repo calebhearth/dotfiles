@@ -59,11 +59,11 @@
   tag = magenta
 
 [color "diff"]
-  commit = yellow dim
+  commit = "#6585b6"
   context = "#c9d1d9"
-  frag = white bold
-  func = "#c8b670"
-  meta = yellow bold
+  frag = "#ffebce"
+  func = "#fc539f bold"
+  meta = "#a16c00"
   new = "#c9d1d9 #233653 bold" ; hsl(216, 40, 25.5)
   newMoved = "#c9d1d9 #0d1b30"
   newMovedAlternative = "#c9d1d9 #2b3b52"
@@ -74,7 +74,7 @@
   oldMovedAlternative = "#c9d1d9 #43352c"
   oldMovedAlternativeDimmed = "#c9d1d9 #3c372f"
   oldMovedDimmed = "#c9d1d9 #25211e"
-  whitespace = #9e011b
+  whitespace = "#9e011b"
 
 [color "status"]
   added = "#d28f01"
@@ -176,7 +176,7 @@
   layout = "LOCAL,BASE,REMOTE / MERGED"
 
 [pretty]
-  graph = %C(auto)%d %s %C(reset green dim)%ad %C(auto)%h %C(bold cyan)%aN %C(reset blue)%G?
+  graph = %C(auto)%d %C(reset bold "#c9d1d9")%s %C(reset "#6100ca")%ad %C(auto)%h %C("#005b00")%aN %C(reset "#00429b")%G?
   news = * %s %h%n%n  *%aN*
   update = graph
 
