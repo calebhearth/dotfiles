@@ -1,3 +1,7 @@
+/* https://oklch.fyi/ */
+/* https://huetone.ardov.me/ */
+/* https://www.color-name.com/ */
+/* https://huetone.ardov.me/?palette=N4IgdghgtgpiBcIAOAbCBPA5gJwPYFcwATEAGhAAt8YBnBAbVElgRAHFsYYwyQBjXClzY68eiADEABgCMAJgBGUgBy9pAZgAsAThkBWNVIUB2BXO2HNCmeoUgAugF9STaHEQAhFNV4ChIhklZORlNCEN1dT0ANhJyaWNo9T51NVttOQAzTIdnVxZEAE0YFCEAd19BYVFxCXUZGUypVPirdSkOtWVlPT4paLUiBW09TqcXcDdWACUYOP4qgLFJdTkO5rVNPpkVLohmmWM1PmipOTkDcfz3EAAFfGxUOHI-asCJGSUpTRk1OW3onI1HpNN8lGpTB1MnxchNmDcAPLYCBgTDPBb%2BGorZSaYxhP6ZdQwPQtSQyZRySIGeJyYzJPR2Jz2cgAF1wYFogSkvB23PIaz5IHa3KcQA */
 :root {
   --green-1: #003100;
   --green-1-p3: oklch(0.262 0.111 146.2);
