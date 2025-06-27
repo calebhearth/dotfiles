@@ -1,11 +1,12 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 add_newline = false
-format = "${custom.show_jobs}${custom.ssh_emoji}${custom.directory}$git_branch${custom.describe}$git_state$git_status${custom.subdir} $mise$character"
+format = "${custom.show_jobs}${custom.ssh_emoji}${directory}$git_branch${custom.describe}$git_state$git_status${custom.subdir} ${custom.mise}$character"
 palette = "blueorange"
 
 [custom.describe]
 command="git describe --contains --all HEAD 2> /dev/null"
+description = "A description of the current Git commit when HEAD is not pointing to a branch"
 format = '\([\($output\)]($style) '
 require_repo = true
 style = 'red'
@@ -28,6 +29,9 @@ when = '[ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]'
 
 [custom.subdir]
 command = 'echo ${PWD/$(git rev-parse --show-toplevel --show-superproject-working-tree | tail -1 2>\/dev\/null)}'
+description = "The current subdirectory of the topmost Git repository"
+format = '[$output]($style)'
+# ignore_timeout = true
 when = true
 require_repo = true
 style = ""
@@ -37,6 +41,20 @@ format = '[$output]($style)'
 command = 'toplevel=$(git rev-parse --show-toplevel --show-superproject-working-tree | tail -1 2>\/dev\/null); [[ -n "$toplevel" ]] && basename "$toplevel" || print ${PWD//"$HOME"/\~caleb}'
 when = true
 style = "bold"
+
+[custom.mise]
+command = "[ -z \"$(mise list --current --missing --no-header)\" ] || print \"􀥺\""
+description = "Prints if any mise-managed tools are missing"
+format = '[($output  )]($style)'
+when = true
+style = "purple"
+
+[directory]
+fish_style_pwd_dir_length = 1
+format = '[$path]($style)[$read_only]($read_only_style)'
+repo_root_format = '[$repo_root]($repo_root_style)[$read_only]($read_only_style)'
+repo_root_style = "bold"
+style = ""
 
 [git_branch]
 format = '\([$branch]($style) '
@@ -63,12 +81,13 @@ untracked = '[􀣗 ](red)'
 up_to_date = "􀆀 "
 
 [mise]
-healthy_symbol = "􀥺"
-unhealthy_symbol = "􀥺 "
-disabled = false
+disabled = true
+format = '[$health]($style)'
+healthy_symbol = ""
+unhealthy_symbol = "􀥺  "
 
 [palettes.blueorange]
-red = '#d29922'
-green = '#4493f8'
-# blue = '#c94241'
-blue = '#8d96a0'
+red = '#d28f01'
+green = '#4596ff'
+blue = '#005b00'
+purple = '#8d50ff'
