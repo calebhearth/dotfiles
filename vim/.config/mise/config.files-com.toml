@@ -1,0 +1,4 @@
+[tools]
+# "gem:actionverb-deploy" = "latest"
+# "gem:nexus" = "1.4.0.av1"
+"gem:rdoc" = "6.14.0"

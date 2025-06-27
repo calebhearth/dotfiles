@@ -1,0 +1,23 @@
+[settings]
+ruby.ruby_install = true
+
+[tools]
+"gem:bundler-merge" = "latest"
+"gem:gem-ripper-tags" = "latest"
+"gem:neovim" = "latest"
+"gem:ruby-lsp" = "latest"
+"npm:@herb-tools/language-server" = "latest"
+
+# Ruby "gemset"
+# [env]
+# GEM_HOME = "{{config_root}}/.gem/ruby/{{exec(command='cat .ruby-version')}}"
+# GEM_PATH = "{{env.GEM_HOME}}"
+# _.file = '.env'
+# _.path = "{{env.GEM_HOME}}/bin"
+# [hooks]
+# enter = [
+#   "[ -d \"$GEM_HOME\" ] || mkdir -p \"$GEM_HOME\"",
+# ]
+
+# [[env]]
+# _.file = '.env'

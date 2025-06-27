@@ -1,29 +1,22 @@
 [settings]
 experimental = true
-ruby.ruby_install = true
+idiomatic_version_file_enable_tools = [
+  # "java", -- handled by twiddling env flags for jenv
+  "go",
+  "node",
+  "python",
+  "ruby",
+  "rust",
+  "swift",
+]
 jobs = 12
 
 [settings.python]
 compile = false
 
 [tools]
-ruby = "3.2.2"
-
-# Ruby "gemset"
-# [env]
-# GEM_HOME = "{{config_root}}/.gem/ruby/{{exec(command='cat .ruby-version')}}"
-# GEM_PATH = "{{env.GEM_HOME}}"
-# _.file = '.env'
-# _.path = "{{env.GEM_HOME}}/bin"
-# [hooks]
-# enter = [
-#   "[ -d \"$GEM_HOME\" ] || mkdir -p \"$GEM_HOME\"",
-#   "command -v ruby-lsp 2>&1 > /dev/null || gem install ruby-lsp"
-# ]
-
-# [[env]]
-# _.file = '.env'
-
+ruby = "latest"
+"gem:git-bump" = "latest"
 
 # Overmind example for microservices
 # assumes a Procfile with services defined
