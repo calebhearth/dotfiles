@@ -1,9 +1,0 @@
-[alias]
-  pull-request = "!glab mr create --assignee=caleb.hearth --fill --yes"
-
-[user]
-  email = caleb.hearth@files.com
-
-[delta]
-  hyperlinks-commit-link-format = 'https://gitlab.av/repository/files-rails/-/tree/{commit}'
-  hyperlinks-file-link-format = "https://gitlab.av/repository/files-rails/-/tree/master/{path}#L{line}"
