@@ -1,0 +1,7 @@
+[env]
+GEM_HOME = "{{config_root}}/.gem/ruby/{{exec(command='cat .ruby-version')}}"
+GEM_PATH = "{{env.GEM_HOME}}"
+_.file = '.env'
+_.path = "{{env.GEM_HOME}}/bin"
+[hooks]
+enter = "[ -d \"$GEM_HOME\" ] || mkdir -p \"$GEM_HOME\""

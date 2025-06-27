@@ -1,0 +1,152 @@
+[task_config]
+includes = ["tasks"]
+
+[tasks.build-dep-cache-debug]
+  description = "Build Cache.framework in Debug configuration"
+  outputs = ["ext/Cache/build/Debug/Cache.framework/**/*"]
+  run = [
+    "set -o pipefail",
+    """
+    xcodebuild build \
+      -project ext/cache/Cache.xcodeproj \
+      -scheme Cache-macOS \
+      -configuration Debug \
+      -destination "generic/platform=macOS,name=Any Mac" \
+    | xcbeautify --disable-logging --quiet
+    """,
+    "touch --no-create -m ext/Cache/build/Debug/Cache.framework/Cache",
+  ]
+  sources = [
+    "ext/Cache/Package.resolved",
+    "ext/Cache/Package.swift",
+    "ext/Cache/Source/**/*",
+    "ext/Cache/Cache.xcodeproj/**/*",
+  ]
+
+[tasks.build-dep-preferences-debug]
+  description = "Build Preferences.framework in Debug configuration"
+  outputs = ["ext/Preferences/build/Debug/Preferences.framework/**/*"]
+  run = [
+    "set -o pipefail",
+    """
+    xcodebuild build \
+      -project ext/Preferences/Preferences.xcodeproj \
+      -scheme Preferences-Package \
+      -configuration Debug \
+      -destination "generic/platform=macOS,name=Any Mac" \
+    | xcbeautify --disable-logging --quiet
+    """,
+    "touch --no-create -m ext/Preferences/build/Debug/Preferences.framework/Preferences",
+  ]
+  sources = [
+    "ext/Preferences/Package.swift",
+    "ext/Preferences/Preferences.xcodeproj/**/*",
+    "ext/Preferences/Sources/**/*",
+  ]
+
+[tasks.build-dep-swifter-debug]
+  description = "Build Swifter.framework in Debug configuration"
+  outputs = ["ext/swifter/XCode/Build/Debug/Swifter.framework/**/*"]
+  run = [
+    "set -o pipefail",
+    """
+    xcodebuild build \
+      -project ext/swifter/Xcode/Swifter.xcodeproj \
+      -scheme SwifterMac  \
+      -configuration Debug \
+      -destination "generic/platform=macOS,name=Any Mac" \
+    | xcbeautify --disable-logging --quiet
+    """,
+    "touch --no-create -m ext/swifter/XCode/Build/Debug/Swifter.framework/Swifter",
+  ]
+  sources = [
+    "ext/swifter/Package.swift",
+    "ext/swifter/Xcode/Swifter.xcodeproj/**/*",
+    "ext/swifter/Xcode/Sources/**/*",
+    "ext/swifter/Xcode/SwifterMac/**/*",
+  ]
+
+[tasks.build-deps-debug]
+  depends = [
+    "update-version",
+    "build-dep-cache-debug",
+    "build-dep-preferences-debug",
+    "build-dep-puppy --configuration=debug",
+    "build-dep-swifter-debug",
+  ]
+  description = "Build all framework dependencies in Debug configuration"
+
+[tasks.build-debug]
+  depends = [
+    "update-version",
+    "build-deps-debug",
+    "gen-xcodeproj",
+  ]
+  description = "Build ExpanDrive in Debug configuration"
+  run = [
+    "set -o pipefail",
+    """
+    xcodebuild build \
+      -project build-mac/exfs.xcodeproj \
+      -scheme ExpanDrive \
+      -configuration Debug \
+      -destination "generic/platform=macOS,name=Any Mac" \
+      | xcbeautify --disable-logging --quiet
+    """
+  ]
+
+[tasks.gen-xcodeproj]
+  description = "Generate Xcode project for ExpanDrive with Debug configuration"
+  depends = ["update-version"]
+  outputs = ["build-mac/exfs.xcodeproj/**/*"]
+  run = [
+    "rm -rf build-mac",
+    "CONFIGURATION=Debug cmake -B build-mac -G Xcode",
+  ]
+  sources = [
+    "CMakeLists.txt",
+    "src/fileprovider/mac/ExpanDriveFileProvider.entitlements",
+    "src/fileprovider/mac/expandrive.plist",
+    "src/swiftui/ExpanDrive.entitlements",
+    "src/swiftui/expandrive.plist",
+  ]
+
+[tasks.update-version]
+  description = "Sync version from package.json to source files"
+  outputs = ["src/exfs_version.h"]
+  run = "python src/update_version.py"
+  sources = ["package.json", "src/update_version.py"]
+  tools.jq = "latest"
+
+[tasks.codesign-debug]
+  description = "Codesign ExpanDrive in Debug configuration"
+  depends = ["build-debug"]
+  env = { TARGET = "Debug", CODESIGN_ACTION = "--timestamp --sign MD9SZZYL6D --force --verbose=999" }
+  run = [
+    "mkdir -p dist",
+    """
+    find "build-mac/$TARGET/ExpanDrive.app" -type f -perm +111 -exec file "{}" \\; \
+      | grep --invert-match "(for architecture" \
+      | grep --invert-match --extended-regexp "^- Mach-O" \
+      | grep --extended-regexp "Mach-O executable|Mach-O 64-bit executable|Mach-O 64-bit bundle|Mach-O 64-bit dynamically linked shared library" \
+      | cut --delimiter=: --fields=1 \
+      | xargs codesign ${=CODESIGN_ACTION}
+    """,
+    "(cd \"build-mac/$TARGET\" && zip --recurse-paths --quiet - ExpanDrive.app) > dist/ExpanDrive.zip",
+  ]
+  shell = "zsh -c"
+
+[tasks.clean-deps]
+description = "Clean built dependencies"
+run = [
+  "rm -r ext/Preferences/Build/",
+  "rm -r ext/swifter/XCode/Build/",
+  "rm -r ext/Cache/Build/",
+  "rm -r ext/Puppy-0.7.0/.build/apple",
+]
+
+[tools]
+  cmake = "latest"
+  node = "latest"
+  python = "3"
+  yarn = "1"

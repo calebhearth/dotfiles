@@ -1,0 +1,4 @@
+[env]
+MISE_ENV = "{% if mise_env %}{{ mise_env | concat(with='javascript') | unique | join(sep=',') }}{% else %}javascript{% endif %}"
+[tools]
+"gem:deb-s3" = "latest"
