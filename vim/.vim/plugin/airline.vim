@@ -8,6 +8,7 @@ let g:airline_symbols = {
       \ "crypt": "🔒",
       \ "dirty": "⚡",
       \ "ellipsis": "…",
+      \ "executable": "\u2699",
       \ "keymap": "Keymap:",
       \ "linenr": " :",
       \ "maxlinenr": "☰ ",
