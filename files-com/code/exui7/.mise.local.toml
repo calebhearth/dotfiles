@@ -1,4 +1,23 @@
 [env]
 MISE_ENV = "{% if mise_env %}{{ mise_env | concat(with='javascript') | unique | join(sep=',') }}{% else %}javascript{% endif %}"
+
+[tasks.dependencies]
+sources = [ "package.json", "yarn.lock" ]
+outputs = [ "node_modules/**", ".npm-cache/**", ".yarn-cache/**" ]
+run = [
+"yarn install --frozen-lockfile",
+"yarn run electron-builder install-app-deps",
+"npm cache verify",
+]
+
+[tasks.sync-exfs]
+sources = [ "../exfs/build-linux/exfs/**" ]
+outputs = [ "SharedSupport/exfs/**" ]
+run = "rsync ../exfs/build-linux/exfs SharedSupport"
+
+
 [tools]
 "gem:deb-s3" = "latest"
+"python" = "3.11"
+"ruby" = "latest"
+"yarn" = "1"
