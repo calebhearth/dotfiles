@@ -1,2 +1,4 @@
 [tools]
+"npm:neovim" = "latest"
+"npm:typescript-language-server" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
