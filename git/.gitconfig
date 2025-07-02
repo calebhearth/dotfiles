@@ -206,6 +206,9 @@
 [rerere]
   enabled = true
 
+[revert]
+  reference = true
+
 [sendemail]
   aliasesfile = ~/.mutt/aliases
   aliasfiletype = mutt
