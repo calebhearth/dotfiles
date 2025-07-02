@@ -46,3 +46,4 @@ xcuserdata/
 /.direnv
 config/initializers/zzz.rb
 /.mise.local.toml
+/.mise/
