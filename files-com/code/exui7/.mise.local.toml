@@ -3,18 +3,58 @@ MISE_ENV = "{% if mise_env %}{{ mise_env | concat(with='javascript') | unique | 
 
 [tasks.dependencies]
 sources = [ "package.json", "yarn.lock" ]
-outputs = [ "node_modules/**", ".npm-cache/**", ".yarn-cache/**" ]
+outputs = [ "node_modules/**/*", ".npm-cache/**/*", ".yarn-cache/**/*" ]
 run = [
-"yarn install --frozen-lockfile",
-"yarn run electron-builder install-app-deps",
-"npm cache verify",
+  "yarn install --frozen-lockfile",
+  "yarn run electron-builder install-app-deps",
+  "npm cache verify",
+]
+
+[tasks.file-deps]
+sources = ["*.html", "*.png", "app/images/**/*"]
+outputs = ["dist/*.html", "dist/*.png", "dist/app/images/**/*"]
+run = [
+  "mkdir -p dist",
+  "cp -vr app/images/ *.html *.png dist/",
 ]
 
 [tasks.sync-exfs]
-sources = [ "../exfs/build-linux/exfs/**" ]
-outputs = [ "SharedSupport/exfs/**" ]
-run = "rsync ../exfs/build-linux/exfs SharedSupport"
+sources = [ "../exfs/build-linux/exfs" ]
+outputs = [ "SharedSupport/exfs" ]
+run = "cp ../exfs/build-linux/exfs SharedSupport/exfs"
 
+[tasks.webpack]
+depends = ["dependencies"]
+env = { NODE_OPTIONS = "--openssl-legacy-provider", NODE_ENV = "production" }
+run = "yarn run webpack --mode production"
+sources = [
+  "app/strongsync.tsx",
+  "app/styles/*.scss",
+  "package.json",
+  "webpack.config.js",
+]
+outputs = ["dist/strongspace.js", "dist/style.js"]
+
+[tasks.tsc]
+depends = ["dependencies"]
+outputs = ["dist/main.{js}", "dist/app/**/*.js"]
+sources = ["**/*.ts", "**/*.tsx", "package.json", "tsconfig.json"]
+run = "yarn tsc --skipLibCheck"
+
+[tasks.electron-builder]
+# depends = ["dependencies", "sync-exfs", "file-deps"]
+depends = ["webpack", "tsc", "file-deps"]
+sources = ["dist/**/*"]
+outputs = ["release/**/*"]
+env = { ARCH="linux", CLIENT="branding-configs/expandrive" }
+run = [
+  "yarn run electron-builder --linux"
+]
+
+[tasks.app]
+depends = ["tsc", "file-deps"]
+env = { HOT = "true", NODE_ENV = "development" }
+run = "yarn electron . --devtools --disable-gpu"
 
 [tools]
 "gem:deb-s3" = "latest"
