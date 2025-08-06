@@ -58,6 +58,7 @@ Plug 'lewis6991/satellite.nvim'
 " Plug 'leshill/vim-json'
 Plug 'tpope/vim-jdaddy'
 " Plug 'pangloss/vim-javascript'
+Plug 'b0o/SchemaStore.nvim'
 
 " HTML
 Plug 'ap/vim-css-color'
