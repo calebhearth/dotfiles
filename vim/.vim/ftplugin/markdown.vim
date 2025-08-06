@@ -9,4 +9,3 @@ vnoremap <Buffer> ? :'<,'>silent w !wc<CR>
 
 setlocal keywordprg=:Dispatch\ dict
 setlocal spell wrap linebreak nolist textwidth=0
-TSContextDisable
