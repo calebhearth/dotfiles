@@ -2,6 +2,7 @@
 " Basics
 set nocompatible        " must be first line
 
+let g:rails_vim_enter=0
 " Bundles
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
