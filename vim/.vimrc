@@ -220,6 +220,9 @@ highlight link diffOldFile gitMeta
 highlight link diffIndexLine gitMeta
 highlight link diffFile gitMeta
 
+" search within a visually selected area with Ctrl-/
+vnoremap <C-/> <Esc>/\%V
+
 set confirm
 set exrc " enable per-directory .vimrc files
 set secure " disable unsafe commands in local .vimrc files
