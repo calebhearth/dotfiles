@@ -10,7 +10,7 @@ description = "A description of the current Git commit when HEAD is not pointing
 format = '\([\($output\)]($style) '
 require_repo = true
 style = 'red'
-when = '[ -z "$(git branch --show-current)" ]'
+when = 'IFS= read -r -u 3 -k1 byte 3< .git/HEAD && [[ $byte != r ]]'
 
 [custom.ssh_emoji]
 command = """
@@ -32,7 +32,7 @@ command = 'echo ${PWD/$(git rev-parse --show-toplevel --show-superproject-workin
 description = "The current subdirectory of the topmost Git repository"
 format = '[$output]($style)'
 # ignore_timeout = true
-when = true
+when = '[ ! -d ".git" ]'
 require_repo = true
 style = ""
 
