@@ -1,6 +1,6 @@
 version = "12"
 default_host_triple = "aarch64-apple-darwin"
-default_toolchain = "1.86.0-aarch64-apple-darwin"
+default_toolchain = "stable-aarch64-apple-darwin"
 profile = "default"
 
 [overrides]
