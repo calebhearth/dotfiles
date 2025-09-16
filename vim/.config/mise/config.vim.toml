@@ -1,2 +1,3 @@
 [tools]
 "gem:neovim" = "latest"
+"npm:vim-language-server" = "latest"

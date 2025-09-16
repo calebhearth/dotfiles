@@ -1,5 +1,6 @@
 [settings]
 ruby.ruby_install = true
+ruby.ruby_install_opts = "--disable-install-doc --disable-install-rdoc --enable-yjit"
 
 [tools]
 "gem:bundler-merge" = "latest"
@@ -7,6 +8,7 @@ ruby.ruby_install = true
 "gem:neovim" = "latest"
 "gem:ruby-lsp" = "latest"
 "npm:@herb-tools/language-server" = "latest"
+"npm:yaml-language-server" = "latest"
 
 # Ruby "gemset"
 # [env]

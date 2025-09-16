@@ -21,3 +21,4 @@ let g:airline_symbols = {
       \ "whitespace": "☲ "
       \ }
 let g:airline_section_z = '%p%% %1:%v'
+let g:airline_theme = 'catppuccin'

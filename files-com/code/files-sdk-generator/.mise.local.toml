@@ -1,0 +1,28 @@
+[[env]]
+GEM_HOME = { value = "{{config_root}}/.gem/ruby/{{exec(command='ruby -e \"print RUBY_VERSION\"')}}", tools = true }
+GEM_PATH = { value = "{{env.GEM_HOME}}", tools = true }
+[[env]]
+_.path = { path = "{{env.GEM_HOME}}/bin", tools = true }
+[[env]]
+_.path = { path = "{{exec(command=\"gem env user_gemhome\")}}/bin", tools = true }
+[hooks]
+enter = { value = "[ -d \"$GEM_HOME\" ] || mkdir -p \"$GEM_HOME\"", tools = true }
+
+[[env]]
+_.file = '.env'
+
+[tasks.overmind]
+description = "Run files.com stack from Procfile with Overmind"
+run = [
+  "overmind start",
+  "sleep 0.5",
+  "overmind connect",
+]
+
+[tasks.overmind.env]
+OVERMIND_SHELL = "zsh"
+OVERMIND_TITLE = "files-com"
+OVERMIND_SHOW_TIMESTAMPS = "true"
+OVERMIND_AUTO_RESTART = "all"
+OVERMIND_DAEMONIZE = "true"
+OVERMIND_TMUX_CONFIG = ""

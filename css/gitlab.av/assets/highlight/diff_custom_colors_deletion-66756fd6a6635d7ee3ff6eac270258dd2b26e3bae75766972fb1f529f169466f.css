@@ -1,0 +1,74 @@
+:root:root {
+    --default-mono-font: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    --default-regular-font: system-ui, sans-serif;
+    --diff-deletion-color: oklch(0.186 0.022 51.5);
+    --diff-deletion-highlight-color: oklch(0.323 0.038 51.5);
+    --diff-addition-color: oklch(0.191 0.033 258.0);
+    --diff-addition-highlight-color: oklch(0.332 0.057 258.0);
+}
+
+* {
+    font-optical-sizing: auto;
+    font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures contextual !important;
+}
+
+.diff-table.code .diff-tr.line_holder .diff-td, .diff-table.code tr.line_holder td, table.code .diff-tr.line_holder .diff-td, table.code tr.line_holder td {
+    line-height: min(1.1em + 0.5vw, 32px) !important;
+    font-size: clamp(1.13rem, calc(0.81rem + 1.56vw), 1.50rem) !important;
+}
+
+.code.dark, .code.dark pre.code, .code.dark .line_holder .line_content {
+    background-color: #080c10 !important;
+    color: #c9d1d9;
+}
+
+.diff-custom-deletion-color .code .line_holder .diff-line-num.old:not(.hll) {
+    background: var(--diff-deletion-highlight-color) !important;
+}
+
+.diff-custom-deletion-color .code .line_holder .line-inline-findings.old:not(.hll),
+.diff-custom-deletion-color .code .line_holder .line_content.old:not(.hll) {
+    background: var(--diff-deletion-color) !important;
+}
+
+.diff-custom-deletion-color .code .line_holder .line-inline-findings.old:not(.hll),
+.diff-custom-deletion-color .code .line_holder .line-coverage.old:not(.hll) {
+    background: var(--diff-deletion-color) !important;
+    &:not(:has(~ * .idiff)) {
+        --diff-deletion-color: var(--diff-deletion-highlight-color);
+    }
+}
+
+.diff-custom-deletion-color .code .line_holder .line_content.old:not(.hll) {
+    &:not(:has(span.idiff)) {
+        --diff-deletion-color: var(--diff-deletion-highlight-color);
+    }
+}
+
+
+.diff-custom-deletion-color .code .line_holder .line_content.old.line_content span.idiff {
+    background: var(--diff-deletion-highlight-color) !important;
+}
+
+.diff-custom-deletion-color .code .line_holder .diff-line-num.old::before,
+.diff-custom-deletion-color .code .line_holder .diff-line-num.old a,
+.diff-custom-deletion-color .code .line_holder .line-coverage.old::before,
+.diff-custom-deletion-color .code .line_holder .line-coverage.old a,
+.diff-custom-deletion-color .code .line_holder .line-inline-findings.old::before,
+.diff-custom-deletion-color .code .line_holder .line-inline-findings.old a,
+.diff-custom-deletion-color .code .line_holder .line_content.old::before,
+.diff-custom-deletion-color .code .line_holder .line_content.old a {
+    mix-blend-mode: luminosity;
+}
+
+.diff-custom-deletion-color .code .gi {
+    background-color: var(--diff-deletion-color) !important;
+}
+
+.diff-custom-deletion-color .idiff.deletion {
+    background: var(--diff-deletion-color) !important;
+}
+
+.gl-text-red-500 {
+    color: oklch(0.731 0.086 51.5) !important;
+}

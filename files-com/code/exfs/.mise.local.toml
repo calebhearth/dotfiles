@@ -145,11 +145,20 @@ run = [
   "rm -r ext/Puppy-0.7.0/.build/apple",
 ]
 
+[env]
+_.path = [
+  # "~/.swiftly/bin",
+  "~/.container/bin"
+]
+
 [tools]
-"clang-format" = "latest"
-"cmake" = "latest"
-"ninja" = "latest"
-"node" = "latest"
-"python" = "3"
-"ruby" = "latest"
-"yarn" = "1"
+"spm:swiftlang/swiftly" = "latest"
+clang-format = "latest"
+cmake = "latest"
+difftastic = "latest"
+ninja = "latest"
+node = "latest"
+python = "3"
+ruby = "latest"
+yarn = "1"
+mingw-w64 = "latest"

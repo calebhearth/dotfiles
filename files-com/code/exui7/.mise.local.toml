@@ -54,7 +54,14 @@ run = [
 [tasks.app]
 depends = ["tsc", "file-deps"]
 env = { HOT = "true", NODE_ENV = "development" }
-run = "yarn electron . --devtools --disable-gpu"
+run = "yarn electron . --devtools --disable-gpu --trace-warnings --inspect"
+
+[tasks.webpack-dev-server]
+env = { HOT = "true", NODE_ENV = "development" }
+run = "yarn webpack-dev-server --mode development --display-error-details --debug --watch"
+
+[tasks.dev]
+depends = ["app", "webpack-dev-server"]
 
 [tools]
 "gem:deb-s3" = "latest"

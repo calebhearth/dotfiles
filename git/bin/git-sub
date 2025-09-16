@@ -16,4 +16,9 @@ shift
 replace_with="$1"
 shift
 
-ag -l --nocolor "$find_this" "$@" | xargs sed -i '' "s/$find_this/$replace_with/g"
+# check if rg is executable
+if command -v rg >/dev/null 2>&1; then
+  rg --files-with-matches --color=never "$find_this" "$@"
+else
+  ag -l --nocolor "$find_this" "$@"
+fi | xargs sed -i '' "s/$find_this/$replace_with/g"
