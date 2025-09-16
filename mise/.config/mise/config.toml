@@ -15,8 +15,9 @@ jobs = 12
 compile = false
 
 [tools]
-ruby = "latest"
 "gem:git-bump" = "latest"
+node = "latest"
+ruby = "latest"
 
 # Overmind example for microservices
 # assumes a Procfile with services defined

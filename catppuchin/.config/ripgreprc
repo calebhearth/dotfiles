@@ -1,0 +1,7 @@
+--colors=match:fg:243,139,168
+--colors=match:bg:49,50,68
+--colors=match:style:bold
+--colors=path:fg:137,180,250
+--colors=path:style:bold
+--colors=line:fg:249,226,175
+--colors=column:fg:108,112,134

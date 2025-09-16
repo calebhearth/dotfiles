@@ -50,6 +50,8 @@ bindkey "^X" edit-command-line
 export WORDCHARS="${WORDCHARS:s#/#}"
 cdpath=(. ~/code ~/books)
 
+source ~/.config/catppuccin.zsh
+
 # handy keybindings
 bindkey "^A" beginning-of-line
 bindkey "^F" forward-word
@@ -64,6 +66,8 @@ bindkey '[[Z' reverse-menu-complete
 
 ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
 
+export LS_COLORS=$(vivid generate catppuccin-macchiato)
+
 # source ~/.dotfiles/git_prompt.sh
 # source ~/.dotfiles/zsh_prompt.sh
 precmd() {
@@ -72,3 +76,4 @@ precmd() {
 eval "$(starship init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(mise activate zsh)"
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

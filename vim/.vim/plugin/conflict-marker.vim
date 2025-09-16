@@ -11,15 +11,3 @@ hi ConflictMarkerCommonAncestorsHunk guibg=#282119
 hi ConflictMarkerSeparator gui=bold
 hi ConflictMarkerTheirs guibg=#002b08
 hi ConflictMarkerEnd guibg=#002b08 guifg=#3bad4e gui=bold
-
-hi diffOldFile guifg=#db9500 guibg=#282119 gui=bold
-hi diffNewFile guifg=#4493f8 guibg=#15233A gui=bold
-hi gitDiff guifg=#c9d1d9
-hi DiffAdd guibg=#273C5B gui=bold
-hi DiffRemoved guibg=#463023 gui=bold
-hi DiffChange guibg=#15233A
-hi DiffText guibg=#273C5B gui=bold
-hi clear DiffDelete
-hi link DiffDelete Ignore
-hi Changed guibg=#002b08
-hi Added guifg=#c9d1d9 guibg=#273C5B gui=bold

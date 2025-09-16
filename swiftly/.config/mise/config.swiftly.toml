@@ -1,0 +1,5 @@
+[env]
+SWIFTLY_HOME_DIR = "/Users/caleb/.swiftly"
+SWIFTLY_BIN_DIR = "/Users/caleb/.swiftly/bin"
+SWIFTLY_TOOLCHAINS_DIR = "/Users/caleb/Library/Developer/Toolchains"
+_.path = ["$SWIFTLY_BIN_DIR"]

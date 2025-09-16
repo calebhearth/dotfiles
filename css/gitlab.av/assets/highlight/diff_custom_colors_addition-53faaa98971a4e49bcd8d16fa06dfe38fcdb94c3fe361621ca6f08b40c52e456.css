@@ -1,0 +1,50 @@
+.diff-custom-addition-color .code .line_holder .diff-line-num.new:not(.hll) {
+    background: var(--diff-addition-highlight-color) !important;
+}
+
+.diff-custom-addition-color .code .line_holder .line-inline-findings.new:not(.hll),
+.diff-custom-addition-color .code .line_holder .line_content.new:not(.hll) {
+    background: var(--diff-addition-color) !important;
+}
+
+.diff-custom-addition-color .code .line_holder .line-inline-findings.new:not(.hll),
+.diff-custom-addition-color .code .line_holder .line-coverage.new:not(.hll) {
+    background: var(--diff-addition-color) !important;
+    &:not(:has(~ * .idiff)) {
+        --diff-addition-color: var(--diff-addition-highlight-color);
+    }
+}
+
+.diff-custom-addition-color .code .line_holder .line_content.new:not(.hll) {
+    &:not(:has(span.idiff)) {
+        --diff-addition-color: var(--diff-addition-highlight-color);
+    }
+}
+
+
+.diff-custom-addition-color .code .line_holder .line_content.new.line_content span.idiff {
+    background: var(--diff-addition-highlight-color) !important;
+}
+
+.diff-custom-addition-color .code .line_holder .diff-line-num.new::before,
+.diff-custom-addition-color .code .line_holder .diff-line-num.new a,
+.diff-custom-addition-color .code .line_holder .line-coverage.new::before,
+.diff-custom-addition-color .code .line_holder .line-coverage.new a,
+.diff-custom-addition-color .code .line_holder .line-inline-findings.new::before,
+.diff-custom-addition-color .code .line_holder .line-inline-findings.new a,
+.diff-custom-addition-color .code .line_holder .line_content.new::before,
+.diff-custom-addition-color .code .line_holder .line_content.new a {
+    mix-blend-mode: luminosity;
+}
+
+.diff-custom-addition-color .code .gi {
+    background-color: var(--diff-addition-color) !important;
+}
+
+.diff-custom-addition-color .idiff.addition {
+    background: var(--diff-addition-color) !important;
+}
+
+.gl-text-green-600 {
+    color: oklch(0.613 0.083 258.0) !important;
+}

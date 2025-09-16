@@ -10,4 +10,4 @@
   pager = diff-highlight | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init --tabs=2,4
 
 [interactive]
-  diffFilter = diff-highlight | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init --tabs=2,4
+  ; diffFilter = diff-highlight | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init --tabs=2,4
