@@ -1,5 +1,5 @@
 *.rb diff=ruby
-*.swift diff=swift
+*.swift diff=swift filter=swift-format
 *.toml diff=toml
 *_spec.rb diff=rspec
 .gitconfig diff=toml

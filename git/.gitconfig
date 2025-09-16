@@ -124,6 +124,10 @@
 [fetch]
   prune = true
 
+[filter.swift-format]
+  clean = "xcrun swift-format format -"
+  smudge = "xcrun swift-format format -"
+
 [github]
   user = calebhearth
 
