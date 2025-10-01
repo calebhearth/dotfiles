@@ -167,8 +167,7 @@ end
 nnoremap <leader><leader> <c-^>
 
 function! FocusDispatchStrategy(cmd)
-  execute "FocusDispatch " . a:cmd
-  execute "Dispatch -compiler=rspec"
+  execute "FocusDispatch " . a:cmd | execute "Dispatch! -compiler=rspec"
 endfunction
 
 let g:test#custom_strategies = {'focus_dispatch': function('FocusDispatchStrategy')}
@@ -177,7 +176,7 @@ nnoremap <Leader>a :TestSuite<CR>
 nnoremap <Leader>t :TestFile<CR>
 nnoremap <Leader>s :TestNearest<CR>
 nnoremap <Leader>l :TestLast<CR>
-nnoremap <Enter> :w<CR> :Dispatch -compiler=rspec<CR>
+nnoremap <Enter> :noautocmd w<CR> :Dispatch! -compiler=rspec<CR>
 autocmd BufWinEnter quickfix nnoremap <buffer> <Enter> <Enter>
 autocmd CmdwinEnter [:>] nnoremap <buffer> <Enter> <Enter>
 

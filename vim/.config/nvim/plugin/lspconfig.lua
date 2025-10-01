@@ -226,6 +226,9 @@ vim.lsp.config('yamlls', {
         -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
         url = "",
       },
+      validate = true,
+      hover = true,
+      format = false,
       schemas = require('schemastore').yaml.schemas(),
     },
   },
@@ -307,6 +310,7 @@ vim.lsp.config("vimls", {
 
 vim.lsp.enable({
   -- 'clangd',
+  'cssls',
   'eslint',
   'gopls',
   'herb_ls',
