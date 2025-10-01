@@ -1,7 +1,7 @@
 " https://github.com/SevereOverfl0w/.files/blob/3d7670366931a3428742890d0f63620e972743c7/dotfiles/.config/nvim/autoload/dispatch/ghostty.vim
-" if exists('g:autoloaded_dispatch_ghostty')
-"   finish
-" endif
+if exists('g:autoloaded_dispatch_ghostty')
+  finish
+endif
 
 let g:autoloaded_dispatch_ghostty = 1
 
@@ -25,7 +25,7 @@ function! dispatch#ghostty#handle(request) abort
 
   let input = tempname()
   let output = tempname()
-  if writefile([&shell.' '.&shellcmdflag.' '.shellescape(command).redir], input, "D") == -1
+  if writefile([command . redir], input, "D") == -1
     echoerr 'Unable to write command to tempfile: '.command
     return -1
   endif
