@@ -52,13 +52,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
     end
-    if client:supports_method('textDocument/codeLens') then
-      vim.lsp.codelens.refresh()
-      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-        buffer = args.buf,
-        callback = vim.lsp.codelens.refresh,
-      })
-    end
+    -- if client:supports_method('textDocument/codeLens') then
+    --   vim.lsp.codelens.refresh()
+    --   vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+    --     buffer = args.buf,
+    --     callback = vim.lsp.codelens.refresh,
+    --   })
+    -- end
   end
 })
 
