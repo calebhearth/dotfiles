@@ -35,4 +35,10 @@ GEM_HOME = "{{config_root}}/.ruby-lsp/.gem/ruby/{{exec(command='cat .ruby-versio
 GEM_PATH = "{{env.GEM_HOME}}:{{config_root}}/.gem/ruby/{{exec(command='cat .ruby-version')}}"
 
 [tools]
+"gem:debug" = "latest"
+"gem:ruby-debug-ide" = "latest"
+"gem:typeprof" = "latest"
+"gem:test_file_finder" = "latest"
 "github:spinel-coop/rv" = "latest"
+"pipx:pynvim" = "latest"
+python = "latest"
