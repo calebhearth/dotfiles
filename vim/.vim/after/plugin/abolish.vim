@@ -5,3 +5,4 @@ endif
 
 Abolish teh the
 Abolish irb pry
+Abolish receive_method_chain receive_message_chain
