@@ -17,10 +17,6 @@ Plug 'tomtom/tlib_vim'
 Plug 'rcarriga/nvim-notify'
 
 " Colors
-" Plug '~/code/vim-detailed'
-Plug 'dasupradyumna/midnight.nvim'
-
-" Colors
 " Plug 'calebhearth/vim-detailed'
 " Plug '~/code/vim-detailed'
 Plug 'dasupradyumna/midnight.nvim'
@@ -36,7 +32,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'pbrisbin/vim-rename-file'
 Plug 'vim-scripts/SyntaxComplete'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow', { 'for': {} }
 Plug 'rhysd/conflict-marker.vim'
 Plug 'wsdjeg/vim-fetch' " Open filenames with colons to jump to line / column
 

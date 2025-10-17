@@ -27,9 +27,9 @@ require('nvim-treesitter.configs').setup {
     'vim',
     'vimdoc',
     'yaml',
-  -- },
-  -- highlight = {
-  --   additional_vim_regex_highlighting = true,
-  --   enable = true,
+  },
+  highlight = {
+    additional_vim_regex_highlighting = true,
+    enable = true,
   }
 }
