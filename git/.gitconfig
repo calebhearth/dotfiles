@@ -166,8 +166,9 @@
   branchdesc = true
   conflictstyle = zdiff3
   ff = only
-  stat = true
-  tool = nvimdiff
+  stat = compact
+  tool = nvimdiff2
+  log = true
 
 [merge "bundler"]
   driver = bundler-merge %A %O %B

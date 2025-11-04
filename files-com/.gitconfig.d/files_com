@@ -1,5 +1,5 @@
 [alias]
-  pull-request = "!glab mr create --assignee=caleb.hearth --fill --yes"
+  pull-request = "!glab mr create --assignee=caleb.hearth --fill --yes --fill-commit-body --squash-before-merge"
 
 [user]
   email = caleb.hearth@files.com

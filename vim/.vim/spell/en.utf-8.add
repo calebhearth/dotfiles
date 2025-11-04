@@ -126,3 +126,17 @@ YJIT
 config
 env
 envs
+Opsdash
+Route53
+filesystem
+EFS
+MySQL
+Homebrew
+Elasticsearch
+Memcached
+precompile
+Resque
+Avdeploy
+LLC
+dba
+Vae

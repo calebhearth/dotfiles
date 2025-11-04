@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+trailers = `git log --format="%(trailers:keyonly)" | \
+  awk '{print tolower($0)}' | \
+  grep '^[\\w-]+$' | \
+  grep -v "signed-off-by"`
+
+puts trailers
+exit
+trailers
+  .split("\n")
+  .select { |line| line =~ /^[\w-]*$/ }
+  .tally
+
+def quantiles(data, probs)
+  values = data.sort
+
+  probs.map do |prob|
+    x = 1 + (values.count - 1) * prob
+    mod = x % 1
+    (1 - mod) * values[x.floor - 1] + (mod) * values[x.ceil - 1]
+  end
+end
+
+def show_group(title, threshold, trailers, top: true)
+  puts [nil, title, '-' * title.size]
+
+  total = trailers.values.sum
+  quantile_sum = 0
+  trailers.sort_by(&:last).reverse.each_with_index do |(trailer, count), i|
+    next if top ? (count <= threshold) : count > threshold
+    puts "%3d. %s (%d)" % [i + 1, trailer, count]
+    quantile_sum += count
+  end
+
+  puts [nil, 'Total wealth: %d%%' % [(100 * quantile_sum.to_f / total).round]]
+end
+
+q = quantiles(trailers.values, [ 0.99, 0.90, 0.75, 0.50 ])
+
+puts '1%%: %d, 10%% %d, 25%% %d, 50%% %d' % q
+
+top_1, top_10, top_25, median = q
+
+show_group('Top 1%', top_1, trailers)
+show_group('Top 10%', top_10, trailers)
+show_group('Top 25%', top_25, trailers)
+show_group('Bottom 50%', median, trailers, top: false)

@@ -18,7 +18,7 @@ end
 
 Pry::Prompt.add(:pry_and_branch, '', ['❯', '∙']) do |context, nesting, pry_instance, separator|
   [
-    '􀩼', # 􀆃 􀆀
+    '􀩼  ', # 􀆃 􀆀
     pry_instance.config.prompt_name,
     ("/#{context}" unless context.nil? || context.to_s == 'main'),
     (unless nesting.zero?

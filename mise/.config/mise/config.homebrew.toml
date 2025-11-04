@@ -1,0 +1,26 @@
+[tasks.brew-update]
+description = "Update Homebrew if not updated recently"
+hide = true
+run = """
+if [ $(($(date +%s) - $(stat -c %Y "$(brew --repository)/.git/FETCH_HEAD" 2>/dev/null || echo 0))) -lt ${HOMEBREW_AUTO_UPDATE_SECS:-86400} ]; then
+  echo "homebrew up-to-date, skipping"
+  exit 0
+fi
+brew update
+"""
+
+[tasks.brew-upgrade]
+description = "Interactively upgrade non-dependency Homebrew packages"
+depends = ["brew-update"]
+raw = true
+tools = { fzf = "latest" }
+run = """
+#!/usr/bin/env zsh
+comm -12 \
+    <((brew leaves; brew casks) | sort) \
+    <(brew outdated | awk '{print $1}' | sort) \
+  | fzf \
+    --multi \
+    --prompt="Select packages to upgrade (TAB to select, ENTER to confirm): " \
+  | xargs -r brew upgrade
+"""

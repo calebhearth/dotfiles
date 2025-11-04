@@ -1,6 +1,7 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.general.positionEncodings = { "utf-16" }
 capabilities.textDocument.codeLens.dynamicRegistration = true
+capabilities.textDocument.diagnostic.dynamicRegistration = true
 
 vim.lsp.config('*', { capabilities = capabilities })
 
@@ -308,6 +309,14 @@ vim.lsp.config("vimls", {
   }
 })
 
+
+-- local util = require('lspconfig.util')
+-- vim.lsp.config("steep", {
+--   cmd = { 'steep', 'langserver' },
+--   filetypes = { 'ruby', 'eruby' },
+--   root_dir = util.root_pattern('Steepfile', '.git'),
+-- })
+
 vim.lsp.enable({
   -- 'clangd',
   'cssls',
@@ -320,6 +329,7 @@ vim.lsp.enable({
   'ruby_lsp',
   'rust_analyzer',
   'sourcekit',
+  'steep',
   'ts_ls',
   'vimls',
   'yamlls',

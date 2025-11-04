@@ -1,5 +1,7 @@
-theme = catppuccin-mocha.conf
+clipboard-paste-protection = false
+font-codepoint-map = U+E0A0-U+E0A3,U+E0C0-U+E0C7=PowerlineSymbols
 font-family = Berkeley Mono
 font-size = 30
-font-codepoint-map = U+E0A0-U+E0A3,U+E0C0-U+E0C7=PowerlineSymbols
 shell-integration-features = sudo,ssh-env,ssh-terminfo
+theme = catppuccin-mocha.conf
+keybind = shift+enter=text:\x1b\r

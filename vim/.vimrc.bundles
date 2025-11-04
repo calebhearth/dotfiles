@@ -32,7 +32,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'pbrisbin/vim-rename-file'
 Plug 'vim-scripts/SyntaxComplete'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'luochen1990/rainbow', { 'for': {} }
+Plug 'luochen1990/rainbow', { 'for': [] }
 Plug 'rhysd/conflict-marker.vim'
 Plug 'wsdjeg/vim-fetch' " Open filenames with colons to jump to line / column
 
@@ -69,6 +69,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'christoomey/vim-rfactory', { 'for': 'ruby' }
 " Plug 'joker1007/vim-ruby-heredoc-syntax', { 'for': 'ruby' }
+Plug 'jlcrochet/vim-rbs'
 
 Plug 'fatih/vim-go', { 'for': 'go', 'on': 'GoInstallBinaries', 'do': ':GoInstallBinaries' }
 Plug 'toyamarinyon/vim-swift', { 'for': 'swift' }

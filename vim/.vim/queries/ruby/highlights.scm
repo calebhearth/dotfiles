@@ -8,3 +8,4 @@
 ] @string.content
 
 (argument_list . (simple_symbol) @arguments.first.named (_) )
+(argument_list (simple_symbol) @arguments.first.named .)
