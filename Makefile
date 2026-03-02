@@ -1,5 +1,5 @@
 SHELL = /usr/bin/env zsh
-included := atuin base direnv git heroku js kitty pg rg ruby rust ssh starship swift tmux vim zsh
+included := atuin base beads direnv git heroku js kitty pg rg ruby rust ssh starship swift tmux vim zsh
 data_dir = $(shell echo $${XDG_DATA_HOME:-${HOME}/.local/share}/dotfiles)
 packages = $(data_dir)/packages
 brew_install = $(data_dir)/Brewfile.lock.json
@@ -8,6 +8,11 @@ Brewfile.d = $(data_dir)/Brewfile.d
 Gemfile = $(data_dir)/Gemfile
 Gemfile.d = $(data_dir)/Gemfile.d
 target = /Users/caleb
+
+# caleb/pinned tap for version-pinned formulae.
+# Stow packages place .rb files into ~/.local/share/homebrew-pinned/Formula/.
+# https://emmer.dev/blog/installing-old-homebrew-formula-versions/
+pinned_tap = $(shell brew --repository)/Library/Taps/caleb/homebrew-pinned
 
 .PHONY: all
 all: brew_install rectangle stow vim-plug
@@ -19,8 +24,15 @@ stow: $(data_dir)/packages ~/.stow-global-ignore
 
 .PHONY: brew_install
 brew_install: $(brew_install)
-$(brew_install): install-homebrew $(data_dir)/Brewfile
+$(brew_install): install-homebrew pinned_tap $(data_dir)/Brewfile
 	brew bundle check --file=$(Brewfile) > /dev/null 2>&1 || brew bundle install --file=$(Brewfile)
+
+.PHONY: pinned_tap
+pinned_tap:
+	mkdir -p $(pinned_tap)/Formula
+	for f in $(HOME)/.local/share/homebrew-pinned/Formula/*.rb; do \
+		[ -f "$$f" ] && ln -f "$$(realpath "$$f")" "$(pinned_tap)/Formula/$$(basename "$$f")"; \
+	done
 
 .PHONY: install-homebrew
 install-homebrew:
@@ -93,5 +105,6 @@ clean:
 		stow --verbose --delete --target=$(target) $(shell cat $(packages)); \
 	fi
 	rm -rf $(data_dir)
+	rm -rf $(pinned_tap)
 	rm -rf ~/.vim/autoload/plug.vim
 	rm ~/Library/Preferences/com.knollsoft.Rectangle.plist

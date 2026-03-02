@@ -1,0 +1,2 @@
+tap "caleb/pinned"
+brew "caleb/pinned/beads"
