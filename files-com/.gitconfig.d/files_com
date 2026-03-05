@@ -1,5 +1,11 @@
 [alias]
-  pull-request = "!glab mr create --assignee=caleb.hearth --fill --yes --fill-commit-body --squash-before-merge"
+  pull-request = "!glab mr create --assignee=caleb.hearth --fill --yes --fill-commit-body --squash-before-merge --remove-source-branch"
+
+[mailmap]
+  file = "~/.dotfiles/files-com/mailmap"
+
+[merge]
+  ff = true
 
 [user]
   email = caleb.hearth@files.com

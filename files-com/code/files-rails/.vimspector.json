@@ -1,0 +1,66 @@
+{
+  "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
+  "adapters": {
+    "rdbg-script": {
+      "variables": {
+        "port": "${unusedLocalPort}"
+      },
+      "launch": {
+        "remote": {
+          "runCommand": [
+            "rdbg",
+            "--open",
+            "--port",
+            "${port}",
+            "--",
+            "%CMD%"
+          ]
+        }
+      },
+      "port": "${port}"
+    },
+    "rdbg-command": {
+      "variables": {
+        "port": "${unusedLocalPort}"
+      },
+      "launch": {
+        "remote": {
+          "runCommand": [
+            "rdbg",
+            "--open",
+            "--port",
+            "${port}",
+            "-c",
+            "--",
+            "%CMD%"
+          ]
+        }
+      },
+      "port": "${port}",
+      "configuration": {
+        "request": "launch"
+      }
+    }
+  },
+  "configurations": {
+    "run current script": {
+      "adapter": "rdbg-script",
+      "remote-cmdLine": [
+        "${file}"
+      ],
+      "configuration": {
+        "request": "launch"
+      }
+    },
+    "run rails": {
+      "adapter": "rdbg-command",
+      "configuration": {
+        "request": "launch"
+      },
+      "remote-cmdLine": [
+        "rails",
+        "server"
+      ]
+    }
+  }
+}

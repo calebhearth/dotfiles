@@ -34,6 +34,23 @@ BUNDLE_GEMFILE = "./gems_ruby_lsp.rb"
 GEM_HOME = "{{config_root}}/.ruby-lsp/.gem/ruby/{{exec(command='cat .ruby-version')}}"
 GEM_PATH = "{{env.GEM_HOME}}:{{config_root}}/.gem/ruby/{{exec(command='cat .ruby-version')}}"
 
+[tasks.install]
+description = "Install Ruby gem dependencies"
+run = "bundle install"
+sources = ["Gemfile", "Gemfile.lock"]
+outputs = { auto = true }
+
+[tasks."lint:rubocop"]
+description = "Run RuboCop linter with auto-correction"
+run = "bundle exec rubocop --autocorrect --format=quiet --parallel"
+depends = ["install"]
+sources = ["**/*.rb", ".rubocop.yml"]
+outputs = { auto = true }
+
+[tasks.lint]
+description = "Run all linters"
+depends = ["lint:rubocop"]
+
 [tools]
 "gem:debug" = "latest"
 "gem:ruby-debug-ide" = "latest"

@@ -1,0 +1,82 @@
+[tools]
+uv = "latest"
+"gem:steep" = "latest"
+"gem:rbs" = "latest"
+bun = "latest"
+boundary = "latest"
+
+[[env]]
+PORT = 3002
+BEADS_NO_DAEMON = 1
+
+[tasks.install]
+description = "Install Ruby gem dependencies"
+run = "bundle install"
+sources = ["Gemfile", "Gemfile.lock"]
+outputs = { auto = true }
+
+[tasks.db-migrate]
+description = "Run database migrations (autoupgrade from models)"
+run = [
+  "bundle exec rake db:autoupgrade",
+  "touch db/schema_cache.yml"
+]
+depends = ["install"]
+sources = ["app/models/**/*.rb"]
+outputs = ["db/schema_cache.yml"]
+
+[tasks.tailwind]
+description = "Precompile assets (Tailwind CSS)"
+run = [
+  "bundle exec rake tailwindcss:build",
+  "touch app/assets/builds/tailwind.css"
+]
+depends = ["install"]
+sources = ["app/assets/{config,javascripts}/**/*", "app/javascript/**/*", "tailwind.config.js"]
+outputs = ["app/assets/builds/tailwind.css"]
+
+[tasks.server]
+description = "Start development server (web + CSS watcher)"
+raw = true
+run = "bundle exec rails server -p 3002"
+depends = ["install", "db-migrate", "tailwind"]
+env = { WEB_CONCURRENCY = 2 }
+
+[tasks.proddb]
+description = "Connect to dbproxy.av with MySQL credentials"
+run = """
+  mysql \
+    --user=$MYSQL_USERNAME \
+    --password=$MYSQL_PASSWORD \
+    --database=$MYSQL_DATABASE \
+    --host=dbproxy.av
+"""
+
+[tasks.proddb.env]
+MYSQL_DATABASE = "verb_production"
+MYSQL_USERNAME = "engineer-u20k031-38512869"
+MYSQL_PASSWORD = "56b1d374e3fe023f04f7c446be8429bc"
+
+[tasks."lint:rubocop"]
+description = "Run RuboCop linter with auto-correction"
+run = "bundle exec rubocop --autocorrect"
+depends = ["install"]
+sources = ["**/*.rb", ".rubocop.yml"]
+outputs = { auto = true }
+
+[tasks."lint:steep"]
+description = "Run Steep type checker on Ruby files"
+run = "steep check --with-expectations"
+depends = ["install"]
+sources = ["**/*.rb", "Steepfile", "sig/**/*.rbs"]
+outputs = { auto = true }
+
+[tasks."lint:tsc"]
+description = "Run TypeScript compiler"
+run = "tsc --project jsconfig.json"
+sources = ["app/javascript/**/*.{js,ts}", "jsconfig.json"]
+outputs = { auto = true }
+
+[tasks.lint]
+description = "Run all linters (RuboCop, TypeScript)"
+depends = ["lint:rubocop", "lint:tsc"]

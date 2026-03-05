@@ -5,3 +5,4 @@ font-size = 30
 shell-integration-features = sudo,ssh-env,ssh-terminfo
 theme = catppuccin-mocha.conf
 keybind = shift+enter=text:\x1b\r
+keybind = ctrl+z=text:\x1a
