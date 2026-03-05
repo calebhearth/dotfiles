@@ -2,7 +2,8 @@
 :concurrent_downloads: 12
 :sources:
   - https://nexus.av/repository/rubygems-group/
+  - https://gem.coop
   - https://rubygems.org
 :verbose: true
-install: --document=ri --no-post-install-message
-update: --document=ri --no-post-install-message
+install: --no-document --no-post-install-message
+update: --no-document --no-post-install-message

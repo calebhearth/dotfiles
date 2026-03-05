@@ -7,13 +7,13 @@ if !exists('g:dispatch_compilers')
   let g:dispatch_compilers = {}
 endif
 
-let g:dispatch_compilers['mise exec -- ./bin/rspec'] = 'rspec'
+let g:dispatch_compilers['mise exec --'] = ''
 " let g:dispatch_compilers['mise exec --'] = ''
 " let g:dispatch_compilers['mise exec'] = ''
 
 " Avoid installing neovim in every project
 if !exists('g:ruby_host_prog')
-  let g:ruby_host_prog = '/Users/caleb/.gem/ruby/3.2.0/bin/neovim-ruby-host'
+  let g:ruby_host_prog = '/Users/caleb/.local/share/mise/installs/gem-neovim/0.10.0/bin/neovim-ruby-host'
 endif
 
 function! MiseTransform(cmd) abort

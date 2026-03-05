@@ -1,7 +1,7 @@
 #!/bin/sh
 
 _dot_opts "$@" -Tpng \
-	| convert \
+	| magick \
 		-trim \
 		-bordercolor black \
 		-border 20 \

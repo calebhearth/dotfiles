@@ -53,7 +53,7 @@ Plug 'lewis6991/satellite.nvim'
 " Javascript
 " Plug 'leshill/vim-json'
 Plug 'tpope/vim-jdaddy'
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 Plug 'b0o/SchemaStore.nvim'
 
 " HTML
@@ -88,12 +88,14 @@ Plug 'christoomey/vim-conflicted'
 Plug 'christoomey/vim-tmux-navigator'
 
 if has('nvim')
-  " Plug 'github/copilot.vim'
+  Plug 'github/copilot.vim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/nvim-treesitter-context'
   Plug 'jmbuhr/otter.nvim'
 endif
+
+Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
 
 Plug 'echasnovski/mini.ai'
 Plug 'echasnovski/mini.surround'

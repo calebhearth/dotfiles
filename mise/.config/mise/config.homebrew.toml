@@ -3,10 +3,9 @@ description = "Update Homebrew if not updated recently"
 hide = true
 run = """
 if [ $(($(date +%s) - $(stat -c %Y "$(brew --repository)/.git/FETCH_HEAD" 2>/dev/null || echo 0))) -lt ${HOMEBREW_AUTO_UPDATE_SECS:-86400} ]; then
-  echo "homebrew up-to-date, skipping"
   exit 0
 fi
-brew update
+brew update --quiet --auto-update
 """
 
 [tasks.brew-upgrade]

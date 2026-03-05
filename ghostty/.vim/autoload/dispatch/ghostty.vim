@@ -12,10 +12,14 @@ function! dispatch#ghostty#handle(request) abort
     let command = dispatch#prepare_make(a:request)
     let command = substitute(command, 'sync; perl', 'perl', '')
   elseif a:request.action ==# 'start'
-    let command = dispatch#prepare_start(a:request)
+    let command = command . dispatch#prepare_start(a:request)
   else
     return 0
   endif
+  " Tell TTY to clear back super far (50 lines), go to col 0, clear to EOL
+  " then print the command we want to see
+  let command = 'printf ''\\e[50F\\r\\e[3J\\e[J' . a:request.expanded . '\n'' > /dev/tty; ' . command
+  echo command
 
   if &shellredir =~# '%s'
     let redir = printf(&shellredir, '/dev/null')

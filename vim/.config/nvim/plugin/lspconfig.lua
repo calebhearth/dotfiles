@@ -289,8 +289,12 @@ vim.lsp.config('lua_ls', {
   }
 })
 
-vim.lsp.config("herb_ls", {
-  filetypes = { "eruby", "html" }
+vim.lsp.config("harper-ls", {
+  settings = {
+    ["harper-ls"] = {
+      userDictPath = "~/.config/harper-ls/dict.txt",
+    }
+  }
 })
 
 vim.lsp.config("vimls", {
@@ -309,19 +313,29 @@ vim.lsp.config("vimls", {
   }
 })
 
-
--- local util = require('lspconfig.util')
--- vim.lsp.config("steep", {
---   cmd = { 'steep', 'langserver' },
---   filetypes = { 'ruby', 'eruby' },
---   root_dir = util.root_pattern('Steepfile', '.git'),
--- })
+vim.lsp.config("tailwindcss", {
+  cmd = { 'bunx', 'tailwindcss-language-server', '--stdio' },
+  settings = {
+    tailwindCSS = {
+      includeLanguages = {
+        haml = "html"
+      },
+      experimental = {
+        classRegex = {
+          { "class: ?\"([^\"]*)\"",          "([a-zA-Z0-9\\-:]+)" },
+          { "(\\.[\\w\\-.]+)[\\n\\=\\{\\s]", "([\\w\\-]+)" },
+        }
+      }
+    },
+  }
+})
 
 vim.lsp.enable({
   -- 'clangd',
   'cssls',
   'eslint',
   'gopls',
+  'harper-ls',
   'herb_ls',
   'jsonls',
   'lua_ls',
@@ -329,7 +343,8 @@ vim.lsp.enable({
   'ruby_lsp',
   'rust_analyzer',
   'sourcekit',
-  'steep',
+  -- 'steep',
+  'tailwindcss',
   'ts_ls',
   'vimls',
   'yamlls',

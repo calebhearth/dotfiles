@@ -2,6 +2,7 @@
 " Basics
 set nocompatible        " must be first line
 
+let g:javascript_plugin_jsdoc = 1
 let g:rails_vim_enter=0
 " Bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -43,7 +44,7 @@ if has('persistent_undo')
 endif
 
 " Vim UI
-colorscheme off
+colorscheme catppuccin
 set tabpagemax=15               " only show 15 tabs
 set showmode                    " display the current mode
 set colorcolumn=81,101,121
