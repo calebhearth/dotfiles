@@ -3,4 +3,5 @@
 *.toml diff=toml
 *_spec.rb diff=rspec
 .gitconfig diff=toml
+*.tf diff=terraform filter=tofu
 Gemfile.lock merge=bundler

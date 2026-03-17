@@ -7,5 +7,12 @@
 [merge]
   ff = true
 
+[diff "terraform"]
+  xfuncname = "^[[:space:]]*((resource|data|variable|output|module|locals|provider|terraform)[[:space:]].*[{]|\"[^\"]+\"[[:space:]]*:)"
+
+[filter "tofu"]
+  clean = tofu fmt -
+  smudge = cat
+
 [user]
   email = caleb.hearth@files.com
