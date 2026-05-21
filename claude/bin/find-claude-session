@@ -1,0 +1,318 @@
+#!/usr/bin/env -S mise x aqua:charmbracelet/gum -- zsh
+# Find Claude Code sessions that modified a given file and resume one.
+# Reads ~/.claude/projects/*/*.jsonl transcripts; opens a gum table picker;
+# on selection, execs `claude --resume <id>` in the session's original cwd.
+#
+# Dependencies on PATH (assumed available; gum is summoned via mise shebang):
+#   rg, jq, awk, zsh, mise, claude
+
+set -euo pipefail
+setopt local_options null_glob
+
+trap 'stty sane 2>/dev/null' INT TERM EXIT
+
+usage() {
+  cat <<'EOF' >&2
+usage: find-claude-session [--all] [--here] [--print] [--json] <path>
+
+Find Claude Code sessions that modified <path>, sorted by most recent first.
+Default mode matches Write/Edit/MultiEdit/NotebookEdit tool_use with the exact file_path.
+
+Options:
+  --all     Widen to any mention of the path (e.g. reads, prompts, tool results).
+  --here    Restrict to sessions whose cwd is $PWD, an ancestor, or a descendant.
+  --print   Print the cd-and-resume command for the top match (no picker, no exec).
+  --json    Emit the result rows as a JSON array (no picker, no exec).
+  -h|--help Show this help.
+EOF
+}
+
+all=0
+here=0
+print_only=0
+json_only=0
+target=""
+
+while (( $# )); do
+  case $1 in
+    --all) all=1 ;;
+    --here) here=1 ;;
+    --print) print_only=1 ;;
+    --json) json_only=1 ;;
+    -h|--help) usage; exit 0 ;;
+    --) shift; target=${1:-}; break ;;
+    -*) echo "unknown flag: $1" >&2; usage; exit 2 ;;
+    *)
+      if [[ -n $target ]]; then
+        echo "multiple paths: $target and $1" >&2
+        exit 2
+      fi
+      target=$1
+      ;;
+  esac
+  shift
+done
+
+if [[ -z $target ]]; then
+  usage
+  exit 2
+fi
+
+# Absolutize without resolving symlinks. Transcripts store whatever path the user
+# typed, so resolving (`:A`) silently misses matches under /tmp, /var, etc.
+abs=${target:a}
+abs_real=${target:A}
+projects_dir="$HOME/.claude/projects"
+
+# Build the rg search pattern through jq @json so JSON-escaped characters in the
+# path (backslashes, quotes) match what's actually written in the transcripts.
+if (( all )); then
+  pattern=$(jq -rn --arg p "$abs" '$p | @json | .[1:-1]')
+else
+  pattern=$(jq -rn --arg p "$abs" '"\"file_path\":\($p | @json)"')
+fi
+
+if [[ ! -d $projects_dir ]]; then
+  echo "no Claude projects directory at $projects_dir" >&2
+  exit 1
+fi
+
+jsonl_files=("$projects_dir"/*/*.jsonl)
+if (( ${#jsonl_files[@]} == 0 )); then
+  echo "no session transcripts found under $projects_dir" >&2
+  exit 1
+fi
+
+candidates=()
+while IFS= read -r f; do
+  candidates+=("$f")
+done < <(rg -lF --color=never -- "$pattern" "${jsonl_files[@]}" 2>/dev/null || true)
+
+# Symlink fallback: if the resolved-symlink form differs and the original found
+# nothing, try the resolved form too. Covers /tmp -> /private/tmp etc.
+if (( ${#candidates[@]} == 0 )) && [[ $abs != "$abs_real" ]]; then
+  if (( all )); then
+    pattern_real=$(jq -rn --arg p "$abs_real" '$p | @json | .[1:-1]')
+  else
+    pattern_real=$(jq -rn --arg p "$abs_real" '"\"file_path\":\($p | @json)"')
+  fi
+  while IFS= read -r f; do
+    candidates+=("$f")
+  done < <(rg -lF --color=never -- "$pattern_real" "${jsonl_files[@]}" 2>/dev/null || true)
+  if (( ${#candidates[@]} > 0 )); then
+    abs=$abs_real
+  fi
+fi
+
+if (( ${#candidates[@]} == 0 )); then
+  echo "no sessions modified $abs" >&2
+  if (( ! all )); then
+    if rg -lF --color=never -m1 -- "$abs" "${jsonl_files[@]}" >/dev/null 2>&1 \
+       || { [[ $abs != "$abs_real" ]] && rg -lF --color=never -m1 -- "$abs_real" "${jsonl_files[@]}" >/dev/null 2>&1; }; then
+      echo "try --all to widen the search to any mention" >&2
+    fi
+  fi
+  exit 1
+fi
+
+# Per-line aggregator: read raw so a malformed line doesn't abort the whole file.
+read -r -d '' jq_agg <<'JQ' || true
+def is_touch($mode; $path):
+  if $mode == "all" then
+    any(.. | strings; contains($path))
+  else
+    (.message.content // []) as $c
+    | if ($c | type) == "array" then
+        any(
+          $c[]?;
+          .type == "tool_use"
+          and (.name | IN("Write","Edit","MultiEdit","NotebookEdit"))
+          and (.input.file_path == $path)
+        )
+      else false end
+  end;
+
+reduce (inputs | try fromjson catch empty) as $line (
+  { touches: 0
+  , latest_activity: null
+  , latest_touch: null
+  , cwd: null
+  , branch: null
+  , sid: null
+  , summary: null
+  , slug: null
+  , first_prompt: null
+  };
+  ($line.timestamp // null) as $ts
+  | .latest_activity = (
+      if $ts != null and ($ts > (.latest_activity // "")) then $ts else .latest_activity end
+    )
+  | .cwd    = ($line.cwd       // .cwd)
+  | .branch = ($line.gitBranch // .branch)
+  | .sid    = ($line.sessionId // .sid)
+  | .summary = (
+      if .summary == null and ($line.type == "summary") and ($line.summary != null)
+      then $line.summary else .summary end
+    )
+  | .slug = (
+      if .slug == null and ($line.slug != null) then $line.slug else .slug end
+    )
+  | .first_prompt = (
+      if .first_prompt == null and $line.type == "user" then
+        ($line.message.content // null)
+        | if type == "string" then .[0:120]
+          elif type == "array" then
+            ([ .[]? | select(.type == "text" or .text) | .text // empty ][0] // null)
+            | if . != null then .[0:120] else null end
+          else null end
+      else .first_prompt end
+    )
+  | ($line | is_touch($mode; $path)) as $touched
+  | if $touched then
+      .touches = (.touches + 1)
+      | .latest_touch = (
+          if $ts != null and ($ts > (.latest_touch // "")) then $ts else .latest_touch end
+        )
+    else . end
+)
+| select(.touches > 0)
+JQ
+
+[[ -n $jq_agg ]] || { echo "internal error: jq aggregator is empty" >&2; exit 2; }
+
+# Collect one JSON object per transcript with at least one touch.
+rows=()
+for transcript in "${candidates[@]}"; do
+  obj=$(jq -nRc \
+    --arg mode "$( (( all )) && echo all || echo default )" \
+    --arg path "$abs" \
+    --arg transcript "$transcript" \
+    "$jq_agg | . + {transcript: \$transcript}" \
+    < "$transcript" 2>/dev/null) || continue
+  [[ -n $obj ]] || continue
+  rows+=("$obj")
+done
+
+if (( ${#rows[@]} == 0 )); then
+  echo "no sessions modified $abs" >&2
+  exit 1
+fi
+
+# --here: keep sessions whose cwd is $PWD, an ancestor of $PWD, or a descendant of $PWD.
+if (( here )); then
+  filtered=()
+  pwd_abs=${PWD:A}
+  for obj in "${rows[@]}"; do
+    cwd=$(jq -r '.cwd // empty' <<<"$obj")
+    [[ -n $cwd ]] || continue
+    cwd_norm=${${cwd%/}:A}
+    if [[ $pwd_abs == "$cwd_norm" || $pwd_abs == "$cwd_norm"/* || $cwd_norm == "$pwd_abs"/* ]]; then
+      filtered+=("$obj")
+    fi
+  done
+  rows=("${filtered[@]}")
+fi
+
+if (( ${#rows[@]} == 0 )); then
+  echo "no sessions modified $abs from this cwd, its ancestors, or its descendants" >&2
+  exit 1
+fi
+
+# Sort by latest_touch desc and enrich with display fields.
+sorted=$(printf '%s\n' "${rows[@]}" | jq -s -c '
+  def reltime($iso):
+    if $iso == null then "—"
+    else
+      ((try ($iso | sub("\\.[0-9]+(Z|[+-][0-9:]+)$"; "Z") | fromdateiso8601) catch null)) as $epoch
+      | if $epoch == null then ($iso[0:16])
+        else (now - $epoch) as $d
+          | if   $d < 60       then "now"
+            elif $d < 3600     then "\(($d/60|floor))m ago"
+            elif $d < 86400    then "\(($d/3600|floor))h ago"
+            elif $d < 2592000  then "\(($d/86400|floor))d ago"
+            elif $d < 31536000 then "\(($d/2592000|floor))mo ago"
+            else                    "\(($d/31536000|floor))y ago" end
+        end
+    end;
+  def nonblank: . // "" | if . == "" then null else . end;
+  def name:
+    ((.summary | nonblank) // (.slug | nonblank) // (.first_prompt | nonblank) // "(unnamed)")
+    | gsub("\\n"; " ") | gsub("\\t"; " ");
+  sort_by(.latest_touch) | reverse
+  | map(. + {
+      _name:    name,
+      _touched: reltime(.latest_touch),
+      _active:  reltime(.latest_activity),
+      _project: (.cwd // "" | sub("/$"; "") | split("/") | last),
+      _short:   ((.sid // "") | .[0:8])
+    })
+')
+
+if (( json_only )); then
+  jq '.' <<<"$sorted"
+  exit 0
+fi
+
+if (( print_only )); then
+  top_cwd=$(jq -r '.[0].cwd // empty' <<<"$sorted")
+  top_sid=$(jq -r '.[0].sid // empty'  <<<"$sorted")
+  printf 'cd %q && claude --resume %q\n' "$top_cwd" "$top_sid"
+  exit 0
+fi
+
+# Picker: visible columns only. After selection, awk pulls the short id from
+# the last visible column and jq looks up the full row in $sorted.
+tsv=$(jq -r '
+  .[]
+  | [ ._name[0:60]
+    , ._touched
+    , ._active
+    , (.branch // "")
+    , ._project
+    , ._short
+    ]
+  | @tsv
+' <<<"$sorted")
+
+selected=$(printf '%s\n' "$tsv" \
+  | gum table \
+      --separator $'\t' \
+      --columns "Name,Touched,Active,Branch,Project,ID" \
+      --widths "60,12,12,18,24,10") || exit 130
+
+if [[ -z $selected ]]; then
+  echo "no session selected" >&2
+  exit 130
+fi
+
+sel_short=$(printf '%s' "$selected" | awk -F'\t' 'NR==1 {print $6}')
+[[ -z $sel_short ]] && sel_short=$(printf '%s' "$selected" | awk -F',' 'NR==1 {print $6}')
+
+if [[ -z $sel_short ]]; then
+  echo "could not parse selection: $selected" >&2
+  exit 130
+fi
+
+sel_row=$(jq -c --arg s "$sel_short" 'map(select(._short == $s))[0] // empty' <<<"$sorted")
+if [[ -z $sel_row ]]; then
+  echo "no row found for selection $sel_short" >&2
+  exit 130
+fi
+
+sel_cwd=$(jq -r '.cwd // empty' <<<"$sel_row")
+sel_sid=$(jq -r '.sid // empty' <<<"$sel_row")
+
+if [[ -z $sel_sid ]]; then
+  echo "selected row has no session id" >&2
+  exit 130
+fi
+
+if [[ -n $sel_cwd && ! -d $sel_cwd ]]; then
+  echo "warning: session's cwd no longer exists: $sel_cwd" >&2
+fi
+
+if [[ -n $sel_cwd && -d $sel_cwd ]]; then
+  cd "$sel_cwd"
+fi
+
+exec claude --resume "$sel_sid"
