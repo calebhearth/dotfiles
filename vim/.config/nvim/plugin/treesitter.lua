@@ -1,4 +1,4 @@
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter').setup {
   auto_install = true,
   ensure_installed = {
     'bash',
@@ -29,7 +29,7 @@ require('nvim-treesitter.configs').setup {
     'yaml',
   },
   highlight = {
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false, -- issue with catpuccin
     enable = true,
   }
 }
