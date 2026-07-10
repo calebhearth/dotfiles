@@ -1,2 +1,3 @@
 ci: pipeline ci
 co: mr checkout
+mr-for: '!s=$(git rev-parse --verify --quiet "$1^{commit}") || { echo "Unknown mmit: $1" >&2; exit 1; }; glab api "projects/:fullpath/repository/commits/$s/merge_requests" 2>/dev/null | jq -r "if type==\"object\" then .message elif length==0 then \"No MR found\" else .[].web_url end"'
