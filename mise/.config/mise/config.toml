@@ -48,6 +48,26 @@ comm -12 \
   | xargs -r brew upgrade
 """
 
+[tasks.docs]
+description="List doc/ files with title and description from frontmatter"
+quiet = true
+run = """
+#!/usr/bin/env zsh
+local lines=()
+for file in ./doc/**/*.md(N); do
+  desc=$(rg --max-count 1 '^desc:' "$file" | sed 's/^desc: *//; s/^"//; s/"$//')
+  lines+=("$file  $desc")
+done
+
+if [[ -n "$CLAUDECODE" ]]; then
+  docs=$(printf '%s\n' "${lines[@]}")
+  jq --null-input --arg docs "$docs" \
+    '{hookSpecificOutput: {hookEventName: "SessionStart", additionalContext: ("Available project documentation (read relevant docs before unfamiliar work):\n" + $docs)}}'
+else
+  printf '%s\n' "${lines[@]}"
+fi
+"""
+
 # Overmind example for microservices
 # assumes a Procfile with services defined
 # [tasks.overmind]
