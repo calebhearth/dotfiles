@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 PAIR=$(git log --format="%aN <%aE>" | sort | uniq | selecta)
 FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch \
