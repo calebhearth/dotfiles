@@ -1,7 +1,7 @@
 web: RAILS_ENV=development ./bin/rails server -p 3000
 worker: WORKER_COUNT=4 SCHEDULER=1 QUEUE=* rake resque:work
-react: cd ../files-react && DEBUG='express:*' mise x -- yarn start
-syncworker: cd ../files-sync-worker && GEM_HOME=/Users/caleb/code/files-sync-worker/.gem/ruby/3.4.4 ./syncworker serve
+react: cd ../files-react && mise run server
+# syncworker: cd ../files-sync-worker && GEM_HOME=/Users/caleb/code/files-sync-worker/.gem/ruby/3.4.4 ./syncworker serve
 # syncworker: cd ../files-sync-worker && GEM_HOME=/Users/caleb/code/files-sync-worker/.gem/ruby/3.2.2 bundle exec puma --threads 1:1 -p 13700 config.ru
 # frw: cd ../files-regional-worker && ./bin/rackup -p 13600
 console: ./bin/rails console

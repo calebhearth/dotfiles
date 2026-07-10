@@ -26,6 +26,17 @@ OVERMIND_AUTO_RESTART = "all"
 OVERMIND_DAEMONIZE = "true"
 OVERMIND_TMUX_CONFIG = ""
 
+[tasks.server]
+depends = ["server:web", "server:worker", "//../files-react:server"]
+
+[tasks."server:web"]
+env = { RAILS_ENV = "development" }
+run = "bundle exec rails server -p 3000"
+
+[tasks."server:worker"]
+env = { RAILS_ENV = "development", WORKER_COUNT = 4, SCHEDULER = true, QUEUE_PREFIX = "*" }
+run = "rake resque:work"
+
 [tasks.ruby-lsp]
 run = "ruby-lsp"
 
