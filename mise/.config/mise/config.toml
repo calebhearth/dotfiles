@@ -7,7 +7,7 @@ idiomatic_version_file_enable_tools = [
   "python",
   "ruby",
   "rust",
-  "swift",
+  # "swift",
 ]
 jobs = 12
 
@@ -15,9 +15,11 @@ jobs = 12
 compile = false
 
 [tools]
+"gem:gem-ctags" = "latest"
 "gem:git-bump" = "latest"
 node = "latest"
-ruby = "latest"
+bun = "latest"
+ruby = "3.4.4"
 
 [tasks.brew-update]
 description = "Update Homebrew if not updated recently"

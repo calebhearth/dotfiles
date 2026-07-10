@@ -1,6 +1,7 @@
 [settings]
-ruby.ruby_install = true
-ruby.ruby_install_opts = "--disable-install-doc --disable-install-rdoc --enable-yjit"
+# ruby.ruby_install = true
+# ruby.ruby_install_opts = "--disable-install-doc --disable-install-rdoc --enable-yjit"
+ruby.compile = false
 
 [tools]
 "gem:bundler-merge" = "latest"
