@@ -10,6 +10,10 @@ enter = [
   "[ -d \"$GEM_HOME\" ] || mkdir -p \"$GEM_HOME\"",
 ]
 
+[tasks.ci-watch]
+description = "Watch CI pipeline status (live updates until complete)"
+run = "glab ci status --live"
+
 [tasks.overmind]
 description = "Run files.com stack from Procfile with Overmind"
 run = [
