@@ -70,9 +70,9 @@ export LS_COLORS=$(vivid generate catppuccin-macchiato)
 
 # source ~/.dotfiles/git_prompt.sh
 # source ~/.dotfiles/zsh_prompt.sh
-precmd() {
-  ~/bin/jobs "$(printf '%s^^^' "${jobstates[@]}")" "$(printf '%s^^^' "${jobtexts[@]}")" "$(printf '%s^^^' "${jobdirs[@]}")"
-}
+# precmd() {
+#   ~/bin/jobs "$(printf '%s^^^' "${jobstates[@]}")" "$(printf '%s^^^' "${jobtexts[@]}")" "$(printf '%s^^^' "${jobdirs[@]}")"
+# }
 eval "$(starship init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(mise activate zsh)"

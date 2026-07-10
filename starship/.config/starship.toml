@@ -1,8 +1,11 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 add_newline = false
-format = "${custom.show_jobs}${custom.ssh_emoji}${directory}$git_branch${custom.describe}$git_state$git_status${custom.subdir} ${custom.mise}$character"
+format = "${custom.ssh_emoji}${directory}$git_branch${custom.describe}$git_state$git_status${custom.subdir} ${custom.mise}$fill$cmd_duration$time\n$character"
 palette = "warm_burnout_dark"
+
+[time]
+disabled = false
 
 [custom.describe]
 command="git describe --contains --all HEAD 2> /dev/null"
