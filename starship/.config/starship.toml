@@ -123,3 +123,6 @@ red = "#ff8f40"
 green = "#4fbfff"
 blue = "#70bf56"
 purple = "#d0a1ff"
+
+[claude_model]
+model_aliases = { "Opus 4.7 (1M context)" = "Opus" }
