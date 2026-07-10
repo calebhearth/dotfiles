@@ -343,7 +343,7 @@ vim.lsp.enable({
   'ruby_lsp',
   'rust_analyzer',
   'sourcekit',
-  -- 'steep',
+  'steep',
   'tailwindcss',
   'ts_ls',
   'vimls',
