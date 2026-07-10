@@ -20,6 +20,7 @@ Plug 'rcarriga/nvim-notify'
 " Plug 'calebhearth/vim-detailed'
 " Plug '~/code/vim-detailed'
 Plug 'dasupradyumna/midnight.nvim'
+Plug 'felipefdl/warm-burnout', { 'rtp': 'nvim' }
 
 
 " General
