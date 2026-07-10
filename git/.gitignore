@@ -36,7 +36,6 @@ Session.vim
 /.gem
 /.envrc
 /.projections.json
-/.vimrc.local
 /.nvimrc
 **/.bundle/config
 .rspec-local
@@ -44,5 +43,9 @@ tmux-client-*.log
 
 xcuserdata/
 /.direnv
-config/initializers/zzz.rb
-/.mise.local.toml
+
+CLAUDE.md
+*.local
+*.local.toml
+*.local.json
+*.local.pkl
