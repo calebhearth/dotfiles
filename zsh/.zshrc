@@ -39,6 +39,16 @@ function ha() {
   heroku "$@" -a $app;
 }
 
+# Block bun's self-updater; bun is mise-pinned to 1.3.14, the last Zig release
+function bun() {
+  if [[ "$1" == "upgrade" ]]; then
+    echo "bun upgrade is disabled: bun is mise-pinned to 1.3.14 (last Zig version)." >&2
+    echo "To change versions, edit mise/.config/mise/config.toml in ~/.dotfiles." >&2
+    return 1
+  fi
+  command bun "$@"
+}
+
 # initialize autocomplete here, otherwise functions won't be loaded
 fpath=(~/.local/share/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
