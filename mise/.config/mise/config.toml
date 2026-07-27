@@ -18,7 +18,7 @@ compile = false
 "gem:gem-ctags" = "latest"
 "gem:git-bump" = "latest"
 node = "latest"
-bun = "latest"
+bun = "1.3.14"
 ruby = "3.4.4"
 
 [tasks.brew-update]

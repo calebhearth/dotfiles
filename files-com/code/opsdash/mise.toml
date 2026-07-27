@@ -2,7 +2,7 @@
 uv = "latest"
 "gem:steep" = "latest"
 "gem:rbs" = "latest"
-bun = "latest"
+bun = "1.3.14"
 boundary = "latest"
 
 [[env]]
