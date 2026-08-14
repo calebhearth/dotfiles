@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+# Reset terminal state leaked by TUIs that exit or suspend without cleanup:
+# pop/zero the kitty keyboard protocol, reset XTMODKEYS, disable mouse
+# tracking and bracketed paste, leave the alt screen. Unlike `reset`, never
+# clears scrollback.
+printf '\e[<u\e[=0u\e[>4;0m\e[?1000l\e[?1002l\e[?1003l\e[?1006l\e[?2004l\e[?1049l'
