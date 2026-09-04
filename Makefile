@@ -108,3 +108,7 @@ clean:
 	rm -rf $(pinned_tap)
 	rm -rf ~/.vim/autoload/plug.vim
 	rm ~/Library/Preferences/com.knollsoft.Rectangle.plist
+
+.PHONY: test
+test:
+	nvim --headless --clean -S test/dispatch_ghostty_test.vim

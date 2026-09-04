@@ -1,41 +1,42 @@
 " https://github.com/SevereOverfl0w/.files/blob/3d7670366931a3428742890d0f63620e972743c7/dotfiles/.config/nvim/autoload/dispatch/ghostty.vim
+"
+" The "Run in Ghostty" shortcut hands the input file's contents to Ghostty's New
+" Terminal intent, which quotes them as one shell word (Ghostty 1.3). So the
+" file holds a single token: the path of the script that runs the request.
 if exists('g:autoloaded_dispatch_ghostty')
   finish
 endif
 
 let g:autoloaded_dispatch_ghostty = 1
 
+let g:dispatch_ghostty_launcher = get(g:, 'dispatch_ghostty_launcher',
+      \ 'shortcuts run "Run in Ghostty" --input-path=%s')
+
 function! dispatch#ghostty#handle(request) abort
+  if empty($GHOSTTY_RESOURCES_DIR)
+    return 0
+  endif
   if a:request.action ==# 'make'
-    " Using it for make is annoying (for now)
-    " return 0
     let command = dispatch#prepare_make(a:request)
-    let command = substitute(command, 'sync; perl', 'perl', '')
   elseif a:request.action ==# 'start'
-    let command = command . dispatch#prepare_start(a:request)
+    let command = dispatch#prepare_start(a:request)
   else
     return 0
   endif
-  " Tell TTY to clear back super far (50 lines), go to col 0, clear to EOL
-  " then print the command we want to see
-  let command = 'printf ''\\e[50F\\r\\e[3J\\e[J' . a:request.expanded . '\n'' > /dev/tty; ' . command
-  echo command
+  let command = substitute(command, 'sync; perl', 'perl', '')
 
-  if &shellredir =~# '%s'
-    let redir = printf(&shellredir, '/dev/null')
-  else
-    let redir = &shellredir . ' ' . '/dev/null'
-  endif
+  let script = a:request.file . '.dispatch'
+  call writefile([
+        \ '#!' . &shell,
+        \ 'cd ' . dispatch#shellescape(a:request.directory),
+        \ 'printf ''\e[50F\r\e[3J\e[J%s\n'' ' . dispatch#shellescape(a:request.expanded) . ' > /dev/tty',
+        \ command,
+        \ ], script)
+  call setfperm(script, 'rwx------')
 
   let input = tempname()
-  let output = tempname()
-  if writefile([command . redir], input, "D") == -1
-    echoerr 'Unable to write command to tempfile: '.command
-    return -1
-  endif
-
-  let ghostty = 'shortcuts run "Run in Ghostty" --input-path='.shellescape(input).' --output-path='.shellescape(output)
-  call system(ghostty)
+  call writefile([script], input, 'D')
+  call system(printf(g:dispatch_ghostty_launcher, shellescape(input)))
   return !v:shell_error
 endfunction
 
