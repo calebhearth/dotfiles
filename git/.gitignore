@@ -44,8 +44,10 @@ tmux-client-*.log
 xcuserdata/
 /.direnv
 
-CLAUDE.md
+# CLAUDE.md
 *.local
 *.local.toml
 *.local.json
 *.local.pkl
+
+**/.claude/settings.local.json

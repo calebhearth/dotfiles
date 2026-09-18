@@ -261,6 +261,7 @@
 
 [includeIf "hasconfig:remote.*.url:https://github.com/Files-com/**"]
   path = ~/.gitconfig.d/files_com
+  path = ~/.gitconfig.d/gh
 
 [url "ssh://git@gitlab.av/"]
 	insteadOf = https://gitlab.av/
