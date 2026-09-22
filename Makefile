@@ -49,11 +49,11 @@ $(Brewfile): $(data_dir)/Brewfile.d
 Brewfile.d: $(Brewfile.d)
 $(Brewfile.d): $(data_dir)/packages
 	mkdir -p $@
-	while read -d ' ' linkTarget; do \
+	for linkTarget in $(included); do \
 		if [ -f $$linkTarget/Brewfile ]; then \
 			ln -s "$$(realpath "$$linkTarget/Brewfile")" "$@/$$linkTarget"; \
 		fi; \
-	done < $(packages)
+	done
 
 .PHONY: Gemfile
 Gemfile: $(data_dir)/Gemfile
@@ -67,11 +67,11 @@ $(Gemfile): $(data_dir)/Gemfile.d
 Gemfile.d: $(Gemfile.d)
 $(Gemfile.d): $(data_dir)/packages
 	mkdir -p $@
-	while read -d ' ' linkTarget; do \
+	for linkTarget in $(included); do \
 		if [ -f $$linkTarget/Gemfile ]; then \
 			ln -s "$$(realpath "$$linkTarget/Gemfile")" "$@/$$linkTarget"; \
 		fi; \
-	done < $(packages)
+	done
 
 .PHONY: packages
 packages: $(packages)
@@ -113,3 +113,4 @@ clean:
 test:
 	nvim --headless --clean -S test/dispatch_ghostty_test.vim
 	zsh test/pinned_tap_test.zsh
+	zsh test/brewfile_d_test.zsh
