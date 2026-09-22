@@ -10,7 +10,7 @@ Gemfile.d = $(data_dir)/Gemfile.d
 target = /Users/caleb
 
 # caleb/pinned tap for version-pinned formulae.
-# Stow packages place .rb files into ~/.local/share/homebrew-pinned/Formula/.
+# <package>/Formula/<formula>.rb files (stow ignores /Formula) are hard-linked
 # https://emmer.dev/blog/installing-old-homebrew-formula-versions/
 pinned_tap = $(shell brew --repository)/Library/Taps/caleb/homebrew-pinned
 
@@ -28,10 +28,10 @@ $(brew_install): install-homebrew pinned_tap $(data_dir)/Brewfile
 	brew bundle check --file=$(Brewfile) > /dev/null 2>&1 || brew bundle install --file=$(Brewfile)
 
 .PHONY: pinned_tap
-pinned_tap:
+pinned_tap: install-homebrew
 	mkdir -p $(pinned_tap)/Formula
-	for f in $(HOME)/.local/share/homebrew-pinned/Formula/*.rb; do \
-		[ -f "$$f" ] && ln -f "$$(realpath "$$f")" "$(pinned_tap)/Formula/$$(basename "$$f")"; \
+	for p in $(included); do \
+		for f in $$p/Formula/*.rb(N); do ln -f "$$f" "$(pinned_tap)/Formula/$$(basename "$$f")"; done; \
 	done
 
 .PHONY: install-homebrew
@@ -112,3 +112,4 @@ clean:
 .PHONY: test
 test:
 	nvim --headless --clean -S test/dispatch_ghostty_test.vim
+	zsh test/pinned_tap_test.zsh

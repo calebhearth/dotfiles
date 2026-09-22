@@ -33,5 +33,25 @@ Because Rectangle, a tiling window tool, doesn't follow symlinks for its prefere
 
 ### Pinned Homebrew formulae
 
-Packages can pin Homebrew formulae to specific versions via a local `caleb/pinned` tap. See our [homebrew-pinned tap's README](base/.local/share/homebrew-pinned/README.md) for details.
+Homebrew has [no built-in version locking]. To pin a formula to a specific version, put the formula's `.rb` file at `<package>/Formula/<name>.rb` and reference it from the package's `Brewfile`:
+
+[no built-in version locking]: https://emmer.dev/blog/installing-old-homebrew-formula-versions/
+
+```
+tap "caleb/pinned"
+brew "caleb/pinned/<name>"
+```
+
+Stow ignores `Formula/`. The `pinned_tap` target in Makefile hard-links every included package's formulae into the `caleb/pinned` tap under `$(brew --repository)/Library/Taps/` before `brew bundle` runs. They're hard links instead of symlinks because Homebrew doesn't follow symlinks for formulae. Git rewrites files on checkout, which breaks hard links, so `make` relinks them on every run.
+
+
+If you're annoyed by all of this too, complain to Homebrew about it as they've removed `Brewfile.lock.json` (which was never a lock) and `brew switch` (which allowed switching between installed version). `brew pin` would work to prevent updates, but wouldn't support installing the specific version in the first place.
+
+To pin a new formula:
+
+1. Find the formula for the version you want. If it's currently installed, check `$(brew --prefix)/Cellar/<name>/<version>/.brew/`.
+2. Copy it into your package at `Formula/<name>.rb`.
+3. Add a `Brewfile` with `tap "caleb/pinned"` and `brew "caleb/pinned/<name>"`.
+4. Add the package to `included` in the Makefile.
+5. Run `make brew_install` (may need to clean up `Brewfile.d` artifacts first).
 
